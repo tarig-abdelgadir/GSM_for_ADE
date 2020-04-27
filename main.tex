@@ -1,0 +1,172 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mymacros, stmaryrd, tikz, pstricks, pst-node, pst-text, pst-tree, subfigure, epsfig, psfrag}
+\usepackage[all]{xy}
+\usepackage{float}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{eg}[thm]{Example}
+
+\title{GSM for ADE}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+Take $\Gamma \subset \SL(2,\bfk)$ a finite subgroup without quasi-reflections.
+This presentation gives an action of $\Gamma$ on $\bA^2$.
+Below we express a GIT problem for which the stable quotient stack is $\bX:= [\bA^2/ \Gamma]$ for one stability parameter and the minimal resolution $Y$ of the associated singularity for another.
+
+We begin by setting up some notation.
+We use $\rho_i$ to denote the irreducible representations of $\Gamma$ and $d_i$ to denote their respective ranks.
+We denote the corresponding McKay quiver by $Q = (Q_0, Q_1)$ and use $A:= \bfk Q/I$ where $I$ is the corresponding ideal of preprojective relations.
+We will use the symbols $i,j,k$ for vertices of $Q$; these are in correspondence with irreducible representations of $\Gamma$ by definition of the McKay quiver.
+We take $P_i$ to be the projective left-modules of $A$ corresponding to $i$.
+Let $T_i$ be a vector space of dimension equal to the rank of $d_i$ and $G:= \text{GL}(\oplus T_i)$.
+We let $L_i:= \wedge^{d_i} T_i$ and similarly $L_V:= \wedge^2 V$.
+Fix $0 \in Q_0$ to be the vertex corresponding to the trivial representation and pick an isomorphism $\bfk \simeq T_0$ once and for all.
+We take $V$ to be the standard representation $\Gamma \subset \SL(2,\bfk)$ and use $I^\dagger$ for the natural isomorphism $I^\dagger \colon V^\vee \otimes L_V \rightarrow V$.
+
+\section{The fields and constraints}
+The GIT problem is given by the action of $G$ on the fields given below up to some constraints.
+The fields are:
+\begin{align}
+    &\bfk \simeq T_0 \\
+\bfx \colon &T_0 \longrightarrow V \label{fd:x} \\
+\alpha_i \colon &L_i \otimes L_i \longrightarrow \bigoplus_{i \rightarrow j} L_j \quad \text{for all} \,\, i \label{fd:alpha} \\
+ P_i \colon &T_i \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j \quad \text{for all} \,\, i. \label{fd:P}
+\end{align}
+A scalar field of particular importance is $\delta:= \otimes_i \,\alpha_i^{d_i}: L_V \rightarrow L_0$. 
+We write $P_i^j$ for the projection of $P_i$ to the $j$-th factor. 
+Furthermore, we write $$ P_{i^\vee}: = \bigoplus_{j \rightarrow i} (P_j^i)^T \colon T_i^\vee \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j^\vee.$$
+
+To express the constraints we need more notation.
+Note that the fields $P_i$ may naturally be rewritten as $P_i \colon T_i \rightarrow V^\vee \otimes (\bigoplus_{i \rightarrow j} T_j)$.
+Composing and tensoring by an appropriate line bundle allows us to state the first set of constraints.
+Namely, the following diagram commutes:
+\begin{equation*}
+    \xymatrix{T_i \otimes L_V \ar[r]^-{P_i} \ar[d]^{\text{id}} & V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{I^\dagger \otimes \text{id}} & V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{\oplus_{i \rightarrow j} P_j} & \bigoplus_{i \rightarrow j \rightarrow k} T_k \ar[d]^{\text{id}} \\
+    T_i \otimes L_V \ar[r]^-{\delta} & T_i \ar[r]^-{\text{Preproj}} & \bigoplus_{i \rightarrow j \rightarrow i} T_i \ar[r] & \bigoplus_{i \rightarrow j \rightarrow k} T_k.
+    }
+\end{equation*}
+Here the section $\text{Preproj}$ is defined by the preprojective relations.
+These constraints capture the semi-simplicity of representations of $\Gamma$.
+% Namely, the section given by the composite 
+% \begin{align}
+% T_i \otimes L_V \xrightarrow{P_i} V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \xrightarrow{I^\dagger \otimes \text{id}} V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \xrightarrow{\oplus_{i \rightarrow j} P_j} \bigoplus_{i \rightarrow j \rightarrow k} T_k.
+% \end{align}
+% is equal to 
+% \begin{align}
+%  T_i \otimes L_V \xrightarrow{\otimes_i\alpha_i^{d_i}} T_i \longrightarrow \bigoplus_{i \rightarrow j \rightarrow i} T_i \longrightarrow \bigoplus_{i \rightarrow j \rightarrow k} T_k.
+% \end{align}
+% Here the second factor is defined by the preprojective relations.
+
+The second flavour of constraints involves the scalar fields $\alpha_i$.
+These constraints maybe tersely stated as follows:
+\begin{align}
+    \wedge^{d_i+r} P_i &= \delta^r \circ \alpha_i \circ \wedge^{d_i-r} P_{i^\vee}   &\text{for} \,\, r =0,\ldots, d_i \text{ and all } i  \label{eq1:cons2} \\
+    \delta^r \circ \wedge^{d_i-r} P_i &= \alpha_i \circ \wedge^{d_i+r} P_{i^\vee} &\text{for} \,\, r=0,\ldots, d_i \text{ and all } i  \label{eq2:cons2} 
+\end{align}
+We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is well defined: we have natural isomorphisms
+$$I^\dagger_r(W) \colon \wedge^{d+r} W \rightarrow \wedge^{d-r} W^\vee \otimes L_W$$ for $W$ a $d$-dimensional vector space and $r= -d, \ldots, d$.
+Precomposing $\wedge^{d_i+r} P_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ P_{i^\vee}$ by some multiple of $L_V$.
+The factor $\delta^r$ is used to fix this discrepancy.
+
+% that the section $\wedge^{d_i} P_i$ maybe rewritten as $$\wedge^{d_i} P_i \colon \bigoplus_\lambda\, (\bS_\lambda T_i \otimes \bS_{\lambda'} V) \longrightarrow \bigoplus_{\sum_{i\rightarrow j} n_j=d_i} (\wedge^{n_j}T_j)$$
+% where $\lambda$ is a partition of $d_i$ with $\lambda_1 \leq 2$ and $\lambda'$ being the partition dual to $\lambda$.
+% Moreover, we have natural isomorphisms \begin{equation}
+%     I_\lambda \colon \bS_\lambda W \rightarrow \bS_\lambda W^\vee \otimes L_W^2 \quad\quad \text{and} \quad\quad I^\dagger_k \colon \wedge^{k} W \rightarrow \wedge^{n-k} W^\vee \otimes L_W
+% \end{equation}
+% where $W$ is an $n$-dimensional vector space and $\lambda$ is a partition of $n$ for which $\lambda_1 \leq 2$.
+% Precomposing $\wedge^{d_i} P_i$ by the respective $I_\lambda \otimes \text{id}_V$ and postcomposing with the appropriate direct sum of the isomorphisms $I_k^\dagger$ gives a section which is comparable to  $\alpha_i \circ (\wedge^{d_i} P_{i^\vee})$.
+
+\begin{definition}
+Fields satisfying the constraints gauged by $G$ above give us a quotient stack $\cM$.
+\end{definition}
+
+\begin{remark}
+The second flavour of contraints probably implies the first.
+\end{remark}
+
+\section{Tannakian duality and the stack $\bX$}
+
+Formally inverting the fields $\alpha_i$ and $P_i$ in (\ref{fd:alpha})-(\ref{fd:P}) gives a quotient stack $\widetilde{\cM}$ with an open embedding $\widetilde{\cM} \hookrightarrow \cM$.
+
+\begin{proposition}\label{prop:tannaka}
+The stack $\widetilde{\cM}$ is isomorphic to $\bX$.
+\end{proposition}
+
+\begin{corollary}
+Take $\phi$ to be the character of $G$ with the weights $(|\Gamma|, -d_1,\ldots, -d_n)$ then $\cM^\phi \simeq \bX$
+\end{corollary}
+
+\begin{proof}
+The determinant of any semi-invariants with weight $n \phi$, for $n>0$, must contain the scalar field $\Pi_i \, \alpha_i$ as a factor.
+Therefore $\Pi_i \, \alpha_i \neq 0$ for any $\phi$-stable point of $\cM$ which implies that $\alpha_i$s and $P_i$s are invertible.
+\end{proof}
+
+\section{The minimal resolution}
+
+Let $\theta$ denote the character of $G$ with weights $(-|G|,d_1,\ldots,d_n)$ and $\cM^\theta$ denote the corresponding GIT quotient.
+Furthermore, let $\cN^\theta$ to denote the moduli space of quiver representations of the McKay quiver with stability parameter $\theta$.
+Note that $\cN^\theta$ is isomorphic to the minimal resolution $Y$.
+We construct morphisms $f \colon \cN^\theta \rightarrow \cM^\theta$ and $g \colon \cM^\theta \rightarrow \cN^\theta$ and show that they are mutual inverses.
+
+\subsection{The morphism $f \colon \cN^\theta \rightarrow \cM$}
+
+Take a family of quiver representations $\cN^\theta(S)$ over a test scheme $S$.
+Abusing notation, this gives vector bundles $T_i$ over $S$ of the correct rank, as well as sections corresponding to the paths in the quiver.
+We give the morphism $f$ by defining fields over $S$ of our GIT problem from this data.
+
+\subsubsection{The field \bfx}
+
+The representation $V$ either corresponds to a single vertex if irreducible or a pair of vertices if not.
+The arrows from vertex $0$ to vertices corresponding to $V$ gives us a tautological section $T_0 \rightarrow V$ we take that to be the $\bfx$ of (\ref{fd:x}).
+
+\subsubsection{The fields $\alpha_i$}
+
+Take $0 \neq i \in Q_0$.
+Since our family is $\theta$-stable and $\theta_i>0$, the universal section corresponding to arrows whose heads are $i$ is surjective. 
+That is, the following is exact:
+$$\bigoplus_{i \rightarrow j} T_j \longrightarrow T_i \longrightarrow 0.$$
+Take $\mathfrak{K}$ to be its kernel.
+The preprojective relations give us a complex
+$$T_i \longrightarrow \bigoplus_{i \rightarrow j} T_j \longrightarrow T_i \longrightarrow 0$$
+and hence a morphism $T_i \rightarrow \mathfrak{K}$.
+We take $\alpha_i$ to be $\wedge^{d_i} T_i \rightarrow \wedge^{d_i}\mathfrak{K}.$
+
+\subsubsection{The fields $P_i$}
+
+The construction of $P_i$ is slightly more delicate.
+The isomorphism of representations $\rho_i \otimes V \rightarrow \oplus_j\, \rho_j$ induces a morphism of internal hom-spaces $\underline{\Hom}(\rho_0, V) \rightarrow \underline{\Hom}(\rho_i, \oplus_j \, \rho_j)$.
+This, in turn, gives a morphism of projective modules of our quiver and further an morphism of vector spaces $$\Hom(P_0, P_V) \rightarrow \Hom(P_i, \oplus_j \, P_j).$$
+Now consider the composite $$T_i \otimes \Hom(P_0, P_V) \rightarrow T_i \otimes_\bfk \Hom(P_i, \oplus_j \, P_j) \rightarrow \bigoplus_{i \rightarrow j} T_j$$ where the second factor is the evaluation map.
+The stability condition $\theta$, in particular $\theta_0<0$, implies $$\text{id} \otimes \text{ev} \colon T_i \otimes_\bfk \Hom(P_0, P_4) \rightarrow T_i \otimes V$$ is surjective; checking that the kernel of $\text{id} \otimes \text{ev}$ is zero under the composite above gives us a morphism $T_i \otimes V \rightarrow \oplus_{i \rightarrow j} T_j$ that we will call $P_i$.
+
+\subsubsection{The constraints}
+
+The space $\cM^\theta$ is birational to $\bX$ were the constraints hold: they hold there since the corresponding statements are true for representations of $\Gamma$.
+
+\subsection{The morphism $g \colon \cM \rightarrow \cN$}
+
+This is by-design the easier of the two.
+Given an $S$-point of $\cM$, we give the morphism $g$ by defining a family of quiver representations of $Q$ over $S$ and checking that the relations are satisfied.
+
+As before, an $S$-point of $\cM$ naturally gives vector bundles $T_i$ over $S$ of the correct ranks.
+It remains to define the sections corresponding to the arrows.
+For an arrow $i \rightarrow j$ we define its corresponding section by the following composite:
+$$T_i \xrightarrow{\text{id} \otimes \bfx} T_i \otimes V \xrightarrow{P_i^j} T_j.$$
+The relations follow from the first set of constraints.
+
+\end{document}
