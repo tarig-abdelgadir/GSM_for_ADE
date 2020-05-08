@@ -44,11 +44,12 @@ The fields are:
 \begin{align}
     &\bfk \simeq T_0 \\
 \bfx \colon &T_0 \longrightarrow V \label{fd:x} \\
-\alpha_i \colon &L_i \otimes L_i \longrightarrow \bigoplus_{i \rightarrow j} L_j \quad \text{for all} \,\, i \label{fd:alpha} \\
- P_i \colon &T_i \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j \quad \text{for all} \,\, i. \label{fd:P}
+\alpha_i \colon &L_i \otimes L_i \longrightarrow \bigoplus_{i \rightarrow j} L_j \quad \text{for all} \,\, i\neq 0 \label{fd:alpha} \\
+ P_i \colon &T_i \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j \quad \text{for all} \,\, i\neq 0. \label{fd:P}
 \end{align}
-A scalar field of particular importance is $\delta:= \otimes_i \,\alpha_i^{d_i}: L_V \rightarrow L_0$. 
-We write $P_i^j$ for the projection of $P_i$ to the $j$-th factor. 
+A scalar field of particular importance is $\alpha_0:= \otimes_i \,\alpha_i^{d_i}: L_V \rightarrow L_0$.
+We take $P_0$ to be the unit morphism.
+We write $P_i^j$ for the projection of $P_i$ to the $j$-th summand. 
 Furthermore, we write $$ P_{i^\vee}: = \bigoplus_{j \rightarrow i} (P_j^i)^T \colon T_i^\vee \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j^\vee.$$
 
 To express the constraints we need more notation.
@@ -57,11 +58,11 @@ Composing and tensoring by an appropriate line bundle allows us to state the fir
 Namely, the following diagram commutes:
 \begin{equation*}
     \xymatrix{T_i \otimes L_V \ar[r]^-{P_i} \ar[d]^{\text{id}} & V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{I^\dagger \otimes \text{id}} & V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{\oplus_{i \rightarrow j} P_j} & \bigoplus_{i \rightarrow j \rightarrow k} T_k \ar[d]^{\text{id}} \\
-    T_i \otimes L_V \ar[r]^-{\delta} & T_i \ar[r]^-{\text{Preproj}} & \bigoplus_{i \rightarrow j \rightarrow i} T_i \ar[r] & \bigoplus_{i \rightarrow j \rightarrow k} T_k.
+    T_i \otimes L_V \ar[r]^-{\alpha_0} & T_i \ar[r]^-{\text{Preproj}} & \bigoplus_{i \rightarrow j \rightarrow i} T_i \ar[r] & \bigoplus_{i \rightarrow j \rightarrow k} T_k.
     }
 \end{equation*}
 Here the section $\text{Preproj}$ is defined by the preprojective relations.
-These constraints capture the semi-simplicity of representations of $\Gamma$.
+%These constraints capture the semi-simplicity of representations of $\Gamma$.
 % Namely, the section given by the composite 
 % \begin{align}
 % T_i \otimes L_V \xrightarrow{P_i} V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \xrightarrow{I^\dagger \otimes \text{id}} V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \xrightarrow{\oplus_{i \rightarrow j} P_j} \bigoplus_{i \rightarrow j \rightarrow k} T_k.
@@ -75,13 +76,13 @@ These constraints capture the semi-simplicity of representations of $\Gamma$.
 The second flavour of constraints involves the scalar fields $\alpha_i$.
 These constraints maybe tersely stated as follows:
 \begin{align}
-    \wedge^{d_i+r} P_i &= \delta^r \circ \alpha_i \circ \wedge^{d_i-r} P_{i^\vee}   &\text{for} \,\, r =0,\ldots, d_i \text{ and all } i  \label{eq1:cons2} \\
-    \delta^r \circ \wedge^{d_i-r} P_i &= \alpha_i \circ \wedge^{d_i+r} P_{i^\vee} &\text{for} \,\, r=0,\ldots, d_i \text{ and all } i  \label{eq2:cons2} 
+    \wedge^{d_i+r} P_i &= \alpha_0^r \circ \alpha_i \circ \wedge^{d_i-r} P_{i^\vee}   &\text{for} \,\, r =0,\ldots, d_i \text{ and all } i  \label{eq1:cons2} \\
+    \alpha_0^r \circ \wedge^{d_i-r} P_i &= \alpha_i \circ \wedge^{d_i+r} P_{i^\vee} &\text{for} \,\, r=0,\ldots, d_i \text{ and all } i  \label{eq2:cons2} 
 \end{align}
-We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is well defined: we have natural isomorphisms
+We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is homogeneous with respect to the natural $G$ action on our fields: we have natural isomorphisms
 $$I^\dagger_r(W) \colon \wedge^{d+r} W \rightarrow \wedge^{d-r} W^\vee \otimes L_W$$ for $W$ a $d$-dimensional vector space and $r= -d, \ldots, d$.
 Precomposing $\wedge^{d_i+r} P_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ P_{i^\vee}$ by some multiple of $L_V$.
-The factor $\delta^r$ is used to fix this discrepancy.
+The factor $\alpha_0^r$ is used to fix this discrepancy.
 
 % that the section $\wedge^{d_i} P_i$ maybe rewritten as $$\wedge^{d_i} P_i \colon \bigoplus_\lambda\, (\bS_\lambda T_i \otimes \bS_{\lambda'} V) \longrightarrow \bigoplus_{\sum_{i\rightarrow j} n_j=d_i} (\wedge^{n_j}T_j)$$
 % where $\lambda$ is a partition of $d_i$ with $\lambda_1 \leq 2$ and $\lambda'$ being the partition dual to $\lambda$.
@@ -96,16 +97,56 @@ Fields satisfying the constraints gauged by $G$ above give us a quotient stack $
 \end{definition}
 
 \begin{remark}
-The second flavour of contraints probably implies the first.
+The second flavour of constraints implies the first.
 \end{remark}
 
 \section{Tannakian duality and the stack $\bX$}
 
-Formally inverting the fields $\alpha_i$ and $P_i$ in (\ref{fd:alpha})-(\ref{fd:P}) gives a quotient stack $\widetilde{\cM}$ with an open embedding $\widetilde{\cM} \hookrightarrow \cM$.
+Formally inverting the fields $\alpha_i$ and $P_i$ in (\ref{fd:alpha})-(\ref{fd:P}) gives a quotient stack ${\cM}^\circ$ with an open embedding ${\cM}^\circ \hookrightarrow \cM$.
 
 \begin{proposition}\label{prop:tannaka}
-The stack $\widetilde{\cM}$ is isomorphic to $\bX$.
+The stack ${\cM}^\circ$ is isomorphic to $\bX$.
 \end{proposition}
+
+\begin{proof}
+We unfortunately do this case by case.
+The overriding idea is to start with the representation at the `special' vertex $T_0$ of the McKay quiver and reduce the $P_i$s to a normal form one by one from there.
+The first representation one meets from $T_0$ is $V$ and the next one down is a summand of $V \otimes V$ and so on, therefore in tensor categorical terms this strategy goes through understanding the fusion graph of the faithful representation $V$.
+
+The $A_n$ case is easy, everything in sight is rank 1 or direct sums of rank 1s.
+
+For $D_n$, we have that $V=T_2$.
+We pick a bases $\{e_1,e_2\}$ for $T_2$ to help with expressing what follows.
+We take the monomials of degree $n$ with respect to this basis as a basis for $S^n(T_2)$.
+Up to the fixed isomorphism $\bfk \simeq T_0$, we may take $P_0$ is taken to be the identity.
+The section $P_{0^\vee}$ naturally gives a map $P_2^0 \colon T_2 \otimes V \rightarrow T_0$, the constraint (\ref{eq1:cons2}) with $i=0$ and $r=0$ then implies that this factors through $L_V=L_2$.
+A choice of $P_{0^\vee}$ fixes a coset of $\SL(T_2)$ in $\GL(T_2)$.
+
+We next consider the field $P_2$, semi-simplicity implies that $P_2^1$ is orthogonal to $P_2^0$ and so factors through $S^2(T_2)$.
+The constraint (\ref{eq1:cons2}) with $i=1$ and $r=0$ gives us $P_{1^\vee}$ and hence $P_1$.
+The condition that $P_2^1$ factors through $S^2(T_2)$ then translates into into tracelessness of $P_1$.
+We may then act by $SL(T_2)$ by conjugation on $P_1$ to bring it to the form $\text{diag}(\lambda,-\lambda)$ for $\lambda \in \bfk^\times$.
+%Scaling by $T_1$ we take $\lambda$ so that $\lambda^2=-1$.
+Translating back to $P_2^1$ via the constraints, we get that $P_2^1 \colon S^2(T_2) \rightarrow T_1$ factors through the subspace generated by $e_1 e_2$.
+Semi-simplicity then implies that $P_2^3 \colon S^2(T_2) \rightarrow T_3$ is orthogonal to $P_2^1$ and so factors through the subspace $\{e_1^{\otimes 2}, e_2^{\otimes 2}\}$.
+%We may act on $S^2(T_2) \rightarrow T_3$ by $\GL(T_3)$ to fix $\mu_1=1$ and $\mu_2=1$.
+
+The constraint (\ref{eq1:cons2}) with $i=2$ and $r=1$ gives $P_{2^\vee}$ up to scalar.
+From this, using some natural identities, we may deduce $P_3^2$ up to a scalar multiple.
+Semi-simplicity then specifies the 2-dimensional subspace of $\Hom(T_3 \otimes T_2, T_4)$ in which the field $P_3^4 \colon T_3 \otimes T_2 \rightarrow T_4$ lives.
+A careful consideration of this subspace gives that $$T_2 \otimes S^2(T_2) \xrightarrow{\text{id} \otimes P_2^3} T_2 \otimes T_3 \xrightarrow{P_3^4} T_4$$ must factor through $S^3(T_2)$ and in particular, for our choices above, through the subspace generated by the tensors $e_1^{\otimes 3}$ and $e_2^{\otimes 3}$.
+We may act on $P_3^4$ by $\GL(T_4)$ to bring it to any form we like.
+
+We proceed to argue like so all the way up to the last rank two representation $T_{n-2}$ reducing all $P_i$ for $i\leq (n-3)$ to some normal form.
+This in turn, by the constraints, fixes $P_{n-2}^{n-3}$ up to scalar.
+We leave $T_{n-2}$ for now and focus on the rank 1 representations $T_{n-1}$ and $T_n$.
+We fix isomorphisms $P_{n-1}$ and $P_n$ so that the corresponding $P_{n-2}^{n-1}$ and $P_{n-2}^{n}$ are mutually orthogonal and orthogonal to $P_{n-2}^{n-3}$; this is designed to satisfy the semi-simplicity constraint.
+Again examining the subspace in which $P_{n-2}^{n-3}$ lives we may deduce that this orthogonality implies that $$T_2 \otimes S^{(n-3)}(T_2) \xrightarrow{\text{id} \otimes P_{n-3}^{n-2}} T_2 \otimes T_{n-2} \xrightarrow{P_{n-2}^{n-1}} T_{n-1}$$
+factors through the subspace of $S^{(n-2)}(T_2)$ generated by $e_1^{\otimes (n-2)}$ and $e_2^{\otimes (n-2)}$.
+
+Now we may act by $\SL(T_2)$ to transform $P_{n-1}$ into a form we like while preserving everything else.
+
+\end{proof}
 
 \begin{corollary}
 Take $\phi$ to be the character of $G$ with the weights $(|\Gamma|, -d_1,\ldots, -d_n)$ then $\cM^\phi \simeq \bX$
@@ -115,6 +156,11 @@ Take $\phi$ to be the character of $G$ with the weights $(|\Gamma|, -d_1,\ldots,
 The determinant of any semi-invariants with weight $n \phi$, for $n>0$, must contain the scalar field $\Pi_i \, \alpha_i$ as a factor.
 Therefore $\Pi_i \, \alpha_i \neq 0$ for any $\phi$-stable point of $\cM$ which implies that $\alpha_i$s and $P_i$s are invertible.
 \end{proof}
+
+\begin{remark}
+There is probably a more elegant proof of Proposition~\ref{prop:tannaka} that uses the language of rigid symmetric monoidal categories.
+We apologise for not working hard enough towards it.
+\end{remark}
 
 \section{The minimal resolution}
 
@@ -152,7 +198,7 @@ The construction of $P_i$ is slightly more delicate.
 The isomorphism of representations $\rho_i \otimes V \rightarrow \oplus_j\, \rho_j$ induces a morphism of internal hom-spaces $\underline{\Hom}(\rho_0, V) \rightarrow \underline{\Hom}(\rho_i, \oplus_j \, \rho_j)$.
 This, in turn, gives a morphism of projective modules of our quiver and further an morphism of vector spaces $$\Hom(P_0, P_V) \rightarrow \Hom(P_i, \oplus_j \, P_j).$$
 Now consider the composite $$T_i \otimes \Hom(P_0, P_V) \rightarrow T_i \otimes_\bfk \Hom(P_i, \oplus_j \, P_j) \rightarrow \bigoplus_{i \rightarrow j} T_j$$ where the second factor is the evaluation map.
-The stability condition $\theta$, in particular $\theta_0<0$, implies $$\text{id} \otimes \text{ev} \colon T_i \otimes_\bfk \Hom(P_0, P_4) \rightarrow T_i \otimes V$$ is surjective; checking that the kernel of $\text{id} \otimes \text{ev}$ is zero under the composite above gives us a morphism $T_i \otimes V \rightarrow \oplus_{i \rightarrow j} T_j$ that we will call $P_i$.
+The stability condition $\theta$, in particular $\theta_0<0$, implies $$\text{id} \otimes \text{ev} \colon T_i \otimes_\bfk \Hom(P_0, P_V) \rightarrow T_i \otimes V$$ is surjective; checking that the kernel of $\text{id} \otimes \text{ev}$ is zero under the composite above gives us a morphism $T_i \otimes V \rightarrow \oplus_{i \rightarrow j} T_j$ that we will call $P_i$.
 
 \subsubsection{The constraints}
 
