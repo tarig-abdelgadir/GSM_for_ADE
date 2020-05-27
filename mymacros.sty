@@ -5,33 +5,137 @@
 %---------- color ----------
 
 \usepackage{color}
-\newcommand{\red}[1]{{\colorbox{red}{{#1}}}}
- % to make the text red
-
-\newcommand{\rem}[1]{{\colorbox{red}{{#1}}}}
- % to be removed in the final version
 
 %
 %---------- Packages ----------
 %
 
-\usepackage{comment}
 %\usepackage{makeidx}
 \usepackage{enumerate}
-
-\usepackage{latexsym}
-\usepackage{amscd}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathrsfs}
-
 \usepackage{array}
-\usepackage{amsthm}
 \usepackage{float}
 \usepackage{graphicx}
 %\usepackage{subfigure}
 %\usepackage{psfrag}
-%\usepackage{pst-all}
+
+\usepackage{latexsym}
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{autobreak}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\usepackage{pst-all}
+
+\usepackage{booktabs}
+%\usepackage{mdwlist}
+\usepackage[normalem]{ulem}
+
+
+%
+%---------- Macros by Shinnosuke Okawa ----------
+%
+\newcommand{\Cox}{\operatorname{Cox}}
+\newcommand{\Skl}{\operatorname{Skl}}
+\newcommand{\Class}{\operatorname{Cl}}
+\newcommand{\divisor}{\operatorname{div}}
+\newcommand{\QGr}{\operatorname{QGr}}
+\newcommand{\Tors}{\operatorname{Tors}}
+\newcommand{\tors}{\operatorname{tors}}
+\newcommand{\Bl}{\operatorname{Bl}}
+\newcommand{\Grmod}{\operatorname{Grmod}}
+\newcommand{\grmod}{\operatorname{grmod}}
+\newcommand{\Fract}{\operatorname{Fract}}
+%\newcommand{\GKdim}{\operatorname{GKdim}}
+\newcommand{\Fun}{\operatorname{Fun}}
+\newcommand{\scHom}{\mathop{{\scH}om}\nolimits}
+\newcommand{\CC}{\mathop{CC}\nolimits}
+%\newcommand{\phihat}{\hat{\phi}}
+%\newcommand{\psihat}{\hat{\psi}}
+\newcommand{\dbt}{[\![t]\!]}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\scMquad}{\operatorname{\scM_{\mathrm{quad}}}}
+\newcommand{\Mquad}{\operatorname{M_{\mathrm{quad}}}}
+\newcommand{\barMquad}{\operatorname{\Mbar_{\mathrm{quad}}}}
+\newcommand{\Mbarquad}{\operatorname{\Mbar_{\mathrm{quad}}}}
+\newcommand{\scMtri}{\operatorname{\scM_{\mathrm{tri}}}}
+\newcommand{\Mtri}{\operatorname{M_{\mathrm{tri}}}}
+\newcommand{\Mbartri}{\operatorname{\Mbar_{\mathrm{tri}}}}
+\newcommand{\barMtri}{\operatorname{\Mbar_{\mathrm{tri}}}}
+%\newcommand{\Mrel}{\operatorname{M_{\mathrm{rel}}}}
+\newcommand{\Mbarrel}{\operatorname{\Mbar_{\mathrm{rel}}}}
+\renewcommand{\ss}{\mathrm{ss}}
+\newcommand{\s}{\mathrm{s}}
+\newcommand{\ann}{\operatorname{ann}}
+\newcommand{\Ass}{\operatorname{Ass}}
+\newcommand{\MMO}{\cM_{g,n}}
+\newcommand{\sm}{\mathrm{sm}}
+\newcommand{\he}{\partial_}
+\newcommand{\irr}{\mathrm{irr}}
+\newcommand{\ab}{\operatorname{ab}}
+\newcommand{\Swan}{\mathrm{Swan}}
+\newcommand{\Repr}{\mathrm{Rep}}
+\newcommand{\cMsh}{\cMbar_{\mathrm{sh}}}
+\newcommand{\GIT}[1][]{/ \! /_{#1}}
+\newcommand{\Wred}{W_{\mathrm{red}}}
+\newcommand{\bk}{\bsk}
+\newcommand{\Sch}{\scS ch}
+\newcommand{\Set}{\scS et}
+\newcommand{\cpl}{\operatorname{cpl}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\wtbar}{\overline{\wt}}
+\newcommand{\Isom}{\operatorname{Isom}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\prim}{\mathrm{prim}}
+\newcommand{\nonprim}{\mathrm{non\text{-}prim}}
+\newcommand{\pr}{\mathrm{pr}}
+\newcommand{\bdim}{\mathop{\bfd \bfi \bfm}\nolimits}
+\newcommand{\bt}{\bst}
+\newcommand{\fm}{\frakm}
+\newcommand{\Alg}{\operatorname{Alg}}
+\newcommand{\ALG}{\operatorname{ALG}}
+\newcommand{\GrAlg}{\operatorname{GrAlg}}
+\newcommand{\shbimod}[2]{\operatorname{shbimod}(#1, #2)}
+\newcommand{\Bimod}{\operatorname{Bimod}}
+\newcommand{\BIMOD}{\operatorname{BIMOD}}
+\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\cDtilde}{\widetilde{\cD}}
+\newcommand{\twedge}{\textstyle{\bigwedge}}
+\newcommand{\lstar}[1]{\!^* #1}
+\newcommand{\lbot}[1]{\!^\bot #1}
+\newcommand{\X}{{\bP^1}}
+
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xc}[1]{\textcolor{cyan}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+\newcommand{\xg}[1]{\textcolor{green}{#1}}
+
+\newcommand{\cAtilde}{\widetilde{\cA}}
+\newcommand{\cFtilde}{\widetilde{\cF}}
+\newcommand{\cOtilde}{\widetilde{\cO}}
+
+\newcommand{\cMtilde}{\widetilde{\cM}}
+\newcommand{\Msht}{\cMtilde_{\mathrm{sh}}}
+\newcommand{\Msh}{\cM_{\mathrm{sh}}}
+\newcommand{\Mell}{\cM_{\mathrm{ell}}}
+\newcommand{\Mrel}{\cM_{\mathrm{rel}}}
+\newcommand{\Mshz}{\cM_{\mathrm{sh},0}}
+\newcommand{\Mrelz}{\cM_{\mathrm{rel},0}}
+\newcommand{\Mellz}{\cM_{\mathrm{ell},0}}
+\newcommand{\Msho}{\cM_{\mathrm{sh},1}}
+\newcommand{\Mrelo}{\cM_{\mathrm{rel},1}}
+\newcommand{\Mello}{\cM_{\mathrm{ell},1}}
+\newcommand{\Mshi}{\cM_{\mathrm{sh},i}}
+\newcommand{\Mreli}{\cM_{\mathrm{rel},i}}
+\newcommand{\Melli}{\cM_{\mathrm{ell},i}}
+\newcommand{\Mellt}{\cMtilde_{\mathrm{ell}}}
+
+
+
 
 %
 %---------- Comments ----------
@@ -55,7 +159,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{assumption}[theorem]{Assumption}
-
+\newtheorem{acknowledgements}{Acknowledgements}
 %
 %---------- Theorem environments with definition style -----------
 %
@@ -67,11 +171,13 @@
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{condition}[theorem]{Condition}
 \newtheorem{example}[theorem]{Example}
-\newtheorem{observation}[theorem]{Observation}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{notation}[theorem]{Notations}
+\newtheorem{construction}[theorem]{CONSTRUCTION}
+%\newtheorem*{construction*}[theorem]{CONSTRUCTION}
+\newtheorem{recap}[theorem]{Recap}
+%\newtheorem{recap*}[theorem]{RECAP*}
 \newtheorem{step}{Step}
-
-
-\newtheorem{heorem}[theorem]{Heorem}
 
 %
 %---------- \numberwithin commands ----------
@@ -110,7 +216,7 @@
 \newrefformat{fg}{Figure~\ref{#1}}
 \newrefformat{tb}{Table~\ref{#1}}
 \newrefformat{as}{Assumption~\ref{#1}}
-
+\newrefformat{ex}{Exercise~\ref{#1}}
 %
 %---------- standard math stuff ----------------------------------
 %
@@ -140,7 +246,7 @@
  \left[\kern.3\argwidth\box0 \kern.3\argwidth\right]}
 
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
-
+\newcommand{\sqmat}[4]{\begin{pmatrix}#1&#2\\#3&#4\end{pmatrix}}
 \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\sgn}{\operatorname{sgn}}
@@ -153,29 +259,29 @@
 \newcommand{\codim}{\operatorname{codim}}
 \newcommand{\GKdim}{\operatorname{GKdim}}
 \newcommand{\Ker}{\operatorname{Ker}}
-\newcommand{\Image}{\operatorname{Im}}
+\newcommand{\image}{\operatorname{im}}
 \newcommand{\coker}{\operatorname{coker}}
-\newcommand{\Coim}{\operatorname{Coim}}
+\newcommand{\coim}{\operatorname{coim}}
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\Ad}{\operatorname{Ad}}
 \newcommand{\vol}{\operatorname{vol}}
 %\newcommand{\deg}{\operatorname{deg}}
 \newcommand{\Ob}{\mathfrak{Ob}}
 \newcommand{\id}{\operatorname{id}}
-\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\colim}{\operatorname*{colim}}
 \newcommand{\holim}{\operatorname{holim}}
 \newcommand{\hocolim}{\operatorname{hocolim}}
 \newcommand{\HH}{\operatorname{HH}}
-
-%\newcommand{\Sym}{\ensuremath{\mathop{Sym}\nolimits}}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\Log}{\operatorname{Log}}
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\vspan}{\operatorname{span}}
-\newcommand{\GL}{GL}
-\newcommand{\PGL}{PGL}
-\newcommand{\SL}{SL}
-\newcommand{\PSL}{PSL}
-\newcommand{\SO}{SO}
-\newcommand{\Sp}{Sp}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\PSL}{\operatorname{PSL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Sp}{\operatorname{Sp}}
 \newcommand{\bCx}{\bC^{\times}}
 \newcommand{\bRt}{\bR^{>0}}
 \newcommand{\Lie}{\operatorname{Lie}}
@@ -184,7 +290,9 @@
 \newcommand{\Conv}{\operatorname{Conv}}
 \newcommand{\Irrep}{\operatorname{Irrep}}
 \newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\Vect}{\operatorname{Vect}}
 \newcommand{\bGm}{\bG_m}
+\newcommand{\SB}{\operatorname{SB}}
 
 \newcommand{\sdiv}{\operatorname{div}}
 \newcommand{\grad}{\mathop{\mathbf{grad}}\nolimits}
@@ -193,30 +301,37 @@
 \newcommand{\Laplacian}{\Delta}
 \newcommand{\dAlambertian}{\square}
 
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Fil}{\operatorname{Fil}}
+\newcommand{\cl}[1]{\ld{#1}\rd}
+\newcommand{\HS}{\operatorname{HS}}
+\newcommand{\Hodge}{\mathop{\chi} _{ \mathrm{h} }\nolimits}
+\newcommand{\HD}{\mathop{\chi} _{ \mathrm{hn} }\nolimits}
+\newcommand{\chimot}{\mathop{\chi} _{ \mathrm{mot} } ^{ c } \nolimits}
+
 %
 %---------- algebraic geometry stuff ------------------------------
 %
 
 \newcommand{\coh}{\operatorname{coh}}
+\newcommand{\Coh}{\operatorname{Coh}}
 \newcommand{\Qcoh}{\operatorname{Qcoh}}
+\newcommand{\Perf}{\operatorname{Perf}}
 \newcommand{\Inj}{\operatorname{Inj}}
-
 \newcommand{\Supp}{\operatorname{Supp}}
-
 \newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Mot}{\operatorname{Mot}}
 \newcommand{\Ext}{\operatorname{Ext}}
 \newcommand{\Tor}{\operatorname{Tor}}
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Spc}{\operatorname{Spc}}
 \newcommand{\Proj}{\operatorname{Proj}}
 \newcommand{\Amp}{\operatorname{Amp}}
 \newcommand{\Mov}{\operatorname{Mov}}
-\newcommand{\Wt}{\operatorname{Wt}}
 
-\newcommand{\scExt}{\mathop{{\scE}xt}\nolimits}
-\newcommand{\scEnd}{\mathop{{\scE}nd}\nolimits}
-\newcommand{\scTor}{\mathop{{\scT}or}\nolimits}
+\newcommand{\cHom}{\mathop{{\cH}om}\nolimits}
 \newcommand{\cExt}{\mathop{{\cE}xt}\nolimits}
 \newcommand{\cEnd}{\mathop{{\cE}nd}\nolimits}
 \newcommand{\cTor}{\mathop{{\cT}or}\nolimits}
@@ -243,19 +358,15 @@
 \newcommand{\Gr}{\operatorname{Gr}}
 \newcommand{\Grproj}{\operatorname{Grproj}}
 \newcommand{\Qgr}{\operatorname{Qgr}}
-
+\newcommand{\perf}{{\mathrm{perf}}}
 \newcommand{\Sing}{\operatorname{Sing}}
 \newcommand{\orb}{{\mathrm{orb}}}
 \newcommand{\sing}{{\mathrm{sing}}}
-
-\newcommand{\Dsg}{D_{\mathrm{Sg}}}
-\newcommand{\Dgrsg}{D^{\mathrm{gr}}_{\mathrm{Sg}}}
-\newcommand{\perf}{{\mathrm{perf}}}
-
 \newcommand{\Dbsing}{D^b_\sing}
 \newcommand{\Dpising}{D^{\pi}_\sing}
-
 \newcommand{\leftbot}{\! \ ^\bot}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\Tw}{\mathop{\cT \! w}\nolimits}
 
 %
 %---------- symplectic geometry stuff ------------------------------
@@ -263,9 +374,6 @@
 
 \newcommand{\Fuk}{\operatorname{\mathfrak{Fuk}}}
 \newcommand{\dirFuk}{\operatorname{\mathfrak{Fuk}^{\to}}}
-\newcommand{\m}{\frakm}
-\newcommand{\ev}{\operatorname{ev}}
-\newcommand{\Tw}{\mathop{\scT \! w}\nolimits}
 
 %
 %---------- mathbb font --------------------------------
@@ -355,6 +463,35 @@
 \newcommand{\cX}{\ensuremath{\mathcal{X}}}
 \newcommand{\cY}{\ensuremath{\mathcal{Y}}}
 \newcommand{\cZ}{\ensuremath{\mathcal{Z}}}
+
+
+\newcommand{\cAhat}{\widehat\cA}
+\newcommand{\cBhat}{\widehat\cB}
+\newcommand{\cChat}{\widehat\cC}
+\newcommand{\cDhat}{\widehat\cD}
+\newcommand{\cEhat}{\widehat\cE}
+\newcommand{\cFhat}{\widehat\cF}
+\newcommand{\cGhat}{\widehat\cG}
+\newcommand{\cHhat}{\widehat\cH}
+\newcommand{\cIhat}{\widehat\cI}
+\newcommand{\cJhat}{\widehat\cJ}
+\newcommand{\cKhat}{\widehat\cK}
+\newcommand{\cLhat}{\widehat\cL}
+\newcommand{\cMhat}{\widehat\cM}
+\newcommand{\cNhat}{\widehat\cN}
+\newcommand{\cOhat}{\widehat\cO}
+\newcommand{\cPhat}{\widehat\cP}
+\newcommand{\cQhat}{\widehat\cQ}
+\newcommand{\cRhat}{\widehat\cR}
+\newcommand{\cShat}{\widehat\cS}
+\newcommand{\cThat}{\widehat\cT}
+\newcommand{\cUhat}{\widehat\cU}
+\newcommand{\cVhat}{\widehat\cV}
+\newcommand{\cWhat}{\widehat\cW}
+\newcommand{\cXhat}{\widehat\cX}
+\newcommand{\cYhat}{\widehat\cY}
+\newcommand{\cZhat}{\widehat\cZ}
+
 
 %
 %---------- mathfrak font ----------
@@ -613,6 +750,7 @@
 \newcommand{\bsepsilon}{{\boldsymbol{\epsilon}}}
 \newcommand{\bstheta}{{\boldsymbol{\theta}}}
 \newcommand{\bssigma}{{\boldsymbol{\sigma}}}
+\newcommand{\bszeta}{{\boldsymbol{\zeta}}}
 \newcommand{\bsomega}{{\boldsymbol{\omega}}}
 
 \newcommand{\bsDelta}{{\boldsymbol{\Delta}}}
@@ -736,13 +874,39 @@
 \newcommand{\scYtilde}{\widetilde{\scY}}
 \newcommand{\scZtilde}{\widetilde{\scZ}}
 
+\newcommand{\bAtilde}{\widetilde{\bA}}
+\newcommand{\bBtilde}{\widetilde{\bB}}
+\newcommand{\bCtilde}{\widetilde{\bC}}
+\newcommand{\bDtilde}{\widetilde{\bD}}
+\newcommand{\bEtilde}{\widetilde{\bE}}
+\newcommand{\bFtilde}{\widetilde{\bF}}
+\newcommand{\bGtilde}{\widetilde{\bG}}
+\newcommand{\bHtilde}{\widetilde{\bH}}
+\newcommand{\bItilde}{\widetilde{\bI}}
+\newcommand{\bJtilde}{\widetilde{\bJ}}
+\newcommand{\bKtilde}{\widetilde{\bK}}
+\newcommand{\bLtilde}{\widetilde{\bL}}
+\newcommand{\bMtilde}{\widetilde{\bM}}
+\newcommand{\bNtilde}{\widetilde{\bN}}
+\newcommand{\bOtilde}{\widetilde{\bO}}
+\newcommand{\bPtilde}{\widetilde{\bP}}
+\newcommand{\bQtilde}{\widetilde{\bQ}}
+\newcommand{\bRtilde}{\widetilde{\bR}}
+\newcommand{\bStilde}{\widetilde{\bS}}
+\newcommand{\bTtilde}{\widetilde{\bT}}
+\newcommand{\bUtilde}{\widetilde{\bU}}
+\newcommand{\bVtilde}{\widetilde{\bV}}
+\newcommand{\bWtilde}{\widetilde{\bW}}
+\newcommand{\bXtilde}{\widetilde{\bX}}
+\newcommand{\bYtilde}{\widetilde{\bY}}
+\newcommand{\bZtilde}{\widetilde{\bZ}}
+
+
 \newcommand{\frakMtilde}{\widetilde{\frakM}}
 \newcommand{\frakNtilde}{\widetilde{\frakN}}
 \newcommand{\frakXtilde}{\widetilde{\frakX}}
 \newcommand{\frakYtilde}{\widetilde{\frakY}}
 \newcommand{\frakZtilde}{\widetilde{\frakZ}}
-
-\newcommand{\bTtilde}{{\widetilde{\bT}}}
 
 \newcommand{\alphatilde}{{\widetilde{\alpha}}}
 \newcommand{\betatilde}{{\widetilde{\beta}}}
@@ -752,12 +916,14 @@
 \newcommand{\tautilde}{{\widetilde{\tau}}}
 \newcommand{\pitilde}{{\widetilde{\pi}}}
 \newcommand{\varpitilde}{{\widetilde{\varpi}}}
+\newcommand{\phihat}{\hat{\phi}}
 \newcommand{\phitilde}{{\widetilde{\phi}}}
 \newcommand{\varphitilde}{{\widetilde{\varphi}}}
 \newcommand{\varsigmatilde}{{\widetilde{\varsigma}}}
 \newcommand{\psitilde}{{\widetilde{\psi}}}
 \newcommand{\omegatilde}{{\widetilde{\omega}}}
 \newcommand{\xitilde}{{\widetilde{\xi}}}
+\newcommand{\iotatilde}{{\widetilde{\iota}}}
 
 \newcommand{\Deltatilde}{{\widetilde{\Delta}}}
 \newcommand{\Gammatilde}{{\widetilde{\Gamma}}}
@@ -839,6 +1005,7 @@
 \newcommand{\cAbar}{{\overline{\cA}}}
 \newcommand{\cBbar}{{\overline{\cB}}}
 \newcommand{\cMbar}{{\overline{\cM}}}
+\newcommand{\cQbar}{{\overline{\cQ}}}
 
 \newcommand{\bTbar}{{\overline{\bT}}}
 
@@ -856,14 +1023,19 @@
 \newcommand{\sigmabar}{{\overline{\sigma}}}
 \newcommand{\thetabar}{{\overline{\theta}}}
 \newcommand{\phibar}{{\overline{\phi}}}
-\newcommand{\xibar}{{\overline{\xi}}}
 \newcommand{\psibar}{{\overline{\psi}}}
+\newcommand{\pibar}{{\overline{\pi}}}
+\newcommand{\nubar}{{\overline{\nu}}}
 \newcommand{\varphibar}{{\overline{\varphi}}}
 \newcommand{\etabar}{{\overline{\eta}}}
+\newcommand{\xibar}{{\overline{\xi}}}
 
 \newcommand{\Deltabar}{{\overline{\Delta}}}
 \newcommand{\Gammabar}{{\overline{\Gamma}}}
+\newcommand{\Phibar}{{\overline{\Phi}}}
+\newcommand{\Psibar}{{\overline{\Psi}}}
 \newcommand{\Sigmabar}{{\overline{\Sigma}}}
+\newcommand{\Xibar}{{\overline{\Xi}}}
 \newcommand{\Omegabar}{{\overline{\Omega}}}
 
 \newcommand{\mhobar}{{\overline{\mho}}}
@@ -1007,14 +1179,34 @@
 \newcommand{\bPv}{{\Check{\bP}}}
 \newcommand{\bTv}{{\Check{\bT}}}
 
+\newcommand{\fYv}{{\Check{\fY}}}
+
+\newcommand{\gammav}{{\Check{\gamma}}}
+\newcommand{\bsgammav}{{\Check{\bsgamma}}}
+\newcommand{\deltav}{{\Check{\delta}}}
+\newcommand{\bsdeltav}{{\Check{\bsdelta}}}
 \newcommand{\rhov}{{\Check{\rho}}}
+\newcommand{\iotav}{{\Check{\iota}}}
+\newcommand{\piv}{{\Check{\pi}}}
+\newcommand{\varphiv}{{\Check{\varphi}}}
+\newcommand{\mhov}{{\Check{\mho}}}
+
 \newcommand{\Deltav}{{\Check{\Delta}}}
+\newcommand{\Sigmav}{{\Check{\Sigma}}}
+\newcommand{\Omegav}{{\Check{\Omega}}}
+
+%\newcommand{\bTv}{{\Check{\bT}}}
+\newcommand{\cQv}{{\Check{\cQ}}}
+\newcommand{\cXv}{{\Check{\cX}}}
+\newcommand{\cYv}{{\Check{\cY}}}
+\newcommand{\Yvtilde}{{\widetilde{\Yv}}}
 
 %
 %---------- arrows ------------------------------
 %
 
 \newcommand{\xto}{\xrightarrow}
+\newcommand{\xlto}{\xleftarrow}
 \newcommand{\lto}{\longrightarrow}
 \newcommand{\lrto}{\longleftrightarrow}
 \newcommand{\hto}{\hookrightarrow}
@@ -1024,6 +1216,7 @@
 \newcommand{\wto}{\rightsquigarrow}
 \newcommand{\simdashto}{\stackrel{\sim}{\dashto}}
 \newcommand{\simdto}{\stackrel{\sim}{\dto}}
+\newcommand{\ot}{\leftarrow}
 
 \makeatletter
 \newcommand{\xleftrightarrows}[2][]{\mathrel{
@@ -1036,7 +1229,7 @@
  \raise.40ex\hbox{$\ext@arrow 3095\rightarrowfill@{\phantom{#1}}{#2}$}
  \setbox0=\hbox{$\ext@arrow 0359\leftarrowfill@{#1}{\phantom{#2}}$}
  \kern-\wd0 \lower.40ex\box0}}
-\newcommand{\xleftrightarrow}[2][]{
+\renewcommand{\xleftrightarrow}[2][]{
      \ext@arrow 0055{\leftrightarrowfill@}{#1}{#2}
 }
 \def\leftrightarrowfill@{
@@ -1075,6 +1268,11 @@
 \newcommand{\vecy}{{\vec{y}}}
 \newcommand{\vecz}{{\vec{z}}}
 
+%\newcommand{\vecC}{{\overrightarrow{C}}}
+%\newcommand{\vecX}{{\overrightarrow{X}}}
+%\newcommand{\vecY}{{\overrightarrow{Y}}}
+%\newcommand{\vecZ}{{\overrightarrow{Z}}}
+
 \newcommand{\vecC}{{\vec{C}}}
 \newcommand{\vecX}{{\vec{X}}}
 \newcommand{\vecY}{{\vec{Y}}}
@@ -1100,5 +1298,7 @@
 \newcommand{\rbb}{\right)\!\right)}
 \newcommand{\lcc}{\left\{\!\left\{}
 \newcommand{\rcc}{\right\}\!\right\}}
-\newcommand{\ldd}{\left[\!\left[}
-\newcommand{\rdd}{\right]\!\right]}
+%\newcommand{\ldd}{\left[\!\left[}
+%\newcommand{\rdd}{\right]\!\right]}
+\newcommand{\ldd}{\llbracket}
+\newcommand{\rdd}{\rrbracket}
