@@ -5,6 +5,8 @@
 \usepackage[all]{xy}
 \usepackage{float}
 
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+
 \newtheorem{thm}{Theorem}
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{lem}[thm]{Lemma}
@@ -17,7 +19,7 @@
 \newtheorem{conj}[thm]{Conjecture}
 \newtheorem{eg}[thm]{Example}
 
-\title{GSM for ADE}
+\title{ADE as GLSMs}
 \date{\today}
 
 \begin{document}
@@ -26,87 +28,202 @@
 
 \section{Introduction}
 
-\section{Background}
+\section{Background}\label{sc:background}
+
+
+\subsection{{\red Adjuctions}}
+
+\subsection{{\red GIT}}
 
 \subsection{Quivers}
 A quiver $Q$ is specified by two finite sets $Q_0$ and $Q_1$ together with two maps $h, t \colon Q_1 \rightarrow Q_0$. We call the elements of these sets vertices and arrows, respectively.  The maps $h$ and $t$ indicate the vertices at the head and tail of each arrow.
 A nontrivial path in $Q$ is a sequence of arrows $p = a_1 \dotsb a_m$ with $h(a_{k}) = t(a_{k+1})$ for $1 \leq k < m$.  We set $t(p) = t(a_{1})$ and $h(p)= h(a_m)$, the length of $p$ is $m$.  
 For each $i \in Q_0$ we have a trivial path $\bfe_i$ where $t(\bfe_i) = h(\bfe_i) = i$.  
 The path algebra $\bfk Q$ is the $\bfk$-algebra whose underlying $\bfk$-vector space has a basis consisting of paths in $Q$; the product of two basis elements equals the basis element defined by concatenation of the paths if possible or zero otherwise.
+The trivial paths $\bfe_i$ give idempotents of $\bfk Q$.
 
 A representation $\bfx = (V_i, x_a)$ of $Q$ consists of a vector space $V_i$ for each $i \in Q_0$ and a linear map $x_a \colon V_{t(a)} \rightarrow V_{h(a)}$ for each $a \in Q_1$. 
 The dimension vector of $\bfx$ is the integer vector $(\dim V_{i})_{i\in Q_0}$.  
 A map between representations $\bfx = (V_i, x_a)$ and $\bfx' = (V_i', x_a')$ is a family $\xi_{i} \colon V_i^{\,} \rightarrow V_i'$ for $i \in Q_0$ of linear maps that are compatible with the structure maps, that is $x_a' \circ\xi_{t(a)} = \xi_{h(a)} \circ x_a$ for all $a \in Q_1$.  
 With composition defined componentwise, we obtain the abelian category of representations of $Q$ denoted rep$_\bfk(Q)$. 
-This category is equivalent to the category $\bfk Q$-mod of finitely generated left modules over the path algebra.
+This category is equivalent to the category $\bfk Q$-mod of finitely generated left-modules over the path algebra.
 A relation $r$ on $Q$ is a finite linear combination of paths that share the same head and tail.
 A quiver with relations is $Q$ along with a finite set of relations $R$.
 A representation of a $(Q,R)$ is a representation of $Q$ for which $x_r=0$ for all $r\in R$.
-Representations of $(Q,R)$ correspond to left modules of $\bfk Q/ \langle R \rangle$.
+Representations of $(Q,R)$ correspond to left-modules of $\bfk Q/ \langle R \rangle$.
 
-Given a dimension vector $\bfv$, a $\theta \in \bZ^{Q_0}$ for which $\bfv \cdot \theta=0$ defines a stability notion for representations of $Q$ with dimension vector $\bfd$.
+Given a dimension vector $\bfd$, a $\theta \in \bZ^{Q_0}$ for which $\bfd \cdot \theta=0$ defines a stability notion for representations of $Q$ with dimension vector $\bfd$.
 A representation $\bfx$ is $\theta$-semistable if, for every proper, nonzero subrepresentation $\bfx' \subset \bfx$, we have $\sum_{i \in Q_0} \theta_i \cdot \dim(V_i') \geq 0$.  
 The notion of $\theta$-stability is obtained by replacing $\geq$ with $>$. 
-For a given dimension vector $\bfd \in \bZ_{Q_0}$, a family of $\theta$-semistable quiver representations over a connected scheme $S$ is a collection of rank $\alpha_i$ locally free sheaves $\cV_i$ together with morphisms $\cV_{t(a)} \rightarrow \cV_{h(a)}$ for every $a\in Q_1$. 
-When every $\theta$-semistable representation is $\theta$-stable and the dimension vector is primitive this moduli problem is representable by a scheme $\cM_\theta(Q, \bfd)$, see Proposition 5.3 in \cite{King}.
-The space $\cM_\theta(Q, \bfd)$ may be expressed as a quotient stack as follows: pick vector spaces $V_i$ of dimension $d_i$ then $$\cM_\theta(Q,\bfd) = \bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})$$
-We may define analogous notions for quivers with relations, we will denote the corresponding moduli spaces by $\cM_\theta(Q,R,\bfv)$.
+For a given dimension vector $\bfd =(d_i)_{i \in I} \in \bZ_{Q_0}$, a family of $\theta$-semistable quiver representations over a connected scheme $S$ is a collection of rank $d_i$ locally free sheaves $\cV_i$ together with morphisms $\cV_{t(a)} \rightarrow \cV_{h(a)}$ for every $a\in Q_1$. 
+When every $\theta$-semistable representation is $\theta$-stable and the dimension vector is primitive this moduli problem is representable by a smooth scheme $\cM^\theta(Q, \bfd)$, see Proposition 5.3 in \cite{King}.
+The scheme $\cM^\theta(Q, \bfd)$ comes with a universal family $(\cV_i, \cV_{t(a)} \rightarrow \cV_{h(a)})_{i \in Q_0, a \in Q_1}$. 
+We may define analogous notions for quivers with relations, we will denote the corresponding moduli spaces by $\cM^\theta(Q,R,\bfd)$.
 
-\subsection{McKay correspondence}
+The space $\cM^\theta(Q, \bfd)$ may be expressed as a quotient stack.
+Pick vector spaces $V_i$ of dimension $d_i$.
+Every point of the affine space
+$$\cS:= \bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})$$
+defines a representation of $Q$ with dimension vector $\bfd$.
+We write $\cS^\theta$ for the open subvariety of points corresponding to $\theta$-semistable representations.
+Change of basis gives a group action of $\GL(\mathbf{d}):= \oplus_{i \in Q_0} \GL(V_i)$ on $\cS$.
+The multiplicative group $\bG_m$ diagonally embeds in $\GL(\mathbf{d})$ and acts trivially on $\cS$.
+Therefore the action of $\GL(\mathbf{d})$ descends to an action of $\Gamma_\bfd:= \GL(\mathbf{d})/\bG_m$ on $\cS$ and we have $\cM^\theta(Q, \bfd) = \cS^\theta / \Gamma_\bfd.$
+Given a set of relations $R$, restricting to the closed set of points $\cS$ whose corresponding quiver representations respect the relations gives a closed subset of $\cR \subset \cS$.
+Therefore $$\cM^\theta(Q,R,\bfd)= \cR^\theta/\Gamma_\bfd.$$
+
+\subsection{The McKay correspondence}\label{ssc:McKay}
 Not only is this an abridged version of a rich story but we also spin it here to motivate what follows.
-Fix a finite subgroup $\Gamma \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
-irreducible representations. 
-We take $V=\bC^2$ to be the defining representation of $\Gamma$.
+Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
+irreducible representations with $\rho_0$ being the trivial representation.
 Set $I=\{0,\ldots,N\}$.
-The monoidal category $\Rep(\Gamma)$ is semi-simple therefore $$\rho_i \otimes V \simeq \bigoplus_{j \in I} c_{ij} \, \rho_j$$
-with $c_{ij} =\dim \Hom_{\bC G}(\rho_i \otimes V, \rho_j)$.
-The numbers $c_{ij}$ allow us to define a quiver whose vertices parametrised by $I$ with $c_{ij}$ arrows from $i$ to $j$; this is the McKay quiver.
-We identify an arrow $i \rightarrow j$ with a certain morphism of representations $P_i^j \colon \rho_i \otimes V \rightarrow \rho_j$.
-This gives a natural isomorphism between $\Hom_{\bC G}(\rho_i \otimes V^{\otimes n}, \rho_j)$ and the vector space generated by paths from $i$ to $j$.
-In particular, for a vertex $i$, the one-dimensional space $\Hom_{\bC G} (\rho_i \otimes \det{V}, \rho_i)$ gives us a path $r_i$ of length 2 from $i$ to itself up to scalars.
-The set $R = \{r_i \, |\, i \in I\}$ makes $Q$ into a quiver with relations $(Q, R)$. 
+We take $W=\bC^2$ to be the defining representation of $G$.
 
+\subsubsection{The McKay quiver}
+The monoidal category $\Rep(G)$ is semi-simple therefore $$\rho_i \otimes W \simeq \bigoplus_{j \in I} c_{ij} \, \rho_j$$
+with $c_{ij} =\dim \Hom_{\bC G}(\rho_i \otimes W, \rho_j)$.
+The numbers $c_{ij}$ allow us to define the {\em McKay quiver} $Q$: the vertices are indexed by irreducible representations labelled by $I$ with $c_{ij}$  arrows from $i$ to $j$.
+The fact that $V$ is a self-dual representation gives that $c_{ij} = c_{ji}$.
+It is therefore possible to unambiguously define a graph associated to $Q$ with vertex set $I$ and $c_{ij}$ edges between $i$ and $j$.
+This is the McKay graph associated to $G \subset \SL(2,\bC)$.
+
+\begin{theorem}
+The McKay graph associated to $G \subset \SL(2,\bC)$ is an affine Dynkin diagram of type $\widetilde{A}\widetilde{D}\widetilde{E}$.
+Moreover, the subgraph given by removing the vertex $0$ is the corresponding $ADE$ Dynkin diagram.
+\end{theorem}
+
+We identify an arrow $i \rightarrow j$ with a morphism of representations $B_i^j \colon \rho_i \otimes W \rightarrow \rho_j$.
+For every irreducible representation this gives us isomorphisms 
+\begin{align}
+    B_i &\colon \rho_i \otimes W \longrightarrow \bigoplus_{i \rightarrow j} \rho_j \\
+    B_{i^\vee} &\colon \rho_i^\vee \otimes W^\vee \longrightarrow \bigoplus_{i \rightarrow j} \rho_j^\vee \otimes \det W^\vee.
+\end{align}
+We may choose, and do choose, $B_i^j$ so that $B_i^{-1} = \alpha_0^{-1} \circ B_{i^\vee}^T$ up to a fixed isomorphism $\alpha_0 \colon L_W \rightarrow \rho_0$.
+The morphisms $B_i^j$ give a natural isomorphism of vector spaces $$\Hom_{\bC G}(\rho_i \otimes W^{\otimes n}, \rho_j) \simeq \langle \text{paths of length }n \text{ from }i \text{ to } j\rangle.$$
+In particular, for a vertex $i$, the one-dimensional space $\Hom_{\bC G} (\rho_i \otimes \det{V}, \rho_i)$ gives, up to $\alpha_0$, a relation $r_i$ of length 2 from $i$ to itself.
+The set $R = \{r_i \, |\, i \in I\}$ makes $Q$ into a quiver with relations $(Q, R)$. 
+We take $\cA:= \bk Q/ \langle R\rangle$.
+On the other hand, the action of $G$ on $W=\bC^2$ induces an action on the symmetric algebra $S(W^\vee)=\bC[x,y]$ which is related to $\cA$ by the following result.
+
+\begin{theorem}
+The skew-group algebra $S(W^\vee) \# G$ is Morita equivalent to $\cA$.
+\end{theorem}
+
+\subsubsection{The $G$-Hilbert scheme}
+
+The invariant ring of the $G$-action on $S(W^\vee)$ will be denoted $S(W^\vee)^G \subset S(W^\vee)$, it is the centre of $S(W^\vee) \# G$ and is isomorphic to the subring $\bfe_0 \cA \bfe_0 \subset \cA$.
+The variety $X:= \Spec(\bfe_0 \cA \bfe_0)$ parametrises the orbits of the $G$-action on $V$ and has a singularity at the $0$-orbit.
+The variety $X$ is Gorenstein, that is it is Cohen-Macaulay and its dualizing sheaf $\omega_X$ is invertible.
+The $G$-Hilbert scheme, $G$-Hilb(V), parametrises scheme theoretic orbits of $G$ i.e.\ $G$-equivariant ideals $I$ of $S(W^\vee)$ for which $S(W^\vee)/I \simeq \bC G$ as $\bC G$-modules.
+The Hilbert-Chow morphism $\pi \colon G\text{-Hilb}(W) \rightarrow X$ takes the zero-locus of $I \subset S(W^\vee)$ to its corresponding $G$-orbit.
+Furthermore, $\pi \colon G\text{-Hilb}(W) \rightarrow X$ is a resolution of singualrities with $\pi^*\omega_W \simeq \omega_Y$, in other words it is a crepant resolution.
+
+\begin{theorem}
+The inverse image of the singular point $\pi^{-1}(0)$ is a tree of transversely intersecting $\bP^1$s whose intersection graph is dual to the Dynkin diagram corresponding to $G$.
+\end{theorem}
+
+%The $G$-Hilbert scheme on $V$ is may be constructed as a moduli of quiver representations of the McKay quiver with relations $(Q,R)$.
+Take $\cM^\theta:=\cM^\theta(Q,R,\bfd)$ for $\theta = (-|G|,1, \ldots, 1)$ and $\bfd=(\text{rank}(\rho_i))_{i \in I}$, we have an isomorphism $\cM^\theta \simeq G\text{- Hilb}(W)$.
+The following is then a restatement of the BKR theorem.
+
+\begin{theorem}
+There is an equivalence of triangulated categories $$\Phi \colon D^b(\cM^\theta) \longrightarrow D^b(\cA)$$ that takes the universal bundle $\cV_i$ to the projective $\cA$-module $\cA\bfe_i$.
+\end{theorem}
+
+\section*{Notation}
+We fix the following choices and notation for the rest of the text.
+Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
+irreducible representations with $\rho_0$ being the trivial representation.
+Set $I=\{0,\ldots,N\}$.
+We take $W=\bC^2$ to be the defining representation of $G$.
+We will write $X:=\Spec(S(W^\vee)^G) = W \GIT G$ and $\bX:=W/G$ for the stack.
+The McKay quiver with relations will be denoted $(Q,R)$ and $\cA:= \bk Q/ \langle R\rangle$.
+We will write $P_i:= \cA\bfe_i$ for the projective module corresponding to the vertex $i$.
+
+Take $\bfd:=(\text{rank}(\rho_i))_{i \in I}$. Pick $V_i$ be vector spaces so that $\dim(V_i)=d_i$ and fix $\theta = (-|G|,1, \ldots, 1) \in \bZ^{Q_0}$.
+Take $$\Gamma:= \bigoplus_{i \in I} \text{GL}(V_i) / \bG_m \quad \text{ and }\quad\cS:=\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
+The moduli space $\cM^\theta(Q,\bfd)$ is then $\cS^\theta / \Gamma$.
+The relations $R$ give a closed set $\cR \subset \cS$.
+We write $\cM:= \cM(Q,R,\bfd)=\cR/\Gamma$ $\cM^\theta:=\cM^\theta(Q,R,\bfd)=\cR^\theta/\Gamma$.
+We let $L_i:= \wedge^{d_i} V_i$ and similarly $L_W:= \wedge^2 W$.
+Pick an isomorphism $\bfk \simeq V_0$ once and for all.
+%We will use $I^\dagger$ for the natural isomorphism $I^\dagger \colon V^\vee \otimes L_V \rightarrow V$.
 
 
 \section{The construction}
-Take $\Gamma \subset \SL(2,\bfk)$ a finite subgroup without quasi-reflections.
-This presentation gives an action of $\Gamma$ on $\bA^2$.
-Below we express a GIT problem for which the stable quotient stack is $\bX:= [\bA^2/ \Gamma]$ for one stability parameter and the minimal resolution $Y$ of the associated singularity for another.
 
-We begin by setting up some notation.
-We use $\rho_i$ to denote the irreducible representations of $\Gamma$ and $d_i$ to denote their respective ranks.
-We denote the corresponding McKay quiver by $Q = (Q_0, Q_1)$ and use $A:= \bfk Q/I$ where $I$ is the corresponding ideal of preprojective relations.
-We will use the symbols $i,j,k$ for vertices of $Q$; these are in correspondence with irreducible representations of $\Gamma$ by definition of the McKay quiver.
-We take $P_i$ to be the projective left-modules of $A$ corresponding to $i$.
-Let $T_i$ be a vector space of dimension equal to the rank of $d_i$ and $G:= \text{GL}(\oplus T_i)$.
-We let $L_i:= \wedge^{d_i} T_i$ and similarly $L_V:= \wedge^2 V$.
-Fix $0 \in Q_0$ to be the vertex corresponding to the trivial representation and pick an isomorphism $\bfk \simeq T_0$ once and for all.
-We take $V$ to be the standard representation $\Gamma \subset \SL(2,\bfk)$ and use $I^\dagger$ for the natural isomorphism $I^\dagger \colon V^\vee \otimes L_V \rightarrow V$.
+We define an affine variety $U$ with an action of $\Gamma$, the corresponding stack quotient will be denoted $\cN$.
+In subsequent sections, GIT will be used to pick an open substack of $\cN$ isomorphic to $\bX$ and another which isomorphic to $G$-Hilb$(W)$.
+We begin by describing $U$ as a closed subset of an affine space $\bA$.
 
-\section{The fields and constraints}
-The GIT problem is given by the action of $G$ on the fields given below up to some constraints.
-The fields are:
-\begin{align}
-    &\bfk \simeq T_0 \\
-\bfx \colon &T_0 \longrightarrow V \label{fd:x} \\
-\alpha_i \colon &L_i \otimes L_i \longrightarrow \bigoplus_{i \rightarrow j} L_j \quad \text{for all} \,\, i\neq 0 \label{fd:alpha} \\
- P_i \colon &T_i \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j \quad \text{for all} \,\, i\neq 0. \label{fd:P}
-\end{align}
-A scalar field of particular importance is $\alpha_0:= \otimes_i \,\alpha_i^{d_i}: L_V \rightarrow L_0$.
-We take $P_0$ to be the unit morphism.
-We write $P_i^j$ for the projection of $P_i$ to the $j$-th summand. 
-Furthermore, we write $$ P_{i^\vee}: = \bigoplus_{j \rightarrow i} (P_j^i)^T \colon T_i^\vee \otimes V \longrightarrow \bigoplus_{i \rightarrow j} T_j^\vee.$$
-
-To express the constraints we need more notation.
-Note that the fields $P_i$ may naturally be rewritten as $P_i \colon T_i \rightarrow V^\vee \otimes (\bigoplus_{i \rightarrow j} T_j)$.
-Composing and tensoring by an appropriate line bundle allows us to state the first set of constraints.
-Namely, the following diagram commutes:
+\subsection{The fields}
+Our affine space $\bA$ is defined as
 \begin{equation*}
-    \xymatrix{T_i \otimes L_V \ar[r]^-{P_i} \ar[d]^{\text{id}} & V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{I^\dagger \otimes \text{id}} & V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{\oplus_{i \rightarrow j} P_j} & \bigoplus_{i \rightarrow j \rightarrow k} T_k \ar[d]^{\text{id}} \\
-    T_i \otimes L_V \ar[r]^-{\alpha_0} & T_i \ar[r]^-{\text{Preproj}} & \bigoplus_{i \rightarrow j \rightarrow i} T_i \ar[r] & \bigoplus_{i \rightarrow j \rightarrow k} T_k.
-    }
+    \Hom(V_0,W) \oplus \Bigg(\bigoplus_{0\neq i \in Q_0} \Hom\Big(L_i \otimes L_i,\, \bigotimes_{i \rightarrow j} L_j\Big) \Bigg) \oplus  \Bigg(\bigoplus_{0\neq i \in Q_0} \Hom\Big(V_i \otimes W,\, \bigoplus_{i \rightarrow j} V_j\Big) \Bigg)
 \end{equation*}
-Here the section $\text{Preproj}$ is defined by the preprojective relations.
+Points in $\bA$ will be denoted by a tuple $(\bfx,\alpha_i, B_i)$ as described below:
+\begin{align}
+\bfx \colon &V_0 \longrightarrow W \label{fd:x} \\
+\alpha_i \colon &L_i \otimes L_i \longrightarrow \bigotimes_{i \rightarrow j} L_j \quad \text{for all} \,\, i\neq 0 \label{fd:alpha} \\
+ B_i \colon &V_i \otimes W \longrightarrow \bigoplus_{i \rightarrow j} V_j \quad \text{for all} \,\, i\neq 0. \label{fd:B}
+\end{align}
+Change of basis gives a natural action of $\Gamma$ on $\bA$.
+
+\begin{remark}\label{rm:cartan}
+The weights of the $\Gamma$-action on the fields $\alpha_i$ are the by columns of the Cartan matrix of the corresponding Dynkin diagram.
+\end{remark}
+
+In what follows, we manipulate the data $(\bfx, \alpha_i, B_i) \in \bA$ in various ways; the rest of this subsection sets up the notation required.
+
+\begin{notation}
+A scalar field of particular importance is $$\alpha_0:= \bigotimes_{0 \neq i \in I} \,\alpha_i^{d_i}: L_W \rightarrow L_0.$$
+\end{notation}
+
+\begin{notation}
+We take $B_0$ to be the unit morphism.
+We write $B_i^j$ for the projection of $B_i$ to the $j$-th summand. 
+Summing over arrows with head at $i$ we get $$\bigoplus_{j \rightarrow i} B_j^i \colon \bigoplus_{j \rightarrow i} V_j \otimes W \longrightarrow V_i.$$
+Furthermore, using some adjuctions, we get a field $$B_{i^\vee}: = \bigoplus_{j \rightarrow i} (B_j^i)^T \colon V_i^\vee \otimes W^\vee \longrightarrow \bigoplus_{i \rightarrow j} V_j^\vee \otimes L_W^\vee.$$
+\end{notation}
+
+\begin{notation}
+Grouping the linear maps $\alpha_i$ and respectively $B_i$ into big linear maps we write: 
+\begin{align*}
+\balpha &:= \bigoplus_{i\in Q_0} \alpha_i \colon \bigoplus_{i\in Q_0} L_i \otimes L_i \longrightarrow \bigotimes_{a \in Q_1} L_j \\
+\bfB &:= \bigoplus_{i\in Q_0} B_i \colon \bigoplus_{i\in Q_0} V_i \otimes W \longrightarrow \bigoplus_{a \in Q_1} V_{h(a)}
+\end{align*}
+Again, using adjuctions appropriately, the morphism $\bfB$ naturally induces a linear map:
+$$\widetilde{\bfB} := W \longrightarrow \cS \,\,\Big(:= \bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})\Big).$$
+\end{notation}
+
+Recall that points of $\cS$ define representations of $Q$.
+The following lemma then follows from standard linear algebra techniques.
+
+\begin{lemma}\label{lem:Btilde}
+For $(\bfx, \balpha, \bfB) \in \bA$ and $a \in Q_1$, the linear map $V_{t(a)} \rightarrow V_{h(a)}$ is $\widetilde{\bfB}(\bfx) \in \cS$ is 
+$$V_{t(a)} \xrightarrow{\textup{id} \otimes \bfx} V_{t(a)} \otimes W \xrightarrow{B_{t(a)}} \bigoplus_{t(a) \rightarrow j} V_j \rightarrow V_{h(a)}.$$
+\end{lemma}
+
+\subsection{The constraints}
+Here we describe the equations cutting out $U$ in $\bA$.
+We need more notation to begin with.
+
+\begin{notation}
+We have natural isomorphisms
+$$\Omega_r(V) \colon \wedge^{d+r} V \rightarrow \wedge^{d-r} V^\vee \otimes L_U$$ for $V$ a $2d$-dimensional vector space and $r= -d, \ldots, d$.
+We will drop the vector space $V$ and the subscript $r$ from $\Omega_r(V)$ when it is clear from the context.
+
+We also abuse notation by writing $\alpha_0^r \alpha_i^{-1} := \alpha_1^{rd_1} \cdots \alpha_i^{rd_i-1} \cdots \alpha_N^{rd_N}$ when $r\geq 1$ even though $\alpha_i$ is not invertible.
+\end{notation}
+%Note that the fields $B_i$ may naturally be rewritten as $B_i \colon T_i \rightarrow V^\vee \otimes (\bigoplus_{i \rightarrow j} T_j)$.
+% Composing and tensoring by an appropriate line bundle allows us to state the first set of constraints.
+% Namely, the following diagram commutes:
+% \begin{equation*}
+%     \xymatrix{T_i \otimes L_V \ar[r]^-{B_i} \ar[d]^{\text{id}} & V^\vee \otimes L_V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{I^\dagger \otimes \text{id}} & V \otimes \big(\bigoplus_{i \rightarrow j} T_j\big) \ar[r]^-{\oplus_{i \rightarrow j} B_j} & \bigoplus_{i \rightarrow j \rightarrow k} T_k \ar[d]^{\text{id}} \\
+%     T_i \otimes L_V \ar[r]^-{\alpha_0} & T_i \ar[r]^-{\Delta} & \bigoplus_{i \rightarrow j \rightarrow i} T_i \ar[r] & \bigoplus_{i \rightarrow j \rightarrow k} T_k.
+%     }
+% \end{equation*}
+%Here the section $\text{Preproj}$ is defined by the preprojective relations.
 %These constraints capture the semi-simplicity of representations of $\Gamma$.
 % Namely, the section given by the composite 
 % \begin{align}
@@ -118,30 +235,63 @@ Here the section $\text{Preproj}$ is defined by the preprojective relations.
 % \end{align}
 % Here the second factor is defined by the preprojective relations.
 
-The second flavour of constraints involves the scalar fields $\alpha_i$.
-These constraints maybe tersely stated as follows:
+\begin{definition}\label{def:equa}
+The closed subvariety $U \subset \bA$ is defined as the locus satisfying the following equations:
 \begin{align}
-    \wedge^{d_i+r} P_i &= \alpha_0^r \circ \alpha_i \circ \wedge^{d_i-r} P_{i^\vee}   &\text{for} \,\, r =0,\ldots, d_i \text{ and all } i  \label{eq1:cons2} \\
-    \alpha_0^r \circ \wedge^{d_i-r} P_i &= \alpha_i \circ \wedge^{d_i+r} P_{i^\vee} &\text{for} \,\, r=0,\ldots, d_i \text{ and all } i  \label{eq2:cons2} 
+    \wedge^{d_i+r} B_i &= \alpha_0^r \alpha_i \circ \Omega_r(V_i \otimes W) \circ \wedge^{d_i-r} B_{i^\vee} \circ \Omega_r(\oplus V_j)^{-1}  \label{eq1:cons2} \\
+    \wedge^{d_i} B_i &= \alpha_i \circ \Omega_{0}(V_i \otimes W) \circ \wedge^{d_i} B_{i^\vee} \circ \Omega_{0}(\oplus V_j)^{-1} \label{eq2:cons2} \\
+    \alpha_0^r \alpha_i^{-1} \circ \wedge^{d_i-r} B_i &= \Omega_{-r}(V_i \otimes W) \circ \wedge^{d_i+r} B_{i^\vee} \circ \Omega_{-r}(\oplus V_j)^{-1} \label{eq3:cons2} 
 \end{align}
-We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is homogeneous with respect to the natural $G$ action on our fields: we have natural isomorphisms
-$$I^\dagger_r(W) \colon \wedge^{d+r} W \rightarrow \wedge^{d-r} W^\vee \otimes L_W$$ for $W$ a $d$-dimensional vector space and $r= -d, \ldots, d$.
-Precomposing $\wedge^{d_i+r} P_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ P_{i^\vee}$ by some multiple of $L_V$.
-The factor $\alpha_0^r$ is used to fix this discrepancy.
+for $i\in I$ and $r=1,\ldots,d_i$.
+\end{definition}
 
-\begin{remark}
-With $r=d_i-1$, the relations in (\ref{eq1:cons2}) and (\ref{eq2:cons2}) come agonizingly close to expressing $P_{i^\vee}$ in terms of $P_{i}$ or vice versa but just miss because the fields $\alpha_i$ are not invertible.
-\end{remark}
+The equations are a bit of a mouthful, the following lemma help us get a handle on them.
 
-It sometimes helps to group the isomorphisms $P_i$ into one big isomorphism 
-$$P := \bigoplus_{i\in Q_0} P_i \colon \bigg(\bigoplus_{i\in Q_0} V_i\bigg) \otimes V_2 \rightarrow \bigoplus_{a \in Q_1} V_{h(a)}.$$
-By taking $\oplus_{i\in Q_0} V_i$ to the right-hand side and dualising appropriately, the morphism $P$ naturally gives a morphism
-$$\Phi := V_2 \rightarrow \bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
-Up to the action of $\GL(\alpha)$, $\oplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})$ is the moduli space of representations of $Q$ without relations.
-The relations we impose on $P$ imply that $\Phi$ factors through this closed set $\cR \subset \oplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})$ given by the preprojective relations.
-Let $e_0$ be the idempotent of $\bfk Q$ corresponding to the vertex $0$ then we have that the ring $\bfe_0\, \bfk Q\, \bfe_0$ is the coordinate ring of the singular space $V_2\GIT\Gamma$.
-We therefore have a natural morphism $\cR \longrightarrow V_2 \GIT \Gamma$.
-When restricted to the open subset of $0$-generated modules of $\bfk Q$ this is a resolution of singularities.
+\begin{lemma}\label{lem:symp}
+If $\alpha_0$ is invertible the fields $B_i$ are isomorphisms and the relations imply that they are `symplectic', i.e.
+$$B_i^{-1} = \alpha_0^{-1} \circ \Omega_{d_i-1}(V_i \otimes W) \circ B_{i^\vee}^T \circ \Omega_{d_i-1}(\oplus V_j)^{-1}.$$
+\end{lemma}
+
+\begin{proof}
+The linear map $\alpha_0$ has a one-dimensional domain and codomain, therefore it is invertible if and only if it is non-zero.
+Therefore if $\alpha_0$ is invertible then by definition $\alpha_i$ is also invertible for all $i$.
+Equation~(\ref{eq1:cons2}) with $r=d_i$ translates to $\det B_i= \alpha_0^{d_i} \alpha_i$.
+The inverse of $B_i$ is then given by $(\wedge^{2d_i-1}B_i)^T \otimes (\det B_i)^{-1}$.
+Equation~(\ref{eq1:cons2}) with $r=d_i-1$ is $$\wedge^{2d_i-1} B_i = \alpha_0^{d_i-1} \alpha_i \circ \Omega \circ B_{i^\vee} \circ \Omega^{-1}.$$
+The result follows.
+\end{proof}
+
+\begin{lemma}\label{lem:rela}
+For $(\bfx, \balpha, \bfB) \in U$ the following diagram commutes:
+\begin{equation}\label{eq:comdiag}
+    \xymatrix{V_i \otimes W \ar[r]^-{B_i} \ar[d]^{\textup{id}} & \big(\bigoplus_{i \rightarrow j}  V_j\big) \ar[r]^-{\Omega\,B_{i^\vee}^T \, \Omega} & V_i \otimes W^\vee \ar[d]^{\textup{id}} \\
+    V_i \otimes W \ar[r]^-{\textup{id} \otimes \Omega} & V_i \otimes W^\vee \otimes L_W \ar[r]^-{\textup{id} \otimes \alpha_0} & V_i \otimes W^\vee.}
+\end{equation}
+In particular, the linear map $\widetilde{\bfB}$ factors through the closed set $\cR$ defined by the relations $R$ on $Q$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:symp} above, the diagram commutes on the open subset $\alpha_0 \neq 0$ and hence it commutes everywhere.
+
+The commutativity of this diagram implies that the composite 
+\begin{equation}\label{eq:inR}
+    V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j \xrightarrow{\Omega\,B_{i^\vee}^T \, \Omega} V_{i} \otimes W^\vee \xrightarrow{\textup{id} \otimes \bfx^\vee} V_i
+\end{equation}
+%$$V_i \xrightarrow{\textup{id} \otimes \bfx \otimes \bfx} V_i \otimes W \otimes W \xrightarrow{\textup{id} \otimes \det} V_i \otimes L_W \xrightarrow {\alpha_0} V_i$$
+coincides with
+$$V_i \xrightarrow{\textup{id} \otimes \bfx} V_i \otimes W \xrightarrow{\textup{id} \otimes \Omega} V_i \otimes W^\vee \otimes L_W \xrightarrow{\textup{id} \otimes \alpha_0} V_i \otimes W^\vee \xrightarrow {\textup{id} \otimes \bfx^\vee} V_i$$ 
+which is $0$ since $\Omega$ is anti-symmetric.
+Composing the linear maps in (\ref{eq:inR}) differently we get $$V_i \longrightarrow \bigoplus_{i \rightarrow j} V_j \longrightarrow V_i$$
+is 0 and hence the relation $R_i$ holds.
+\end{proof}
+
+%We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is homogeneous with respect to the natural $G$ action on our fields:
+%Precomposing $\wedge^{d_i+r} B_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ B_{i^\vee}$ by some multiple of $L_V$.
+%The factor $\alpha_0^r$ is used to fix this discrepancy.
+
+% \begin{remark}
+% With $r=d_i-1$, the relations in (\ref{eq1:cons2}) and (\ref{eq2:cons2}) come agonizingly close to expressing $B_{i^\vee}$ in terms of $B_{i}$ or vice versa but just miss because the fields $\alpha_i$ are not invertible.
+% \end{remark}
 
 
 % that the section $\wedge^{d_i} P_i$ maybe rewritten as $$\wedge^{d_i} P_i \colon \bigoplus_\lambda\, (\bS_\lambda T_i \otimes \bS_{\lambda'} V) \longrightarrow \bigoplus_{\sum_{i\rightarrow j} n_j=d_i} (\wedge^{n_j}T_j)$$
@@ -153,31 +303,79 @@ When restricted to the open subset of $0$-generated modules of $\bfk Q$ this is 
 % Precomposing $\wedge^{d_i} P_i$ by the respective $I_\lambda \otimes \text{id}_V$ and postcomposing with the appropriate direct sum of the isomorphisms $I_k^\dagger$ gives a section which is comparable to  $\alpha_i \circ (\wedge^{d_i} P_{i^\vee})$.
 
 \begin{definition}
-Fields satisfying the constraints gauged by $G$ above give us a quotient stack $\cM$.
+The quotient stack $\cN$ is $U/\Gamma$.
+Furthermore, for $\phi \in \bZ^{Q_0}$ a character of $\Gamma$, we write $\cN^\phi:= U^\phi/\Gamma$ where $U^\phi$ is the GIT $\phi$-semistable locus.
+The standard representations $V_i$ of $\GL(V_i) \subset \Gamma$ give rise to universal bundles $\cV_i$ while the linear maps $(\bfx, \balpha, \bfB)$ give corresponding universal sections.
 \end{definition}
 
 \begin{remark}
-The second flavour of constraints implies the first.
+The stack $\cN$ may be thought of as the moduli space of functors from a monoidal category $\cC$ to the category of vector spaces.
+This idea is pushed to a more general setting in a subsequent joint-work of Daniel Chan and the first author.
 \end{remark}
+
+Lemma~\ref{lem:rela} shows that a $\bC$-point of $\cN$ gives rise to one in $\cM$ via $(\bfx, \balpha, \bfB) \mapsto \widetilde{\bfB}(\bfx).$
+This works in families too giving a morphism of stacks
+\begin{align*}
+    & f \colon \cN \longrightarrow \cM \\
+    & (\bfx, \balpha, \bfB) \mapsto \widetilde{\bfB}(\bfx).
+\end{align*}
+This morphism is the main character of the rest of this story.
+
+We finish the section with a lemma that will be helpful when discussing the $\theta$-stability in relation to $f$.
+
+\begin{lemma}\label{lem:Si}
+If $\alpha_i=0$ then $S_i$ is a submodule of $\widetilde{\bfB}(\bfx)$.
+\end{lemma}
+
+\begin{proof}
+If $\alpha_i=0$ then $\wedge^{d_i} B_i=0$ by Equation~\ref{eq2:cons2}.
+Therefore the linear map $$V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j$$ is not injective.
+The kernel of this composite then gives a submodule of $\widetilde{\bfB}(\bfx)$ concentrated on the vertex $i$ and is therefore a direct sum of copies of $S_i$.
+\end{proof}
+
+% \begin{theorem}
+% For a generic character $\phi \in \bZ^{Q_0}$ a point $(\bfx, \alpha_i, \bfB)$ is $\phi$-stable if and only if $\widetilde{\bfB}(\bfx)$ is $\phi^+$-polystable and $\alpha_i \neq 0$ for all $i \in I^\phi_-$.
+% \end{theorem}
 
 \section{Tannakian duality and the stack $\bX$}
 
-Formally inverting the fields $\alpha_i$ and $P_i$ in (\ref{fd:alpha})-(\ref{fd:P}) gives a quotient stack ${\cM}^\circ$ with an open embedding ${\cM}^\circ \hookrightarrow \cM$.
+The focus of this section is the open subset $$\cN^\circ:= \{\,(\bfx, \balpha, \bfB) \in \cN \,\,|\,\, \bfB \text{ is invertible} \,\}.$$
+We show that it is isomorphic to $\bX$ and that $f \colon \cN^\circ \rightarrow \cM \rightarrow \cM^0=X$ is the coarse moduli space morphism.
+We then go on to show that $\cN^\circ = \cN^{-\vartheta}$ for the generic stability parameter $-\vartheta$.
 
+Note that the invertibility of $\bfB$ is equivalent to the invertibility of $\alpha_i$ for all $i \in I$; the determinant of $\bfB$, given by Equation~\ref{eq1:cons2}, has $\alpha_1 \cdots \alpha_N$ as a factor.
+Also note that when $\bfB$ is invertible Equation~\ref{eq2:cons2} allow us to express $\alpha_i$ in terms of the field $\bfB$.
 
+We have a ring homomorphism from $\bfe_0 \cA \bfe_0 \rightarrow S(W^\vee)$.
+This factors through $S(W^\vee)^G$ and is injective and hence the result.
+Bijective ring homomorphism degree by degree.
 
-\begin{proposition}\label{prop:tannaka}
-The stack ${\cM}^\circ$ is isomorphic to $\bX$.
-\end{proposition}
+\begin{theorem}\label{thm:tannaka}
+The stack ${\cN}^\circ$ is isomorphic to $\bX$.
+\end{theorem}
 
 \begin{proof}
-Given $P$, we study the associated $\Phi$.
+We begin by showing the section $\bfB$ up to the action of $\Gamma$ give the stack $BG$.
+Given $\bfB$, we study the associated $\widetilde{\bfB}$.
 Taking invariants, we get 
-$$V_2 \xrightarrow{\Phi} \cR \rightarrow V_2\GIT\Gamma.$$
-Note that this composite, up to the action of $\GL(\alpha)$, completely determines $\Phi$ since the the projection is an isomorphism between $(V_2 \GIT\Gamma) \setminus \{0\}$ and its inverse image.
+$$W \xrightarrow{\widetilde{\bfB}} \cR \xrightarrow{\nu} W \GIT G \simeq \Spec(\bfe_0 \cA \bfe_0).$$
+Call this composite $\mu$.
 
-It remains to consider the morphisms $V_2 \rightarrow V_2\GIT\Gamma$.
-What remains of the action of $\GL(\alpha)$ is the natural $\GL(V_2)$ on the domain.
+With $G$ acting trivially on the codomain, we claim that $\mu$ is $G$-equivariant and separates $G$-orbits of $W$.
+Two points $\bfx, \bfy \in W$ lie in the same $G$-orbit if and only if $p(\bfx)=p(\bfy)$ for every $p \in S(W^\vee)^G$.
+For $p \in S^k(W^\vee)^G$, we may interpret $p(\bfx)$ as the linear maps $$\bC = V_0 \xrightarrow{\bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{p} V_0=\bC$$ and similarly for $p(\bfy)$.
+On the other hand, via $S^k(W^\vee)^G \simeq \bfe_0 \cA \bfe_0$, the element $p$ specifies a linear combination of cycles centred at 0 of length $k$.
+Let $\bfB^k$ denote the composite given by successive application of $\bfB$ below $$V_0 \otimes W^{\otimes k} \longrightarrow \Bigg(\bigoplus_{i \rightarrow j} V_j\Bigg) \otimes W^{\otimes (k-1)} \rightarrow \cdots \rightarrow \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)}.$$
+Since $\bfB$ is an isomorphism so is $\bfB^k$.
+By Lemma~\ref{lem:Btilde}, the linear map corresponding to this linear combination in $\widetilde{\bfB}(\bfx)$ is $$V_0 \xrightarrow{\text{id} \otimes \bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{\bfB^k} \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)} \xrightarrow{p} V_0$$
+respectively.
+The claim follows because $\bfB^k$ is an isomorphism.
+
+We must now consider the effect of the action of $\Gamma$ on $\mu$.
+The group $\Gamma$ acts freely on $\cR\setminus \nu^{-1}(0)$ giving an isomorphism $(\cR\setminus \nu^{-1}(0)) / \Gamma \simeq W \GIT G \setminus\{0\}$.
+Therefore what remains of the action $\Gamma$ on $\mu$ is the $\GL(W)$-action on the codomain but $\mu$ restricted to $W\setminus \{0\}$ is a $G$-torsor so $\{\bfB\}/G \simeq BG$.
+
+Adding a field $\bfx \in W$ to the data then gives the result.
 \end{proof}
 
 % \begin{proof}
@@ -221,71 +419,193 @@ What remains of the action of $\GL(\alpha)$ is the natural $\GL(V_2)$ on the dom
 % \end{proof}
 
 \begin{corollary}
-Take $\phi$ to be the character of $G$ with the weights $(|\Gamma|, -d_1,\ldots, -d_n)$ then $\cM^\phi \simeq \bX$
+Take $\phi:= -\theta$ then $\cN^\phi \simeq \bX$.
 \end{corollary}
 
 \begin{proof}
-The determinant of any semi-invariants with weight $n \phi$, for $n>0$, must contain the scalar field $\Pi_i \, \alpha_i$ as a factor.
-Therefore $\Pi_i \, \alpha_i \neq 0$ for any $\phi$-stable point of $\cM$ which implies that $\alpha_i$s and $P_i$s are invertible.
+Take $(\bfx, \alpha_i, \bfB) \in \cN^\phi$, we show that $\alpha_i \neq 0$ for all $i \in I$.
+Assume, seeking a contradiction, that $\alpha_i =0$ for some $i$ then by Lemma~\ref{lem:Si} we have that $S_i$ is a subrepresentation of $\widetilde{\bfB}(\bfy)$ for any $\bfy \in W$ this gives us a one-parameter subgroup of $\lambda \subset \Gamma$ for which the limit $t \rightarrow 0$ of $\widetilde{\bfB}$ exist.
+The limit also exists for $\bfx$ and our assumption that $\alpha_i=0$ implies that this limit exists for the fields $\alpha$ too.
+The pairing $\langle \lambda, \phi \rangle$ is negative and hence $(\bfx, \alpha_i, \bfB)$ is $\phi$-unstable yielding our desired contradiction.
+
+% Equation~\ref{eq1:cons2} expresses the determinant of $B_i$, and hence $\bfB$, in terms of the scalars $\alpha_i$.
+% Furthermore, we have that the weight of $\bfx \colon V_0 \rightarrow W$ is opposite to that of $\alpha_0 \colon L_W \rightarrow L_0$ and so setting $\bfx=0$ does not alter the $\phi$-stability of a point $(\bfx, \alpha_i, \bfB)$.
+% Therefore the determinant of any semi-invariants with weight $n \phi$, for $n>0$, must contain the scalar field $\otimes_{i\in I} \, \alpha_i$ as a factor.
+% Therefore $\otimes_{i\in I} \, \alpha_i \neq 0$ for any $\phi$-stable point of $\cM$ which implies that $\alpha_i$s are are invertible and hence also $\bfB$.
+% The corollary may also be be deduced from Lemma~\ref{lem:Si}.
 \end{proof}
 
 \begin{remark}
-There is probably a more elegant proof of Proposition~\ref{prop:tannaka} that uses the language of rigid symmetric monoidal categories.
-We apologise for not working hard enough towards it.
+For a point $(\bfx, \alpha_i, \bfB) \in \cN^\circ$, the proof of Theorem~\ref{thm:tannaka} shows that the data in $\bfB$ is equivalent to that of a monoidal fibre functor $\Rep(G) \rightarrow \Vect$.
 \end{remark}
 
-\section{The minimal resolution}
+\section{The $G$-Hilbert Scheme}
 
-Let $\theta$ denote the character of $G$ with weights $(-|G|,d_1,\ldots,d_n)$ and $\cM^\theta$ denote the corresponding GIT quotient.
-Furthermore, let $\cN^\theta$ to denote the moduli space of quiver representations of the McKay quiver with stability parameter $\theta$.
-Note that $\cN^\theta$ is isomorphic to the minimal resolution $Y$.
+We saw earlier that a $\bC$-point of $\cN$ gives rise to one in $\cM$ by $$(\bfx, \alpha, \bfB) \mapsto \widetilde{\bfB}(\bfx).$$
+This works in families too giving a morphism $f \colon \cN \rightarrow \cM$.
+In fact, the proof of Theorem~\ref{thm:tannaka} shows that it is a birational morphism.
+
+Let $\cN^\theta$ denote the quotient of $\theta$-stable fields up to the constraints and $\Gamma$-action.
 We construct morphisms $f \colon \cN^\theta \rightarrow \cM^\theta$ and $g \colon \cM^\theta \rightarrow \cN^\theta$ and show that they are mutual inverses.
 
-\subsection{The morphism $f \colon \cN^\theta \rightarrow \cM$}
+\subsection{The morphism $f \colon \cN \rightarrow \cM$}
 
-Take a family of quiver representations $\cN^\theta(S)$ over a test scheme $S$.
-Abusing notation, this gives vector bundles $T_i$ over $S$ of the correct rank, as well as sections corresponding to the paths in the quiver.
-We give the morphism $f$ by defining fields over $S$ of our GIT problem from this data.
+The morphism $f$ takes $(\bfx, \alpha_i, \bfB)$ to the quiver representation $\widetilde{\bfB}(\bfx)$.
+
+\begin{lemma}
+The open subset $\cN^\theta$ maps to $\cM^\theta$.
+\end{lemma}
+
+\begin{proof}
+If a point is $\theta$-stable then the following is surjective:
+$$B_{i^\vee} \colon \Big(\bigoplus_{i \rightarrow j} \cV_j  \otimes \cW \Big) \longrightarrow \cV_i.$$
+Taking the $d_i$-th wedge we have a non-vanishing section 
+$$\bigwedge^{d_i} B_{i^\vee} \colon \bigwedge^{d_i} \Big(\bigoplus_{i \rightarrow j} \cV_j \otimes \cW \Big) \longrightarrow \bigwedge^{d_i} \cV_i = \cL_i.$$
+The morphism $\wedge^{d_i} B_{i^\vee}$ factors through $\wedge \oplus_j \cV_j \otimes S^{d_i} \cW$ because that's the only $\bfx$ we have.
+The $\alpha_i$s are very negative so they shouldn't feature in the game.
+\end{proof}
+
+\subsection{The morphism $g \colon \cM^\theta \rightarrow \cN$}
+
+Take $(\cV_i, v_a)$ to be the universal family on $\cM^\theta$.
 
 \subsubsection{The field \bfx}
 
-The representation $V$ either corresponds to a single vertex if irreducible or a pair of vertices if not.
-The arrows from vertex $0$ to vertices corresponding to $V$ gives us a tautological section $T_0 \rightarrow V$ we take that to be the $\bfx$ of (\ref{fd:x}).
+The representation $W$ either corresponds to a single vertex if irreducible or a pair of vertices if not.
+The arrows from vertex $0$ to vertices corresponding to $W$ gives us a tautological section $\cV_0 \rightarrow \cW$ we take that to be the $\bfx$ of (\ref{fd:x}).
+
+\subsubsection{The field $\bfB$}
+The isomorphism of representations $\rho_i \otimes W \rightarrow \oplus_j\, \rho_j$ induces a morphism of internal hom-spaces $\underline{\Hom}(\rho_0, W)^\vee \rightarrow \underline{\Hom}(\rho_i, \oplus_j \, \rho_j)^\vee$.
+This, in turn, gives a linear map of Hom-spaces the corresponding projective modules $P_i$ and further an linear map
+\begin{equation}\label{eq:homsp}
+    {\Hom}(\cV_0, \cW) \longrightarrow {\Hom}(\cV_i, \oplus_j \, \cV_j).
+\end{equation}
+Our family is $\theta$-stable with $\theta_0<0$ and $\theta_i>0$ for all other $i$ therefore the evaluation morphism $\text{ev} \colon \cV_0 \otimes_\bC {\Hom}(\cV_0, \cW) \longrightarrow \cW$ is surjective.
+Combining this with Equation (\ref{eq:homsp}) above we get a composite
+$$\cV_0 \otimes_\bC {\Hom}(\cV_0, \cW) \longrightarrow \cV_0 \otimes_\bC {\Hom}(\cV_i, \oplus_j \, \cV_j) \longrightarrow\ \cV_i^\vee \otimes \Big(\bigoplus_{i \rightarrow j}\cV_j\Big)$$
+where the second factor is an evaluation map too.
+We claim that the kernel of ev is zero under this composite which yields a section 
+$$\widetilde{B}_i \colon \cW \longrightarrow \cV_i^\vee \otimes \Big(\bigoplus_{i \rightarrow j}\cV_j\Big).$$
+Summing over the vertices $i$ gives us $\widetilde{\bfB}$ and hence $\bfB$.
+
+To prove the claim, take $\cK$ in the kernel of $\ev$.
+We may assume it is a universal bundle since they generate the derived category of $\cA$ so take $\cK=\cV_k$.
+The fact that it is the kernel is given by an element the kernel of 
+\begin{equation}
+    \Hom(\cV_k, \cV_0) \otimes_\bC \Hom(\cV_0, \cW) \longrightarrow \Hom(\cV_k, \cW)
+\end{equation}
+corresponds to a linear combination of paths from $\cV_k$ to $\cV_0$ for which the composite.
+Tensoring with $P_i$ we get an element in the kernel of 
+\begin{equation}
+    \Hom(P_k \otimes_G P_i, P_i) \otimes_\bC \Hom(P_i, P_\cW \otimes_G P_i) \longrightarrow \Hom(P_k \otimes_G P_i, P_\cW \otimes P_i).
+\end{equation}
+The tensor product $P_k \otimes_G P_i$ is just a direct sum of $P_l$s similarly for the other tensors over $G$.
+
+
+% $$\xymatrix{\cV_0 \otimes_\bC {\Hom}(\cV_0, \cW) \ar[r]^-{\text{ev}} \ar[d] & \cW \ar[d] \\
+% \cV_0 \otimes_\bC {\Hom}(\cV_i, \oplus_j \, \cV_j) \ar[r]^-{\text{ev}} & \cV_i^\vee \otimes \Big(\bigoplus_{i \rightarrow j}\cV_j\Big)}$$
+
+%This will gives us a $\widetilde{B_i}$, summing on the codomain over $i$ we get $\widetilde{\bfB}$ and hence $\bfB$.
 
 \subsubsection{The fields $\alpha_i$}
 
+% The family is $\theta$-stable and hence generated by the $0$-vertex i.e.\ the morphism of sheaves
+% $$\text{ev} \colon \cV_0 \otimes_\bC \Hom_\cM(\cV_0,\cV_i) \longrightarrow \cV_i$$
+% is surjective.
+
 Take $0 \neq i \in Q_0$.
-Since our family is $\theta$-stable and $\theta_i>0$, the universal section corresponding to arrows whose heads are $i$ is surjective. 
-That is, the following is exact:
-$$\bigoplus_{i \rightarrow j} T_j \longrightarrow T_i \longrightarrow 0.$$
+Since our family is $\theta$-stable and $\theta_i>0$, the universal section corresponding to arrows whose heads are $i$ is surjective, i.e.\ the following is exact:
+\begin{equation}\label{eq:k}
+    \bigoplus_{i \rightarrow j} \cV_j \longrightarrow \cV_i \longrightarrow 0.
+\end{equation}
 Take $\mathfrak{K}$ to be its kernel.
-The preprojective relations give us a complex
-$$T_i \longrightarrow \bigoplus_{i \rightarrow j} T_j \longrightarrow T_i \longrightarrow 0$$
-and hence a morphism $T_i \rightarrow \mathfrak{K}$.
-We take $\alpha_i$ to be $\wedge^{d_i} T_i \rightarrow \wedge^{d_i}\mathfrak{K}.$
+The relation $r_i \in R$ on $Q$ give us a complex
+$$\cV_i \longrightarrow \bigoplus_{i \rightarrow j} \cV_j \longrightarrow \cV_i \longrightarrow 0$$
+and hence a morphism $\cV_i \rightarrow \mathfrak{K}$.
+We take $\alpha_i$ to be $\wedge^{d_i} \cV_i \rightarrow \wedge^{d_i}\mathfrak{K}.$
 
-\subsubsection{The fields $P_i$}
-
-The construction of $P_i$ is slightly more delicate.
-The isomorphism of representations $\rho_i \otimes V \rightarrow \oplus_j\, \rho_j$ induces a morphism of internal hom-spaces $\underline{\Hom}(\rho_0, V) \rightarrow \underline{\Hom}(\rho_i, \oplus_j \, \rho_j)$.
-This, in turn, gives a morphism of projective modules of our quiver and further an morphism of vector spaces $$\Hom(P_0, P_V) \rightarrow \Hom(P_i, \oplus_j \, P_j).$$
-Now consider the composite $$T_i \otimes \Hom(P_0, P_V) \rightarrow T_i \otimes_\bfk \Hom(P_i, \oplus_j \, P_j) \rightarrow \bigoplus_{i \rightarrow j} T_j$$ where the second factor is the evaluation map.
-The stability condition $\theta$, in particular $\theta_0<0$, implies $$\text{id} \otimes \text{ev} \colon T_i \otimes_\bfk \Hom(P_0, P_V) \rightarrow T_i \otimes V$$ is surjective; checking that the kernel of $\text{id} \otimes \text{ev}$ is zero under the composite above gives us a morphism $T_i \otimes V \rightarrow \oplus_{i \rightarrow j} T_j$ that we will call $P_i$.
+% \begin{remark}
+% The kernel $\fK$ is quasi isomorphic to the complex in (\ref{eq:k}).
+% As with any Schur functor, the top wedge of a complex maybe expressed as a complex.
+% We may equivalently use this expressing of the top wedge along with the constraints (\ref{eq1:cons2}) and (\ref{eq2:cons2}) to define $\alpha_i$.
+% \end{remark}
 
 \subsubsection{The constraints}
+The results of the previous section gives that $\cM$ and $\cN$ are birational; they both have an open subsets isomorphic to $W\GIT G \setminus \{0\}.$
+The morphism $g$ is the identity on this locus hence the constraints hold on this open subset and so on $g(\cM^\theta)$.
+{\red Maybe should expand here a little.}
 
-The space $\cM^\theta$ is birational to $\bX$ were the constraints hold: they hold there since the corresponding statements are true for representations of $\Gamma$.
+Alternatively, one may argue using the fact that on an open subset of $\cN$, that for which $\alpha_i$ are isomorphisms, the constraints are implied by the commutativity of the diagram in  by the relations on the quiver which the 
 
-\subsection{The morphism $g \colon \cM \rightarrow \cN$}
+\subsection{They are isomorphisms}
 
-This is by-design the easier of the two.
-Given an $S$-point of $\cM$, we give the morphism $g$ by defining a family of quiver representations of $Q$ over $S$ and checking that the relations are satisfied.
+This should be straightforward.
 
-As before, an $S$-point of $\cM$ naturally gives vector bundles $T_i$ over $S$ of the correct ranks.
-It remains to define the sections corresponding to the arrows.
-For an arrow $i \rightarrow j$ we define its corresponding section by the following composite:
-$$T_i \xrightarrow{\text{id} \otimes \bfx} T_i \otimes V \xrightarrow{P_i^j} T_j.$$
-The relations follow from the first set of constraints.
+\begin{equation}
+    \xymatrix{\cV_0 \ar[r]^{\text{id}} \ar[d]^{\bfe_\bfx} & \cV_0 \ar[d]^\bfx \\
+    \cV_0 \otimes_\bC \Hom(\cV_0, \cW) \ar[r]^-{\text{ev}} \ar[d]^{\text{id} \otimes H^0(\bfB)} & \cW \ar[d]^\bfB \\
+    \cV_0 \otimes_\bC \Hom(\cV_i, \oplus_j \cV_j) \ar[r]^-{\text{ev}} & \cV_i^\vee \otimes \Big(\bigoplus_{i \rightarrow j}\cV_j\Big).
+    }
+\end{equation}
+
+This follows from the fact that the composite on the left hand side of the diagram coincides with the universal sections.
+{\red Need to clarify that that is indeed the universal section.}
+
+As for $\balpha$, we resolve the top wedge of the complex $\oplus_j V_j \rightarrow V_i$.
+The morphism from $\otimes L_j \otimes L_i^\vee$ is $$\otimes L_j \otimes L_i^\vee \rightarrow \otimes L_j \otimes S(W) \otimes L_i^\vee \rightarrow \wedge V_j^\vee \otimes L_j = \wedge V_j .$$
+
+
+
+\begin{lemma}
+This implies that $\cM^\theta$ maps to $\cN^\theta$.
+\end{lemma}
+
+\begin{proof}
+From the data in the image we can create the sections desired and hence the points in the image are indeed in $\cN^\theta$.
+\end{proof}
+
+\subsection{The composite $g \circ f \colon \cN^\theta \dashrightarrow \cM^\theta \longrightarrow \cN^\theta$}
+
+\subsection{Stability and conclusion}
+
+We begin with the morphism $f$.
+The $\theta$-stability of a family of points of $\cM^\theta$ gives non-vanishing sections of the bundles $V_1, \ldots, _3$ and a surjective morphism $T_0^{\oplus 2} \rightarrow T_4$.
+These give rise to analogous sections and morphisms on $\cM$; they remain non-zero and surjective on $\cM$, since the composite $g \circ f$ is an open inclusion, and therefore give rise to non-vanishing $\theta$-semi-invariant on $\cM$.
+
+We now have a pair of birational morphisms $f \colon \cN^\theta \rightarrow \cM^\theta$ and $g \colon \cM^\theta \rightarrow \cN^\theta$ for which $g \circ f$ is the identity hence they are isomorphisms.
+
+\section{Examples}
+
+% This section will serve both as a demonstration that the above GIT problem maybe expressed as an affine space (linear) modulo the action of a reductive group and as an examples section.
+% That is, we will demonstrate this case-by-case.
+% The idea is that $\bfB$ gives a symplectic matrix when invertible.
+% Up to scalars, the manifold of symplectic matrices maybe thought of as a flag variety which is an affine spaces modulo the action of a reductive group.
+
+% Fix a vertex $i \in Q_0$ and consider the linear map $B_i \oplus B_{i^\vee}$.
+% The relations imply that this a symplecto-morphism.
+% In particular, given a choice of bases the rows of $B_i$ are orthogonal with respect to the symplectic forms in question.
+% They are therefore given by a complete flag.
+
+\subsection{Type A}
+
+This is classical.
+
+\subsection{Type D}
+Here, $W=V_2$. 
+As before, starting at vertex $0$: 
+\begin{align*}
+    &B_0=\text{id}_{V_2} \colon V_2 \longrightarrow V_2 \\
+    &B_{0^\vee} = \text{id} \otimes \alpha_0 \colon V_2^\vee \longrightarrow V_2^\vee \otimes L_2^\vee.
+\end{align*}
+
+The data of $B_{0^\vee}$ is equivalent to $B_2^0$ and so specifies the first morphism in the flag $V_2 \otimes V_2 \rightarrow S^2(V_2)$.
+To fix $B_2$ and therefore $B_2^\vee$ it suffices to pick fix a flag 
+$$V_2 \otimes V_2 \rightarrow S^2(V_2) \rightarrow V_3.$$
+
+At vertex $3$ we need a flag $V_2 \otimes V_3 \rightarrow V_2$ but that is already fixed by the above data.
+We therefore have $B_3$.
+Eventually we arrive at the vertex ${n-2}$, then we take a hom $V_2 \otimes V_{n-2} / V_{n-3} \rightarrow V_{n-1}$ which completes the picture.
+
 
 \bibliographystyle{amsplain}
 \bibliography{references}
