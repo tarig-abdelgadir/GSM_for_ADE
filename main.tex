@@ -29,6 +29,11 @@
 \maketitle
 
 \section{Introduction}
+Crepant resolution conjectures.
+Techniques naturally extend to symplectic quotient singularities.
+Blow air into the walls of the octant.
+Monoidal categories result.
+
 
 \section{Background}\label{sc:background}
 
@@ -127,6 +132,20 @@ There is an equivalence of triangulated categories $$\Phi \colon D^b(\cM^\theta)
 
 \section*{Notation}
 We fix the following choices and notation for the rest of the text.
+% \begin{itemize}
+%     \item $G \subset \SL(2,\bC)$ finite subgroup acting with no pseudo-reflections
+%     \item $\rho_0, \ldots, \rho_N$
+% irreducible representations of $G$
+%     \item $\rho_0$ the trivial representation
+%     \item $I=\{0,\ldots,N\}$
+%     \item $W$ to be the direct sum of $\rho_i$'s that is isomorphic to defining representation
+%     \item $X:=\Spec(S(W^\vee)^G) = W \GIT G$ singular affine quotient
+%     \item $\bX:=W/G$ smooth stack quotient
+%     \item $(Q,R)$ the McKay quiver with relations
+%     \item $\cA:= \bk Q/ \langle R\rangle$ algebra associated to $(Q,R)$
+%     \item $P_i:= \cA\bfe_i$ the projective module corresponding to the vertex $i$
+%     \item $\bfd:=(\text{rank}(\rho_i))_{i \in I}$
+% \end{itemize}
 Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
 irreducible representations with $\rho_0$ being the trivial representation.
 Set $I=\{0,\ldots,N\}$.
@@ -195,7 +214,7 @@ $$\widetilde{\bfB} := W \longrightarrow \cS \,\,\Big(:= \bigoplus_{a \in Q_1} \H
 \end{notation}
 
 Recall that points of $\cS$ define representations of $Q$.
-The following lemma then follows from standard linear algebra techniques.
+The following lemma then follows from standard linear-algebraic techniques.
 
 \begin{lemma}\label{lem:Btilde}
 For $(\bfx, \balpha, \bfB) \in \bA$ and $a \in Q_1$, the linear map $V_{t(a)} \rightarrow V_{h(a)}$ is $\widetilde{\bfB}(\bfx) \in \cS$ is 
@@ -470,7 +489,7 @@ Therefore $(\bfx, \balpha, \bfB)$ is $(-\vartheta)$-stable.
 \end{proof}
 
 \begin{remark}
-For a point $(\bfx, \balpha, \bfB) \in \cN^\circ$, the proof of Theorem~\ref{thm:tannaka} shows that the data in $\bfB$ is equivalent to that of a monoidal fibre functor $\Rep(G) \rightarrow \Vect$.
+For a point $(\bfx, \balpha, \bfB) \in \cN^\circ$, Lemma~\ref{lem:e0Ae0} and Theorem~\ref{thm:tannaka} show that the data in $\bfB$ is equivalent to that of a monoidal fibre functor $\Rep(G) \rightarrow \Vect$ and hence the name of the section.
 \end{remark}
 
 \section{The $G$-Hilbert Scheme}
@@ -554,7 +573,7 @@ This, in turn, gives a linear map of Hom-spaces of the corresponding projective 
 
 Next we use $\vartheta$-stability of the universal family $(\cV_i, v_a)$.
 We have that $\vartheta_0<0$ and $\vartheta_i>0$ for all other $i$ therefore the evaluation morphism $$\text{ev} \colon \cV_0 \otimes_\bC {\Hom}(\cV_0, \cW) \longrightarrow \cW$$ is surjective.
-Combining this with Equation (\ref{eq:homsp}) above we get a composite
+Combining this with Equation~(\ref{eq:homsp}) above we get a composite
 $$\cV_0 \otimes_\bC {\Hom}(\cV_0, \cW) \longrightarrow \cV_0 \otimes_\bC {\Hom}(\cV_i, \oplus_j \, \cV_j) \longrightarrow\ \cV_i^\vee \otimes \Big(\bigoplus_{i \rightarrow j}\cV_j\Big)$$
 where the second factor is also an evaluation map.
 We claim that the kernel of ev is zero under this composite which yields a section 
@@ -711,7 +730,7 @@ $$B_1^0 \colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{(0\,\
 We now tackle $B_1$, so far we have 
 \begin{align*}
     B_1 &\colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} - & - \\ 0 & \alpha_0 \end{pmatrix}} V_2 \oplus V_0 \\
-    B_{1^\vee} &\colon (V_1^\vee \otimes V_1^\vee) \oplus (V_1^\vee \otimes V_{n-1}^\vee) \xrightarrow{\begin{pmatrix} - & - \\ 0 & 1 \end{pmatrix}} (V_0^\vee \oplus V_2^\vee) \otimes V_1^\vee \otimes V_{n-1}^\vee.
+    B_{1^\vee} &\colon (V_1^\vee \otimes V_1^\vee) \oplus (V_1^\vee \otimes V_{n-1}^\vee) \xrightarrow{\begin{pmatrix} 1 & 0 \\ - & - \end{pmatrix}} (V_0^\vee \oplus V_2^\vee) \otimes V_1^\vee \otimes V_{n-1}^\vee.
 \end{align*}
 We also have that
 $$\alpha_1 \circ \Omega \circ B_{1^\vee} \circ \Omega \colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} \alpha_1 & 0 \\ - & - \end{pmatrix}} V_2 \oplus V_0.$$
