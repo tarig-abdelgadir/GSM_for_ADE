@@ -17,7 +17,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{rmk}[thm]{Remark}
-\newtheorem{notn}[thm]{Notation}
+\newtheorem{notn}[theorem]{Notation}
 \newtheorem{conj}[thm]{Conjecture}
 \newtheorem{eg}[thm]{Example}
 
@@ -45,10 +45,10 @@ The path algebra $\bfk Q$ is the $\bfk$-algebra whose underlying $\bfk$-vector s
 The trivial paths $\bfe_i$ give idempotents of $\bfk Q$.
 
 A representation $\bfx = (V_i, x_a)$ of $Q$ consists of a vector space $V_i$ for each $i \in Q_0$ and a linear map $x_a \colon V_{t(a)} \rightarrow V_{h(a)}$ for each $a \in Q_1$. 
-The dimension vector of $\bfx$ is the integer vector $(\dim V_{i})_{i\in Q_0}$.  
+When $\dim V_i$ is finite, the dimension vector of $\bfx$ is the integer vector $(\dim V_{i})_{i\in Q_0}$.  
 A map between representations $\bfx = (V_i, x_a)$ and $\bfx' = (V_i', x_a')$ is a family $\xi_{i} \colon V_i^{\,} \rightarrow V_i'$ for $i \in Q_0$ of linear maps that are compatible with the structure maps, that is $x_a' \circ\xi_{t(a)} = \xi_{h(a)} \circ x_a$ for all $a \in Q_1$.  
-With composition defined componentwise, we obtain the abelian category of representations of $Q$ denoted rep$_\bfk(Q)$. 
-This category is equivalent to the category $\bfk Q$-mod of finitely generated left-modules over the path algebra.
+With composition defined componentwise, we obtain the abelian category of representations of $Q$ denoted Rep$_\bfk(Q)$. 
+This category is equivalent to the category $\bfk Q$-Mod of left-modules over the path algebra.
 A relation $r$ on $Q$ is a finite linear combination of paths that share the same head and tail.
 A quiver with relations is $Q$ along with a finite set of relations $R$.
 A representation of a $(Q,R)$ is a representation of $Q$ for which $x_r=0$ for all $r\in R$.
@@ -70,21 +70,21 @@ defines a representation of $Q$ with dimension vector $\bfd$.
 We write $\cS^\theta$ for the open subvariety of points corresponding to $\theta$-semistable representations.
 Change of basis gives a group action of $\GL(\mathbf{d}):= \oplus_{i \in Q_0} \GL(V_i)$ on $\cS$.
 The multiplicative group $\bG_m$ diagonally embeds in $\GL(\mathbf{d})$ and acts trivially on $\cS$.
-Therefore the action of $\GL(\mathbf{d})$ descends to an action of $\Gamma_\bfd:= \GL(\mathbf{d})/\bG_m$ on $\cS$ and we have $\cM^\theta(Q, \bfd) = \cS^\theta / \Gamma_\bfd.$
-Given a set of relations $R$, restricting to the closed set of points $\cS$ whose corresponding quiver representations respect the relations gives a closed subset of $\cR \subset \cS$ and $$\cM^\theta(Q,R,\bfd)= \cR^\theta/\Gamma_\bfd.$$
+Therefore the action of $\GL(\mathbf{d})$ descends to an action of $\Gamma_\bfd:= \GL(\mathbf{d})/\bG_m$ on $\cS$ and we have $\cM^\theta(Q, \bfd) = [\cS^\theta / \Gamma_\bfd].$
+Given a set of relations $R$, restricting to the closed set of points $\cS$ whose corresponding quiver representations respect the relations gives a closed subset of $\cR \subset \cS$ and $$\cM^\theta(Q,R,\bfd)= [\cR^\theta/\Gamma_\bfd].$$
 
 \subsection{The McKay correspondence}\label{ssc:McKay}
 Not only is this an abridged version of a rich story but we also spin it here to motivate what follows.
 Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
 irreducible representations with $\rho_0$ being the trivial representation.
 Set $I=\{0,\ldots,N\}$.
-We take $W=\bC^2$ to be the defining representation of $G$.
+We write $\bC^2$ for the defining representation of $G$.
 
 \subsubsection{The McKay quiver}
-The monoidal category $\Rep(G)$ is semi-simple therefore $$\rho_i \otimes W \simeq \bigoplus_{j \in I} c_{ij} \, \rho_j$$
-with $c_{ij} =\dim \Hom_{\bC G}(\rho_i \otimes W, \rho_j)$.
+The monoidal category $\Rep(G)$ is semi-simple therefore $$\rho_i \otimes_G \bC^2 \simeq \bigoplus_{j \in I} c_{ij} \, \rho_j$$
+with $c_{ij} =\dim \Hom_{\bC G}(\rho_i \otimes_G \bC^2, \rho_j)$.
 The numbers $c_{ij}$ allow us to define the {\em McKay quiver} $Q$: the vertices are indexed by irreducible representations labelled by $I$ with $c_{ij}$  arrows from $i$ to $j$.
-The fact that $V$ is a self-dual representation gives that $c_{ij} = c_{ji}$.
+The defining representation $\bC^2$ is self-dual hence $c_{ij} = c_{ji}$.
 It is therefore possible to unambiguously define a graph associated to $Q$ with vertex set $I$ and $c_{ij}$ edges between $i$ and $j$.
 This is the McKay graph associated to $G \subset \SL(2,\bC)$.
 
@@ -93,31 +93,31 @@ The McKay graph associated to $G \subset \SL(2,\bC)$ is an affine Dynkin diagram
 Moreover, the subgraph given by removing the vertex $0$ is the corresponding $ADE$ Dynkin diagram.
 \end{theorem}
 
-We identify an arrow $i \rightarrow j$ with a morphism of representations $\beta_i^j \colon \rho_i \otimes W \rightarrow \rho_j$.
+We identify an arrow $i \rightarrow j$ with a morphism of representations $\beta_i^j \colon \rho_i \otimes_G \bC^2 \rightarrow \rho_j$.
 For every irreducible representation this gives us isomorphisms 
 \begin{align}
-    \beta_i &\colon \rho_i \otimes W \longrightarrow \bigoplus_{i \rightarrow j} \rho_j \\
-    \beta_{i^\vee} &\colon \rho_i^\vee \otimes W^\vee \longrightarrow \bigoplus_{i \rightarrow j} \rho_j^\vee \otimes \det W^\vee.
+    \beta_i &\colon \rho_i \otimes_G \bC^2 \longrightarrow \bigoplus_{i \rightarrow j} \rho_j \\
+    \beta^i &\colon \rho_i^\vee \otimes_G (\bC^2)^\vee \longrightarrow \bigoplus_{i \rightarrow j} \rho_j^\vee \otimes (\det \bC^2)^\vee.
 \end{align}
-We may choose, and do choose, $\beta_i^j$ so that $\beta_i^{-1} = \alpha_0^{-1} \circ \beta_{i^\vee}^T$ up to a fixed isomorphism $\alpha_0 \colon L_W \rightarrow \rho_0$.
-The morphisms $\beta_i^j$ give a natural isomorphism of vector spaces $$\Hom_{\bC G}(\rho_i \otimes W^{\otimes n}, \rho_j) \simeq \langle\, \text{paths of length }n \text{ from }i \text{ to } j\,\rangle.$$
-In particular, for a vertex $i$, the one-dimensional space $\Hom_{\bC G} (\rho_i \otimes \det{V}, \rho_i)$ gives, up to $\alpha_0$, a relation $r_i$ of length 2 from $i$ to itself.
+We may choose, and do choose, $\beta_i^j$ so that $\beta_i^{-1} = \alpha_0^{-1} \circ (\beta^i)^T$ up to a fixed isomorphism $\alpha_0 \colon \det \bC^2 \rightarrow \rho_0$.
+The morphisms $\beta_i^j$ give a natural isomorphism of vector spaces $$\Hom_{\bC G}(\rho_i \otimes_G (\bC^2)^{\otimes n}, \rho_j) \simeq \langle\, \text{paths of length }n \text{ from }i \text{ to } j\,\rangle.$$
+In particular, for a vertex $i$, the one-dimensional space $\Hom_{\bC G} (\rho_i \otimes \det \bC^2, \rho_i)$ gives, up to $\alpha_0$, a relation $r_i$ of length 2 from $i$ to itself.
 The set $R = \{r_i \, |\, i \in I\}$ makes $Q$ into a quiver with relations $(Q, R)$. 
 We take $\cA:= \bk Q/ \langle R\rangle$.
-On the other hand, the action of $G$ on $W=\bC^2$ induces an action on the symmetric algebra $S(W^\vee)=\bC[x,y]$ which is related to $\cA$ by the following result.
+On the other hand, the action of $G$ on $\bC^2$ induces an action on the symmetric algebra $\bC[x,y]$ which is related to $\cA$ by the following result.
 
 \begin{theorem}\cite{MR2593679}.
-The skew-group algebra $S(W^\vee) \# G$ is Morita equivalent to $\cA$.
+The skew-group algebra $\bC[x,y] \# G$ is Morita equivalent to $\cA$.
 \end{theorem}
 
 \subsubsection{The $G$-Hilbert scheme}
 
-The invariant ring of the $G$-action on $S(W^\vee)$ will be denoted $S(W^\vee)^G \subset S(W^\vee)$, it is the centre of $S(W^\vee) \# G$ and is isomorphic to the subring $\bfe_0 \cA \bfe_0 \subset \cA$.
-The variety $X:= \Spec(\bfe_0 \cA \bfe_0)$ parametrises the orbits of the $G$-action on $V$ and has a singularity at the $0$-orbit.
+The invariant ring of the $G$-action on $\bC[x,y]$ will be denoted $\bC[x,y]^G \subset \bC[x,y]$, it is the centre of $\bC[x,y] \# G$ and is isomorphic to the subring $\bfe_0 \cA \bfe_0 \subset \cA$.
+The variety $X:= \Spec(\bfe_0 \cA \bfe_0)=\bC^2/G$ parametrises the orbits of the $G$-action on $V$ and has a singularity at the $0$-orbit.
 The variety $X$ is Gorenstein, that is it is Cohen-Macaulay and its dualizing sheaf $\omega_X$ is invertible.
-The $G$-Hilbert scheme, $G$-Hilb(V), parametrises scheme theoretic orbits of $G$ i.e.\ $G$-equivariant ideals $I$ of $S(W^\vee)$ for which $S(W^\vee)/I \simeq \bC G$ as $\bC G$-modules.
-The Hilbert-Chow morphism $\pi \colon G\text{-Hilb}(W) \rightarrow X$ takes the zero-locus of $I \subset S(W^\vee)$ to its corresponding $G$-orbit.
-Furthermore, $\pi \colon G\text{-Hilb}(W) \rightarrow X$ is a crepant resolution of singualrities, in other words it is a resolution with $\pi^*\omega_W \simeq \omega_Y$.
+The $G$-Hilbert scheme, $G$-Hilb($\bC^2$), parametrises scheme theoretic orbits of $G$ i.e.\ $G$-equivariant ideals $I$ of $\bC[x,y]$ for which $\bC[x,y]/I \simeq \bC G$ as $\bC G$-modules.
+The Hilbert-Chow morphism $\pi \colon G\text{-Hilb}(\bC^2) \rightarrow X$ takes the zero-locus of $I \subset \bC[x,y]$ to its corresponding $G$-orbit.
+Furthermore, $\pi \colon G\text{-Hilb}(\bC^2) \rightarrow X$ is a crepant resolution of singualrities, in other words it is a resolution with $\pi^*\omega_X \simeq \omega_{G\text{-Hilb}(\bC^2)}$.
 
 \begin{theorem}\cite{MR604577}.
 The inverse image of the singular point $\pi^{-1}(0)$ is a tree of transversely intersecting $\bP^1$s whose intersection graph is dual to the $ADE$ Dynkin diagram corresponding to $G$.
@@ -131,11 +131,37 @@ There is an equivalence of triangulated categories $$\Phi \colon D^b(\cM^\theta)
 \end{theorem}
 
 \section*{Notation}
-We fix the following choices and notation for the rest of the text.
+We fix the following choices and notation for the rest of the text:
+
+\begin{centering}
+\begin{tabular}{r l}
+    $G \subset \SL(2,\bC)$ & a finite subgroup acting with no pseudo-reflections. \\
+    $\bC^2$ & the defining representation of $G$. \\
+    $\rho_0, \ldots, \rho_N$ & the irreducible representations of $G$ with $\rho_0$ trivial. \\
+    $I$ & the set $\{0,\ldots,N\}$.  \\
+    $X$ & the singular affine quotient $\Spec(S(W^\vee)^G) = W/G$. \\
+    $\bX$ & the smooth stack quotient $[W/G]$. \\
+    $(Q,R)$ & the McKay quiver with relations. \\
+    $\cA$ & the algebra $\bk Q/ \langle R\rangle$. \\
+    $P_i$ & the projective module $\cA\bfe_i$ corresponding to the vertex $i$. \\
+    $\bfd$ & the dimension vector $(\text{rank}(\rho_i))_{i \in I}$. \\
+    $V_i$ & a vector space of dimension $d_i$. \\
+    $L_i$ & is $\wedge^{d_i} V_i$. \\
+    $W$ & the direct sum of $V_i$ given by the defining $G$-representation $\bC^2$. \\
+    $L_W$ & is $\wedge^{2} V_W$. \\
+    $\Gamma$ & the group $\bigoplus_{i \in I} \text{GL}(V_i) / \bG_m$. \\
+    $\cS$ & the vector space $\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})$. \\
+    $\cM$ & the stack quotient  $\cM(Q,R,\bfd)=[\cR/\Gamma]$. \\
+    $\cM^\theta$ & the stack quotient $\cM^\theta(Q,R,\bfd)=[\cR^\theta/\Gamma]$ given $\theta \in \bZ^{Q_0}$. \\
+    $\vartheta$ & the stability parameter $(-|G|,1, \ldots, 1) \in \bZ^{Q_0}$. \\
+    $\bC \simeq V_0$ & a fixed isomorphism.
+    \end{tabular}
+\end{centering}
+
 % \begin{itemize}
 %     \item $G \subset \SL(2,\bC)$ finite subgroup acting with no pseudo-reflections
 %     \item $\rho_0, \ldots, \rho_N$
-% irreducible representations of $G$
+% irreducible representations of $G$ 
 %     \item $\rho_0$ the trivial representation
 %     \item $I=\{0,\ldots,N\}$
 %     \item $W$ to be the direct sum of $\rho_i$'s that is isomorphic to defining representation
@@ -145,32 +171,32 @@ We fix the following choices and notation for the rest of the text.
 %     \item $\cA:= \bk Q/ \langle R\rangle$ algebra associated to $(Q,R)$
 %     \item $P_i:= \cA\bfe_i$ the projective module corresponding to the vertex $i$
 %     \item $\bfd:=(\text{rank}(\rho_i))_{i \in I}$
-% \end{itemize}
-Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
-irreducible representations with $\rho_0$ being the trivial representation.
-Set $I=\{0,\ldots,N\}$.
-We take $W$ to be the direct sum of representations $\rho_i$ that is isomorphic to defining representation $\bC^2$.
-We will write $X:=\Spec(S(W^\vee)^G) = W \GIT G$ and $\bX:=W/G$ for the stack.
-The McKay quiver with relations will be denoted $(Q,R)$ and $\cA:= \bk Q/ \langle R\rangle$.
-We will write $P_i:= \cA\bfe_i$ for the projective module corresponding to the vertex $i$.
+%     \end{itemize}
+% Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
+% irreducible representations with $\rho_0$ being the trivial representation.
+% Set $I=\{0,\ldots,N\}$.
+% We take $W$ to be the direct sum of representations $\rho_i$ that is isomorphic to defining representation $\bC^2$.
+% We will write $X:=\Spec(S(W^\vee)^G) = W \GIT G$ and $\bX:=W/G$ for the stack.
+% The McKay quiver with relations will be denoted $(Q,R)$ and $\cA:= \bk Q/ \langle R\rangle$.
+% We will write $P_i:= \cA\bfe_i$ for the projective module corresponding to the vertex $i$.
 
-Take $\bfd:=(\text{rank}(\rho_i))_{i \in I}$. 
-Pick $V_i$ be vector spaces so that $\dim(V_i)=d_i$.
-We abuse notation and write $W$ for the direct sum of $V_i$ corresponding to the $G$-representation $W$.
-Take $$\Gamma:= \bigoplus_{i \in I} \text{GL}(V_i) / \bG_m \quad \text{ and }\quad\cS:=\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
-For $\theta \in \bZ^{Q_0}$, the moduli space $\cM^\theta(Q,\bfd)$ is then $\cS^\theta / \Gamma$.
-The relations $R$ give a closed set $\cR \subset \cS$.
-We write $\cM:= \cM(Q,R,\bfd)=\cR/\Gamma$ and $\cM^\theta:=\cM^\theta(Q,R,\bfd)=\cR^\theta/\Gamma$.
-We will be especially interested in the stability parameter $\vartheta:= (-|G|,1, \ldots, 1) \in \bZ^{Q_0}$.
-We let $L_i:= \wedge^{d_i} V_i$ and similarly $L_W:= \wedge^2 W$.
-We also pick an isomorphism $\bfk \simeq V_0$.
+% Take $\bfd:=(\text{rank}(\rho_i))_{i \in I}$. 
+% Pick $V_i$ be vector spaces so that $\dim(V_i)=d_i$.
+% We abuse notation and write $W$ for the direct sum of $V_i$ corresponding to the $G$-representation $W$.
+% Take $$\Gamma:= \bigoplus_{i \in I} \text{GL}(V_i) / \bG_m \quad \text{ and }\quad\cS:=\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
+% For $\theta \in \bZ^{Q_0}$, the moduli space $\cM^\theta(Q,\bfd)$ is then $\cS^\theta / \Gamma$.
+% The relations $R$ give a closed set $\cR \subset \cS$.
+% We write $\cM:= \cM(Q,R,\bfd)=\cR/\Gamma$ and $\cM^\theta:=\cM^\theta(Q,R,\bfd)=\cR^\theta/\Gamma$.
+% We will be especially interested in the stability parameter $\vartheta:= (-|G|,1, \ldots, 1) \in \bZ^{Q_0}$.
+% We let $L_i:= \wedge^{d_i} V_i$ and similarly $L_W:= \wedge^2 W$.
+% We also pick an isomorphism $\bfk \simeq V_0$.
 %We will use $I^\dagger$ for the natural isomorphism $I^\dagger \colon V^\vee \otimes L_V \rightarrow V$.
 
 
 \section{The construction}
 
 We define an affine variety $U$ with an action of $\Gamma$, the corresponding stack quotient will be denoted $\cN$.
-In subsequent sections, GIT will be used to pick an open substack of $\cN$ isomorphic to $\bX$ and another which isomorphic to $G$-Hilb$(W)$.
+In subsequent sections, GIT will be used to pick an open substack of $\cN$ isomorphic to $\bX$ and another which isomorphic to $G$-Hilb$(\bC^2)$.
 We begin by describing $U$ as a closed subset of an affine space $\bA$.
 
 \subsection{The fields}
@@ -184,6 +210,7 @@ Points in $\bA$ are given by a tuple $(\bfx,\alpha_i, B_i)_{i \in Q_0}$ as descr
 \alpha_i \colon &L_i \otimes L_i \longrightarrow \bigotimes_{i \rightarrow j} L_j \quad \text{for all} \,\, i\neq 0 \label{fd:alpha} \\
  B_i \colon &V_i \otimes W \longrightarrow \bigoplus_{i \rightarrow j} V_j \quad \text{for all} \,\, i\neq 0. \label{fd:B}
 \end{align}
+Up to a choice of basis the linear maps $\alpha_i$ are scalars while the linear maps $B_i$ are square matrices.
 Change of basis gives a natural action of $\Gamma$ on $\bA$.
 
 \begin{remark}\label{rm:cartan}
@@ -192,32 +219,33 @@ The weights of the $\Gamma$-action on the fields $\alpha_i$ are the columns of m
 
 In what follows, we manipulate the data $(\bfx, \alpha_i, B_i) \in \bA$ in various ways; the rest of this subsection sets up the notation required.
 
-\begin{notation}
-A scalar field of particular importance is $$\alpha_0:= \bigotimes_{0 \neq i \in I} \,\alpha_i^{d_i}: L_W \rightarrow L_0 \otimes L_0.$$
-\end{notation}
+\begin{notn}
+A scalar field of particular importance is $$\alpha_0:= \bigotimes_{0 \neq i \in I} \,\alpha_i^{d_i}: L_W \rightarrow L_0 \otimes L_0 = \bC.$$
+\end{notn}
 
-\begin{notation}
+\begin{notn}
 We take $B_0$ to be the unit morphism.
 We write $B_i^j$ for the projection of $B_i$ to the $j$-th summand. 
 Summing over arrows with head at $i$ we get $$\bigoplus_{j \rightarrow i} B_j^i \colon \bigoplus_{j \rightarrow i} V_j \otimes W \longrightarrow V_i.$$
-From this, using some adjuctions, we get a field $$B_{i^\vee} \colon V_i^\vee \otimes W \longrightarrow \bigoplus_{i \rightarrow j} V_j^\vee.$$
-\end{notation}
+From this, using some adjuctions, we get a field $$B^{i} \colon V_i^\vee \otimes W \longrightarrow \bigoplus_{i \rightarrow j} V_j^\vee.$$
+As with $B_i$, this is also a square matrix up to a choice of basis.
+\end{notn}
 
-\begin{notation}
+\begin{notn}
 Grouping the linear maps $\alpha_i$ and respectively $B_i$ into big linear maps we write: 
 \begin{align*}
 \balpha &:= \bigoplus_{i\in Q_0} \alpha_i \colon \bigoplus_{i\in Q_0} L_i \otimes L_i \longrightarrow \bigoplus_{i \in Q_0} \Big( \bigotimes_{i \rightarrow j} L_j \Big) \\
 \bfB &:= \bigoplus_{i\in Q_0} B_i \colon \bigoplus_{i\in Q_0} V_i \otimes W \longrightarrow \bigoplus_{a \in Q_1} V_{h(a)}
 \end{align*}
 Again, using adjuctions appropriately, the morphism $\bfB$ naturally induces a linear map:
-$$\widetilde{\bfB} := W \longrightarrow \cS \,\,\Big(:= \bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)})\Big).$$
-\end{notation}
+$$\widetilde{\bfB} := W \longrightarrow \cS \,\,=\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
+\end{notn}
 
 Recall that points of $\cS$ define representations of $Q$.
-The following lemma then follows from standard linear-algebraic techniques.
+The following lemma then follows unwinding the definitions.
 
 \begin{lemma}\label{lem:Btilde}
-For $(\bfx, \balpha, \bfB) \in \bA$ and $a \in Q_1$, the linear map $V_{t(a)} \rightarrow V_{h(a)}$ is $\widetilde{\bfB}(\bfx) \in \cS$ is 
+For $(\bfx, \balpha, \bfB) \in \bA$ and $a \in Q_1$, the linear map $V_{t(a)} \rightarrow V_{h(a)}$ in the representation $\widetilde{\bfB}(\bfx) \in \cS$ is 
 $$V_{t(a)} \xrightarrow{\textup{id} \otimes \bfx} V_{t(a)} \otimes W \xrightarrow{B_{t(a)}} \bigoplus_{t(a) \rightarrow j} V_j \rightarrow V_{h(a)}.$$
 \end{lemma}
 
@@ -225,61 +253,65 @@ $$V_{t(a)} \xrightarrow{\textup{id} \otimes \bfx} V_{t(a)} \otimes W \xrightarro
 Here we describe the equations cutting out $U$ in $\bA$.
 We need more notation to do so.
 
-\begin{notation}
+\begin{notn}
 We have natural isomorphisms
-$$\Omega_r(V) \colon \wedge^{d+r} V \rightarrow \wedge^{d-r} V^\vee \otimes L_U$$ for $V$ a $2d$-dimensional vector space and $r= -d, \ldots, d$.
+$$\Omega_r(V) \colon \wedge^{d+r} V \rightarrow \wedge^{d-r} V^\vee \otimes L_V$$ for $V$ a $2d$-dimensional vector space and $r= -d, \ldots, d$.
 We will drop the vector space $V$ and the subscript $r$ from $\Omega_r(V)$ when it is clear from the context.
 
 We also abuse notation by writing $\alpha_0^r \alpha_i^{-1} := \alpha_1^{rd_1} \cdots \alpha_i^{rd_i-1} \cdots \alpha_N^{rd_N}$ when $r\geq 1$ even though $\alpha_i$ is not invertible in general.
-\end{notation}
+\end{notn}
 
 \begin{definition}\label{def:equa}
-The closed subvariety $U \subset \bA$ is defined as the locus satisfying the following equations:
-\begin{align}
-    \wedge^{d_i+r} B_i &= \alpha_0^r \alpha_i \circ \Omega_r(V_i \otimes W) \circ \wedge^{d_i-r} B_{i^\vee} \circ \Omega_r(\oplus V_j)^{-1}  \label{eq1:cons2} \\
-    \wedge^{d_i} B_i &= \alpha_i \circ \Omega_{0}(V_i \otimes W) \circ \wedge^{d_i} B_{i^\vee} \circ \Omega_{0}(\oplus V_j)^{-1} \label{eq2:cons2} \\
-    \alpha_0^r \alpha_i^{-1} \circ \wedge^{d_i-r} B_i &= \Omega_{-r}(V_i \otimes W) \circ \wedge^{d_i+r} B_{i^\vee} \circ \Omega_{-r}(\oplus V_j)^{-1} \label{eq3:cons2} 
-\end{align}
-for $i\in I$ and $r=1,\ldots,d_i$.
+The closed subvariety $U \subset \bA$ is defined as the locus satisfying the following equations and for which the following commutative diagrams commutes:
+\begin{equation}\label{eq:cons1}
+    \wedge^{d_i+r} B_i = \alpha_0^r \alpha_i \circ \Omega \circ \wedge^{d_i-r} B^i \circ \Omega^{-1}
+\end{equation}
+\begin{equation}\label{eq:cons2}
+\begin{gathered}
+    \xymatrix{\bigwedge^{r} \Big(V_i \otimes W\Big) \ar[rr]^-{\wedge^r B_i} \ar[d]^{\textup{id}} && \bigwedge^r \Big(\bigoplus_{i \rightarrow j}  V_j\Big) \ar[rr]^-{\Omega\,\,(\wedge^{r} B^i)^T \,\, \Omega} && \bigwedge^r \Big(V_i \otimes W^\vee\Big) \ar[d]^{\textup{id}} \\
+    \bigwedge^r \Big(V_i \otimes W\Big) \ar[rrrr]^-{\textup{id} \otimes \alpha_0^r}
+    %\ar[r]^-{\textup{id} \otimes \Omega} & V_i \otimes W^\vee \otimes L_W \ar[r]^-{\textup{id} \otimes \alpha_0^r} & 
+    &&&& \bigwedge^r \Big(V_i \otimes W^\vee\Big).}
+    \end{gathered}
+\end{equation}
+for $i\in I$ and $r=0,\ldots,d_i$.
+% \begin{align}
+%     \wedge^{d_i+r} B_i &= \alpha_0^r \alpha_i \circ \Omega_r(V_i \otimes W) \circ \wedge^{d_i-r} B^i \circ \Omega_r(\oplus V_j)^{-1}  \label{eq1:cons2} \\
+%     \wedge^{d_i} B_i &= \alpha_i \circ \Omega_{0}(V_i \otimes W) \circ \wedge^{d_i} B^i \circ \Omega_{0}(\oplus V_j)^{-1} \label{eq2:cons2} \\
+%     \alpha_0^r \alpha_i^{-1} \circ \wedge^{d_i-r} B_i &= \Omega_{-r}(V_i \otimes W) \circ \wedge^{d_i+r} B^i \circ \Omega_{-r}(\oplus V_j)^{-1} \label{eq3:cons2}
+% \end{align}
 \end{definition}
 
-The equations are a bit of a mouthful, the following lemmas are three different ways of saying the same thing but they will help us get a better handle on these equations.
-
-\begin{lemma}\label{lem:symp1}
-If $\alpha_0$ is invertible the fields $B_i$ are isomorphisms and the relations imply that they are `symplectic', i.e.
-\begin{equation}\label{eq:B^-1}
-    B_i^{-1} = \alpha_0^{-1} \circ \Omega_{d_i-1}(V_i \otimes W) \circ B_{i^\vee}^T \circ \Omega_{d_i-1}(\oplus V_j)^{-1}.
+The relations are a mouthful.
+The most important are Equation~(\ref{eq:cons1}) with $r=0$ and Equation~(\ref{eq:cons2}) with $r=1$.
+We rewrite it here for emphasis and because we will use them often in what is to come:
+\begin{equation}\label{eq2:cons2}
+    \wedge^{d_i} B_i =  \alpha_i \circ \Omega \circ \wedge^{d_i} B^i \circ \Omega^{-1}
 \end{equation}
-\end{lemma}
-
-\begin{proof}
-The linear map $\alpha_0$ has a one-dimensional domain and codomain, therefore it is invertible if and only if it is non-zero.
-So if $\alpha_0$ is invertible then by definition $\alpha_i$ is also invertible for all $i$.
-Equation~(\ref{eq1:cons2}) with $r=d_i$ translates to $\det B_i= \alpha_0^{d_i} \alpha_i$.
-The inverse of $B_i$ is then given by $(\wedge^{2d_i-1}B_i)^T \otimes (\det B_i)^{-1}$.
-Equation~(\ref{eq1:cons2}) with $r=d_i-1$ is $$\wedge^{2d_i-1} B_i = \alpha_0^{d_i-1} \alpha_i \circ \Omega \circ B_{i^\vee} \circ \Omega^{-1}.$$
-The result follows.
-\end{proof}
-
-\begin{remark}
-Lemma~\ref{lem:symp1} implies that when $\alpha_0$ is invertible all the relations in Equations~(\ref{eq1:cons2})-(\ref{eq3:cons2}) follow from the Equation~(\ref{eq:B^-1}) with $r=d_i-1$ and $r=d_i$.
-\end{remark}
+\begin{equation}\label{eq:comdiag}
+\begin{gathered}
+    \xymatrix{V_i \otimes W \ar[r]^-{B_i} \ar[d]^{\textup{id}} & \big(\bigoplus_{i \rightarrow j}  V_j\big) \ar[r]^-{(\Omega\,B^i \, \Omega)^T} & V_i \otimes W^\vee \ar[d]^{\textup{id}} \\
+    V_i \otimes W \ar[r]^-{\textup{id} \otimes \Omega} & V_i \otimes W^\vee \otimes L_W \ar[r]^-{\textup{id} \otimes \alpha_0} & V_i \otimes W^\vee.}
+    \end{gathered}
+\end{equation}
 
 \begin{lemma}\label{lem:rela}
-For $(\bfx, \balpha, \bfB) \in U$ the following diagram commutes:
-\begin{equation}\label{eq:comdiag}
-    \xymatrix{V_i \otimes W \ar[r]^-{B_i} \ar[d]^{\textup{id}} & \big(\bigoplus_{i \rightarrow j}  V_j\big) \ar[r]^-{\Omega\,B_{i^\vee}^T \, \Omega} & V_i \otimes W^\vee \ar[d]^{\textup{id}} \\
-    V_i \otimes W \ar[r]^-{\textup{id} \otimes \Omega} & V_i \otimes W^\vee \otimes L_W \ar[r]^-{\textup{id} \otimes \alpha_0} & V_i \otimes W^\vee.}
-\end{equation}
-In particular, the linear map $\widetilde{\bfB}$ factors through the closed set $\cR$ defined by the relations $R$ on $Q$.
+For $(\bfx, \balpha, \bfB) \in U$ 
+% the following diagram commutes:
+% \begin{equation}\label{eq:comdiag}
+%     \xymatrix{V_i \otimes W \ar[r]^-{B_i} \ar[d]^{\textup{id}} & \big(\bigoplus_{i \rightarrow j}  V_j\big) \ar[r]^-{\Omega\,(B^i)^T \, \Omega} & V_i \otimes W^\vee \ar[d]^{\textup{id}} \\
+%     V_i \otimes W \ar[r]^-{\textup{id} \otimes \Omega} & V_i \otimes W^\vee \otimes L_W \ar[r]^-{\textup{id} \otimes \alpha_0} & V_i \otimes W^\vee.}
+% \end{equation}
+% In particular, 
+the linear map $\widetilde{\bfB}$ factors through the closed set $\cR$ defined by the relations $R$ on $Q$.
 \end{lemma}
 
 \begin{proof}
-By Lemma~\ref{lem:symp1} above, the diagram commutes on the open subset $\alpha_0 \neq 0$ and hence it commutes everywhere.
-
-The commutativity of this diagram implies that the composite 
+% The diagram commutes since $$\wedge^{2d_i-1} B_i = \alpha_0^{d_i-1} \alpha_i \circ \Omega \circ B^i \circ \Omega^{-1}$$
+% and $\det B_i= \alpha_0^{d_i} \alpha_i$.
+The commutativity of this diagram in Equation~(\ref{eq:comdiag}) implies that the composite 
 \begin{equation}\label{eq:inR}
-    V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j \xrightarrow{\Omega\,B_{i^\vee}^T \, \Omega} V_{i} \otimes W^\vee \xrightarrow{\textup{id} \otimes \bfx^T} V_i
+    V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j \xrightarrow{(\Omega\,B^i \, \Omega)^T} V_{i} \otimes W^\vee \xrightarrow{\textup{id} \otimes \bfx^T} V_i
 \end{equation}
 %$$V_i \xrightarrow{\textup{id} \otimes \bfx \otimes \bfx} V_i \otimes W \otimes W \xrightarrow{\textup{id} \otimes \det} V_i \otimes L_W \xrightarrow {\alpha_0} V_i$$
 coincides with
@@ -299,15 +331,57 @@ In other word, the following composite coincides with $\Omega \circ \alpha_0$:
 \end{lemma}
 
 \begin{proof}
-This follows from tensoring Equation~(\ref{eq:comdiag}) with $V_i^\vee$ and contracting.
+This follows from tensoring Equation~(\ref{eq:comdiag}) by $V_i^\vee$ and contracting.
 \end{proof}
 
+% \begin{lemma}\label{lem:symp1}
+% If $\alpha_0$ is invertible the fields $B_i$ are isomorphisms and the relations imply that they are `symplectic', i.e.
+% \begin{equation}\label{eq:B^-1}
+%     B_i^{-1} = \alpha_0^{-1} \circ \Omega_{d_i-1}(V_i \otimes W) \circ (B^i)^T \circ \Omega_{d_i-1}(\oplus V_j)^{-1}.
+% \end{equation}
+% \end{lemma}
+
+% \begin{proof}
+% Follows from the commutative diagram in Equation~\ref{eq:cons2} with $r=1$.
+% \end{proof}
+
+The following lemma relates the Equations~(\ref{eq:cons1}) to Equations~(\ref{eq:cons2}).
+
+\begin{lemma}
+If $\alpha_0$ is invertible, the diagrams in Equation~(\ref{eq:cons2}) are commutative if and only if
+$$\wedge^{d_i-r} B_i = \alpha_0^{-r} \alpha_i \circ \Omega \circ \wedge^{d_i+r} B^i \circ \Omega^{-1}$$
+for $i\in I$ and $r=0,\ldots,d_i$.
+\end{lemma}
+
+\begin{proof}
+The linear map $\alpha_0$ has a one-dimensional domain and codomain, therefore it is invertible if and only if it is non-zero.
+So if $\alpha_0$ is invertible then by definition $\alpha_i$ is also invertible for all $i$.
+Equation~(\ref{eq:cons1}) with $r=d_i$ translates to $\det B_i= \alpha_0^{d_i} \alpha_i$.
+The inverse of $\wedge^r B_i$ is then given by $(\wedge^{2d_i-r}B_i)^T \otimes (\det B_i)^{-1}$.
+Substituting $d_i-r$ into the $r$ of Equation~(\ref{eq:cons1}) gives $$\wedge^{2d_i-r} B_i = \alpha_0^{d_i-r} \alpha_i \circ \Omega \circ \wedge ^r B^i \circ \Omega^{-1}.$$
+The result follows.
+\end{proof}
+
+
+% \begin{proof}
+% The linear map $\alpha_0$ has a one-dimensional domain and codomain, therefore it is invertible if and only if it is non-zero.
+% So if $\alpha_0$ is invertible then by definition $\alpha_i$ is also invertible for all $i$.
+% Equation~(\ref{eq1:cons2}) with $r=d_i$ translates to $\det B_i= \alpha_0^{d_i} \alpha_i$.
+% The inverse of $B_i$ is then given by $(\wedge^{2d_i-1}B_i)^T \otimes (\det B_i)^{-1}$.
+% Equation~(\ref{eq1:cons2}) with $r=d_i-1$ is $$\wedge^{2d_i-1} B_i = \alpha_0^{d_i-1} \alpha_i \circ \Omega \circ B^i \circ \Omega^{-1}.$$
+% The result follows.
+% \end{proof}
+
+% \begin{remark}
+% Lemma~\ref{lem:symp1} implies that when $\alpha_0$ is invertible all the relations in Equations~(\ref{eq:cons1})-(\ref{eq:cons2}) follow from the Equation~(\ref{eq:B^-1}) with $r=d_i-1$ and $r=d_i$.
+% \end{remark}
+
 %We unpack Equations~(\ref{eq1:cons2}) and (\ref{eq2:cons2}) to demonstrate that it is homogeneous with respect to the natural $G$ action on our fields:
-%Precomposing $\wedge^{d_i+r} B_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ B_{i^\vee}$ by some multiple of $L_V$.
+%Precomposing $\wedge^{d_i+r} B_i$ by the inverse of isomorphism $I^{\dagger}_r(T_i \otimes V)$ and postcomposing $I^{\dagger}_r(\oplus T_j)$ gives a field that differs from $\alpha_i \circ B^i$ by some multiple of $L_V$.
 %The factor $\alpha_0^r$ is used to fix this discrepancy.
 
 % \begin{remark}
-% With $r=d_i-1$, the relations in (\ref{eq1:cons2}) and (\ref{eq2:cons2}) come agonizingly close to expressing $B_{i^\vee}$ in terms of $B_{i}$ or vice versa but just miss because the fields $\alpha_i$ are not invertible.
+% With $r=d_i-1$, the relations in (\ref{eq1:cons2}) and (\ref{eq2:cons2}) come agonizingly close to expressing $B^i$ in terms of $B_{i}$ or vice versa but just miss because the fields $\alpha_i$ are not invertible.
 % \end{remark}
 
 
@@ -348,8 +422,8 @@ If $\alpha_i=0$ then $S_i$ is a submodule of $\widetilde{\bfB}(\bfx)$.
 \end{lemma}
 
 \begin{proof}
-If $\alpha_i=0$ then $\wedge^{d_i} B_i=0$ by Equation~\ref{eq2:cons2}.
-Therefore the linear map $$V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j$$ is not injective.
+If $\alpha_i=0$ then $\wedge^{d_i} B_i=0$ by Equation~\eqref{eq2:cons2}.
+Therefore the $d_i$-th wedge of $$V_{i} \xrightarrow{\textup{id} \otimes \bfx} V_{i} \otimes W \xrightarrow{B_{i}} \bigoplus_{i \rightarrow j} V_j$$ is zero and this composite is not injective.
 The kernel of this composite then gives a submodule of $\widetilde{\bfB}(\bfx)$ concentrated on the vertex $i$ and is therefore a direct sum of copies of $S_i$.
 \end{proof}
 
@@ -364,30 +438,30 @@ We show that it is isomorphic to $\bX$ and that $f \colon \cN^\circ \rightarrow 
 We then go on to show that $\cN^\circ = \cN^{-\vartheta}$ for the generic stability parameter $-\vartheta$ so $\cN^{-\vartheta} \simeq \bX$.
 
 \begin{remark}
-The invertibility of $\bfB$ is equivalent to the invertibility of $\alpha_i$ for all $i \in I$; the determinant of $\bfB$, given by Equation~\ref{eq1:cons2}, is a product of $\alpha_i$'s and has $\alpha_1 \cdots \alpha_N$ as a factor.
-Also, when $\bfB$ is invertible Equation~\ref{eq2:cons2} allow us to express $\alpha_i$ in terms of $B_i$.
+The invertibility of $\bfB$ is equivalent to the invertibility of $\alpha_i$ for all $i \in I$; the determinant of $\bfB$, given by Equation~(\ref{eq:cons1}) with $r=d_i$, is a product of $\alpha_i$'s and has $\alpha_1 \cdots \alpha_N$ as a factor.
+Also, when $\bfB$ is invertible Equation~(\ref{eq2:cons2}) allows us to express $\alpha_i$ in terms of $B_i$.
 \end{remark}
 
-Intertwiners $\beta_i^j \colon \rho_i \otimes W \rightarrow \rho_j$ give a ring isomorphism $\bfe_0 \cA \bfe_0 \simeq S(W^\vee)^G$ and identify $\cM^0$ with $W \GIT G$.
+Intertwiners $\beta_i^j \colon \rho_i \otimes_G \bC^2 \rightarrow \rho_j$ give a ring isomorphism $\bfe_0 \cA \bfe_0 \simeq \bC[x,y]^G$ and identify $\cM^0$ with $X$.
 When $\bfB$ is invertible, we show that our linear maps $B_i^j \colon V_i \otimes W \rightarrow V_j$ do so too.
 For a cycle $p$ of length $k$ with $t(p)=h(p)=0$ let $B_0^p$ denote the composite given by successive applications of $\bfB$ below $$V_0 \otimes W^{\otimes k} \longrightarrow \Bigg(\bigoplus_{i \rightarrow j} V_j\Bigg) \otimes W^{\otimes (k-1)} \rightarrow \cdots \rightarrow \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)} \rightarrow V_{h(p)}=V_0.$$
-This allows us to define the following homomorphism of $\bC$-algebras:
+Armed with a fixed isomorphism of vector spaces $W \simeq \bC^2$, the above allows us to define the following homomorphism of $\bC$-algebras:
 \begin{align*}
-\phi \colon \bfe_0 \cA \bfe_0 &\longrightarrow S(W^\vee)
+\phi \colon \bfe_0 \cA \bfe_0 &\longrightarrow S(W^\vee) \simeq \bC[x,y]
 \\ p &\mapsto (V_0 \otimes W^{\otimes k} \xrightarrow{B_0^p} V_0).
 \end{align*}
 Given $\bfx \in W$, Lemma~\ref{lem:Btilde} implies that the composite $$V_0 \xrightarrow{\bfx^k} V_0 \otimes W^{\otimes k} \xrightarrow{B_0^p} V_0$$ coincides with the linear map corresponding to $p$ in the representation $\widetilde{\bfB}(\bfx)$.
 In other words, $\Spec(\phi)$ is the composite $W \xrightarrow{\widetilde{\bfB}} \cR \rightarrow \cM^0$.
 
 \begin{lemma}\label{lem:e0Ae0}
-When $\bfB$ is an isomorphism, the homomorphism $\phi \colon \bfe_0 \cA \bfe_0 \rightarrow S(W^\vee)$
-induces an isomorphism between the image of $\phi$ and $S(W^\vee)^G$.
-Equivalently, the morphism $$W \xrightarrow{\widetilde{\bfB}} \cR \rightarrow \cM^0 \simeq W \GIT G$$ is the quotient morphism $\pi$ up to an automorphism of $W\GIT G$.
+When $\bfB$ is an isomorphism, the homomorphism $\phi \colon \bfe_0 \cA \bfe_0 \rightarrow \bC[x,y]$
+induces an isomorphism between the image of $\phi$ and $\bC[x,y]^G$.
+Equivalently, the morphism $$\bC^2 \simeq W \xrightarrow{\widetilde{\bfB}} \cR \rightarrow \cM^0 \simeq X$$ is the quotient morphism $\pi$ up to an automorphism of $X$.
 \end{lemma}
 
 \begin{proof}
-Let $\psi \colon \bfe_0 \cA \bfe_0 \longrightarrow S(W^\vee)^G$ be the isomorphism given by the intertwiners $\rho_i \otimes W \rightarrow \rho_j$.
-This gives us a ring homomorphism $\phi \circ \psi^{-1} \colon S(W^\vee)^G \rightarrow \text{im}(\phi)$.
+Let $\psi \colon \bfe_0 \cA \bfe_0 \longrightarrow \bC[x,y]^G$ be the isomorphism given by the intertwiners $\rho_i \otimes_G \bC^2 \rightarrow \rho_j$.
+This gives us a ring homomorphism $\phi \circ \psi^{-1} \colon \bC[x,y]^G \rightarrow \text{im}(\phi)$.
 This composite homomorphism is an isomorphism of vector spaces and so it is a ring isomorphism.
 \end{proof}
 
@@ -397,28 +471,44 @@ The stack ${\cN}^\circ$ is isomorphic to $\bX$.
 \end{theorem}
 
 \begin{proof}
-Take $(\bfx, \balpha, \bfB) \in \cN^\circ$.
-We begin by showing the stack of sections $\bfB$ up to the action of $\Gamma$ give the stack $BG$.
-Given $\bfB$, we study the associated $\widetilde{\bfB}$.
-We will show that the quotient of $\{\widetilde{\bfB}\} /\Gamma$ is isomorphic to $\{\pi \colon W \rightarrow W\GIT G\}/\GL(W)$ with $\GL(W)$ acting on the domain.
-Given $\widetilde{\bfB}$, taking invariants gives 
-$$W \xrightarrow{\widetilde{\bfB}} \cR \rightarrow \cR \GIT \Gamma = \Spec(\bfe_0 \cA \bfe_0) = W\GIT G.$$
-Since our point is in $\cN^\circ$ the section $\bfB$ is invertible; Lemma~\ref{lem:e0Ae0} gives the composite is $\pi$ up to an automorphism of $W//G$.
-Every such automorphism maybe lifted to one of $W$ so, up to the action of $\GL(W)$ on the domain, this is $\pi$.
-The projection $\Gamma \rightarrow \GL(W)$ makes this morphism equivariant.
-Taking $\pi$ to the $\bfB$ defined by the intertwiners defines an inverse that is equivariant with respect to the inclusion $\GL(W) \rightarrow \Gamma$.
-% Two points $\bfx, \bfy \in W$ lie in the same $G$-orbit if and only if $p(\bfx)=p(\bfy)$ for every $p \in S(W^\vee)^G$.
-% For $p \in S^k(W^\vee)^G$, we may interpret $p(\bfx)$ as the linear maps $$\bC = V_0 \xrightarrow{\bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{p} V_0=\bC$$ and similarly for $p(\bfy)$.
-% On the other hand, via $S^k(W^\vee)^G \simeq \bfe_0 \cA \bfe_0$, the element $p$ specifies a linear combination of cycles centred at 0 of length $k$.
-% Let $\bfB^k$ denote the composite given by successive application of $\bfB$ below $$V_0 \otimes W^{\otimes k} \longrightarrow \Bigg(\bigoplus_{i \rightarrow j} V_j\Bigg) \otimes W^{\otimes (k-1)} \rightarrow \cdots \rightarrow \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)}.$$
-% Since $\bfB$ is an isomorphism so is $\bfB^k$.
-% By Lemma~\ref{lem:Btilde}, the linear map corresponding to this linear combination in $\widetilde{\bfB}(\bfx)$ is $$V_0 \xrightarrow{\text{id} \otimes \bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{\bfB^k} \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)} \xrightarrow{p} V_0$$
-% respectively.
-%The claim follows because $\bfB^k$ is an isomorphism.
-Since $W\setminus \{0\}$ is a $G$-torsor we have that $\{\pi \colon W \rightarrow W\GIT G\}/\GL(W) \simeq BG$ and hence so is $\{\widetilde{\bfB}\} /\Gamma$.
+Let $\Hom(W, \cR)$ denote the subvariety of the affine space $$\Bigg(\bigoplus_{0\neq i \in Q_0} \Hom\Big(L_i \otimes L_i,\, \bigotimes_{i \rightarrow j} L_j\Big) \Bigg) \oplus \Hom(W,\cS)$$ whose points satisfy the relations given in Equations~(\ref{eq:cons1})-(\ref{eq:cons2}) and for which the the corresponding $\bfB$ is an isomorphism.
+Elements of $\Hom(W, \cR)$ are determined by the $\Hom(W,\cS)$ summand since the scalars $\alpha_i$ may be deduced from the relations in this case; we will be denoted them by $\widetilde{\bfB}$ as before.
+We consider the stack $[\Hom(W,\cR)/\Gamma]$.
 
-The data of $\balpha$ is accounted for since we are restricted to the subset where $\bfB$ is an isomorphism.
+We show that the change of basis action of $\Gamma$ on $\Hom(W,\cR)$ is transitive, i.e.\  for $\bfB, \bfB' \in \Hom(W,\cR)$ there exists $\gamma \in \Gamma$ such that $\bfB = \gamma \cdot \bfB'$.
+Lemma~\ref{lem:e0Ae0} above allows us to assume that the composites  
+$$\bC^2 \simeq W \rightarrow \cR \rightarrow \cR \GIT \Gamma = \Spec(\bfe_0 \cA \bfe_0) = X$$
+corresponding to $\bfB$ and $\bfB'$ are both the quotient morphism $\pi$.
+Let $\cR' \subset \cR$ be the inverse image of $(W \setminus 0) / G$ under  $\cR \rightarrow \cR \GIT \Gamma = X$ and note that $\Gamma$ acts freely on $\cR'$ with $\cR' / \Gamma = (W \setminus 0) / G$.
+Our assumption then implies that $\widetilde{\bfB}$ and $\widetilde{\bfB}'$ give rise to the same morphism $W \rightarrow \cR'/\Gamma$ and so we have a morphism $W \rightarrow \cR' \times \Gamma$.
+This morphism factors to through $(\id, \gamma) \colon \cR' \rightarrow \cR' \times \Gamma$ for some $\gamma \in \Gamma$ because both $\widetilde{\bfB} \colon W \rightarrow \cR \rightarrow \cS$ and $\widetilde{\bfB}' \colon W \rightarrow \cR \rightarrow \cS$ are linear maps.
+That is, $\bfB = \gamma \cdot \bfB'$.
+
+To determine the stabilizer of this action, take $\bfB$ defined by the intertwiners $\beta_i^j$.
+The standard statement of Tannakian duality for finite groups translates to the stabilizer of $\bfB$ being precisely $G \in \Gamma$.
+
+The above shows that $[\Hom(W,\cR)/\Gamma]$ is isomorphic to the classifying stack $BG$.
 Adding $\bfx \colon V_0 \rightarrow W$ to the data then gives the result.
+% of sections $\bfB$ up to the action of $\Gamma$ give the stack $BG$.
+% Given $\bfB$, we study the associated $\widetilde{\bfB}$.
+% We will show that the quotient of $\{\widetilde{\bfB}\} /\Gamma$ is isomorphic to $\{\pi \colon W \rightarrow W\GIT G\}/\GL(W)$ with $\GL(W)$ acting on the domain.
+% Given $\widetilde{\bfB}$, taking invariants gives 
+% $$W \xrightarrow{\widetilde{\bfB}} \cR \rightarrow \cR \GIT \Gamma = \Spec(\bfe_0 \cA \bfe_0) = W\GIT G.$$
+% Since our point is in $\cN^\circ$ the section $\bfB$ is invertible; Lemma~\ref{lem:e0Ae0} gives the composite is $\pi$ up to an automorphism of $W//G$.
+% Every such automorphism maybe lifted to one of $W$ so, up to the action of $\GL(W)$ on the domain, this is $\pi$.
+% The projection $\Gamma \rightarrow \GL(W)$ makes this morphism equivariant.
+% Taking $\pi$ to the $\bfB$ defined by the intertwiners defines an inverse that is equivariant with respect to the inclusion $\GL(W) \rightarrow \Gamma$.
+% % Two points $\bfx, \bfy \in W$ lie in the same $G$-orbit if and only if $p(\bfx)=p(\bfy)$ for every $p \in S(W^\vee)^G$.
+% % For $p \in S^k(W^\vee)^G$, we may interpret $p(\bfx)$ as the linear maps $$\bC = V_0 \xrightarrow{\bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{p} V_0=\bC$$ and similarly for $p(\bfy)$.
+% % On the other hand, via $S^k(W^\vee)^G \simeq \bfe_0 \cA \bfe_0$, the element $p$ specifies a linear combination of cycles centred at 0 of length $k$.
+% % Let $\bfB^k$ denote the composite given by successive application of $\bfB$ below $$V_0 \otimes W^{\otimes k} \longrightarrow \Bigg(\bigoplus_{i \rightarrow j} V_j\Bigg) \otimes W^{\otimes (k-1)} \rightarrow \cdots \rightarrow \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)}.$$
+% % Since $\bfB$ is an isomorphism so is $\bfB^k$.
+% % By Lemma~\ref{lem:Btilde}, the linear map corresponding to this linear combination in $\widetilde{\bfB}(\bfx)$ is $$V_0 \xrightarrow{\text{id} \otimes \bfx^{\otimes k}} V_0 \otimes W^{\otimes k} \xrightarrow{\bfB^k} \bigoplus_{\text{paths } q \text{ length } k} V_{h(q)} \xrightarrow{p} V_0$$
+% % respectively.
+% %The claim follows because $\bfB^k$ is an isomorphism.
+% Since $W\setminus \{0\}$ is a $G$-torsor we have that $\{\pi \colon W \rightarrow W\GIT G\}/\GL(W) \simeq BG$ and hence so is $\{\widetilde{\bfB}\} /\Gamma$.
+% The data of $\balpha$ is accounted for since we are restricted to the subset where $\bfB$ is an isomorphism.
+% Adding $\bfx \colon V_0 \rightarrow W$ to the data then gives the result.
 \end{proof}
 
 % \begin{proof}
@@ -478,9 +568,10 @@ It remains to check $\alpha_i$ but $\alpha_i=0$ so the desired limit exists ther
 We may therefore apply the Hilbert-Mumford criterion with the one-parameter subgroup $\lambda$.
 The pairing $\langle \lambda, -\vartheta \rangle$ is negative and hence $(\bfx, \balpha, \bfB)$ is $(-\vartheta)$-unstable yielding our desired contradiction.
 
-{\red This is a white lie:}
-For $(\bfx, \balpha, \bfB) \in \cN^\circ$, the section $\alpha_0$ is a non-zero semi-invariant of weight $-\vartheta$.
-Therefore $(\bfx, \balpha, \bfB)$ is $(-\vartheta)$-stable.
+The fact that entries of the inverse of the Cartan matrix are non-negative rational numbers implies that a product of fields $\alpha_i$ gives a non-zero semi-invariant of weight $n\cdot (-\vartheta)$ for some positive $n \in \bN$.
+% {\red This is a white lie:}
+% For $(\bfx, \balpha, \bfB) \in \cN^\circ$, the section $\alpha_0$ is a non-zero semi-invariant of weight $-\vartheta$.
+% Therefore $(\bfx, \balpha, \bfB)$ is $(-\vartheta)$-stable.
 % Equation~\ref{eq1:cons2} expresses the determinant of $B_i$, and hence $\bfB$, in terms of the scalars $\alpha_i$.
 % Furthermore, we have that the weight of $\bfx \colon V_0 \rightarrow W$ is opposite to that of $\alpha_0 \colon L_W \rightarrow L_0$ and so setting $\bfx=0$ does not alter the $\phi$-stability of a point $(\bfx, \alpha_i, \bfB)$.
 % Therefore the determinant of any semi-invariants with weight $n \phi$, for $n>0$, must contain the scalar field $\otimes_{i\in I} \, \alpha_i$ as a factor.
@@ -508,7 +599,7 @@ The morphism $f \colon \cN \rightarrow \cM$ restricted to $\cN^\vartheta$ factor
 For $(\bfx, \balpha, \bfB) \in \cN^\vartheta$, we show that $S_i$ can not be a quotient of $\widetilde{\bfB}(\bfx)$. This implies $\vartheta$-stability since any destabilizing quotient of $\widetilde{\bfB}(\bfx)$ is an extension of vertex simples $S_i$.
 Assume seeking a contradiction that $S_i$ is a quotient of $\widetilde{\bfB}(\bfx)$.
 This is equivalent to the vanishing of the $d_i$-th wedge of the linear map
-$$\bigoplus_{i \rightarrow j} V_j \xrightarrow{B_{i^\vee}} V_i \otimes W^\vee \xrightarrow{\text{id} \otimes \bfx^T} V_i.$$
+$$\bigoplus_{i \rightarrow j} V_j \xrightarrow{B^i} V_i \otimes W^\vee \xrightarrow{\text{id} \otimes \bfx^T} V_i.$$
 
 Equation~(\ref{eq2:cons2}) then implies that $S_i$ also a submodule of $\widetilde{\bfB}(\bfx)$ since the $d_i$-th wedge of 
 $$V_i \xrightarrow{\text{id} \otimes \bfx} V_i \otimes W \xrightarrow{B_i} \bigoplus_{i \rightarrow j} V_j$$
@@ -530,7 +621,7 @@ To reach our desired contradiction, it remains to show that the limit exists for
 Assume $\alpha_j \neq 0$.
 We have that the following sequence is not exact since $i$ is adjacent to $j$ and $S_i$ is a summand of $\widetilde{\bfB}(\bfx)$
 $$0 \longrightarrow V_j \longrightarrow \bigoplus_{j \rightarrow k} V_k \longrightarrow V_j \longrightarrow 0.$$
-Equation~\ref{eq2:cons2} and $\alpha_j \neq 0$ means that it is not exact on either side: if it is not exact on the left it is not on the right and vice versa.
+Equation~\eqref{eq2:cons2} and $\alpha_j \neq 0$ means that it is not exact on either side: if it is not exact on the left it is not on the right and vice versa.
 Therefore $S_j$ is also a quotient in $\widetilde{\bfB}(\bfx)$.
 We leave it for the reader to check that this is compatible with $S_i$, that is that the argument implies that $S_i \oplus S_j$ is a summand of $\widetilde{\bfB}(\bfx)$.
 The 1-parameter subgroup corresponding to $S_i \oplus S_j$ then either has a limit and is destabilising or $S_i \oplus S_j$ is extendable to a bigger summand as above.
@@ -538,7 +629,7 @@ The 1-parameter subgroup corresponding to $S_i \oplus S_j$ then either has a lim
 
 \subsection{The inverse morphism}
 
-We define a morphism  $g \colon \cM^\vartheta \rightarrow \bA/\Gamma$.
+We define a morphism  $g \colon \cM^\vartheta \rightarrow [\bA/\Gamma]$.
 We show that $g$ factors through $\cN^\vartheta$ and is hence a candidate for the inverse of $f \colon \cN^\vartheta \rightarrow \cM^\vartheta$.
 We then go on to prove that it indeed is $f^{-1}$.
 
@@ -610,14 +701,14 @@ Adjunction completes the proof.
 
 \subsubsection{The relations and conclusion}
 
-The above construction defines a morphism $g \colon \cM^\vartheta \rightarrow \bA/\Gamma$ here we show that it in fact factors through $\cN^\vartheta$.
+The above construction defines a morphism $g \colon \cM^\vartheta \rightarrow [\bA/\Gamma]$ here we show that it in fact factors through $\cN^\vartheta$.
 Then prove it is $f^{-1}$.
 
 Theorem~\ref{thm:tannaka} gives that $\cM^\vartheta$ and $\cN^\vartheta$ are birational via $f \colon \cN \rightarrow \cM$.
 To deduce that the relations are satisfied we first show that $f \circ g \colon \cM^\vartheta \rightarrow \cM^\vartheta$ is the identity on the open subset of points of $\cM^\vartheta$ corresponding to free orbits of the $G$-action on $W$.
 
 \begin{theorem}\label{thm:fg}
-The morphism $f \circ g \colon \cM^{\vartheta} \longrightarrow \cS/\Gamma$ factors through $\cM^\vartheta$ and is the identity on it.
+The morphism $f \circ g \colon \cM^{\vartheta} \longrightarrow \cM$ factors through $\cM^\vartheta$ and is the identity on it.
 \end{theorem}
 
 \begin{proof}
@@ -633,12 +724,12 @@ The commutativity of the diagram then gives the result.
 \end{proof}
 
 \begin{corollary}
-The morphism $g \colon \cM^\vartheta \rightarrow \bA/\Gamma$ factors through the closed subset $\cN \subset \bA/\Gamma$.
+The morphism $g \colon \cM^\vartheta \rightarrow [\bA/\Gamma]$ factors through the closed subset $\cN \subset [\bA/\Gamma]$.
 \end{corollary}
 
 \begin{proof}
 Theorem~\ref{thm:fg} gives that $g$ is a left inverse to the birational map $f$; it is therefore a two-sided inverse.
-The restriction of $g$ to a dense open subset of $\cM^\vartheta$ factors through the closed subset $\cN \subset \cA/\Gamma$ which implies unrestricted morphism $g$ does too.
+The restriction of $g$ to a dense open subset of $\cM^\vartheta$ factors through the closed subset $\cN \subset [\cA/\Gamma]$ which implies unrestricted morphism $g$ does too.
 \end{proof}
 
 \begin{corollary}
@@ -665,15 +756,15 @@ The proof of Theorem~\ref{thm:fg}, in particular the bottom half of the commutat
 
 We now focus on the sections $\alpha_i$.
 The $d_i$-th wedge of the complex
-$$\bigoplus_{j \rightarrow i} \cV_j \xrightarrow{(B_{i^\vee} \,\circ\, \bfx)^T} \cV_i$$
+$$\bigoplus_{j \rightarrow i} \cV_j \xrightarrow{(B^i \,\circ\, \bfx)^T} \cV_i$$
 is the complex
 \begin{equation}\label{eq:dthwedge}
     \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg) \rightarrow \bigwedge^{d_i-1} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg) \otimes \cV_i \rightarrow \cdots \rightarrow S^{d_i}(\cV_i).
 \end{equation}
-In Subsubsection~\ref{sssc:alpha} the section $\alpha_i$ on points in the image of $g$ is defined as the $d_i$-th wedge of the morphism of complexes
+In Section~\ref{sssc:alpha} the section $\alpha_i$ on points in the image of $g$ is defined as the $d_i$-th wedge of the morphism of complexes
 \begin{equation*}
     \xymatrix{\cV_i \ar[rr] \ar[d]^{B_i \,\circ\, \bfx} && 0 \ar[d] \\
-    \bigoplus_{j \rightarrow i} \cV_j \ar[rr]^-{(B_{i^\vee} \,\circ\, \bfx)^T} && \cV_i.}
+    \bigoplus_{j \rightarrow i} \cV_j \ar[rr]^-{(B^i \,\circ\, \bfx)^T} && \cV_i.}
 \end{equation*}
 That is, $\alpha_i$ is given by the composite 
 \begin{equation}\label{eq:alpha}
@@ -682,11 +773,11 @@ That is, $\alpha_i$ is given by the composite
 \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg).
 \end{equation}
 
-By Equation~\ref{eq2:cons2} we may rewrite (\ref{eq:alpha}) as 
-$$L_i \xrightarrow{\alpha_i} \bigotimes_{i \rightarrow j} L_j  \otimes L_i^\vee \xrightarrow{\bfx^{d_i}} \bigotimes_{i \rightarrow j} L_j \otimes L_i^\vee \otimes S^{d_i}(\cW) \xrightarrow{\Omega \,\circ\, (\wedge^{d_i} B_{i^\vee}) \,\circ\, \Omega} 
+By Equation~\eqref{eq2:cons2} we may rewrite (\ref{eq:alpha}) as 
+$$L_i \xrightarrow{\alpha_i} \bigotimes_{i \rightarrow j} L_j  \otimes L_i^\vee \xrightarrow{\bfx^{d_i}} \bigotimes_{i \rightarrow j} L_j \otimes L_i^\vee \otimes S^{d_i}(\cW) \xrightarrow{\Omega \,\circ\, (\wedge^{d_i} B^i) \,\circ\, \Omega} 
 %\bigotimes_{i \rightarrow j} L_j  \otimes \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg) = 
 \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg)$$
-Now our family $(\bfx, \balpha, \bfB)$ is $\vartheta$-stable therefore the section $(B_{i^\vee} \circ \bfx)^T$ is surjective and the composite $$\bigotimes_{i \rightarrow j} L_j  \otimes L_i^\vee \xrightarrow{\bfx^{d_i}} \bigotimes_{i \rightarrow j} L_j \otimes L_i^\vee \otimes S^{d_i}(\cW) \xrightarrow{\Omega \,\circ\, (\wedge^{d_i} B_{i^\vee}) \,\circ\, \Omega} 
+Now our family $(\bfx, \balpha, \bfB)$ is $\vartheta$-stable therefore the section $(B^i \circ \bfx)^T$ is surjective and the composite $$\bigotimes_{i \rightarrow j} L_j  \otimes L_i^\vee \xrightarrow{\bfx^{d_i}} \bigotimes_{i \rightarrow j} L_j \otimes L_i^\vee \otimes S^{d_i}(\cW) \xrightarrow{\Omega \,\circ\, (\wedge^{d_i} B^i) \,\circ\, \Omega} 
 %\bigotimes_{i \rightarrow j} L_j  \otimes \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg) = 
 \bigwedge^{d_i} \Bigg(\bigoplus_{j \rightarrow i} \cV_j \Bigg)$$
 gives an isomorphism of $\bigotimes_{i \rightarrow j} L_j  \otimes L_i^\vee$ with the complex in (\ref{eq:dthwedge}).
@@ -705,7 +796,7 @@ In particular, $\cN^\vartheta \simeq G\textup{-Hilb}(W)$.
 % The idea is that $\bfB$ gives a symplectic matrix when invertible.
 % Up to scalars, the manifold of symplectic matrices maybe thought of as a flag variety which is an affine spaces modulo the action of a reductive group.
 
-% Fix a vertex $i \in Q_0$ and consider the linear map $B_i \oplus B_{i^\vee}$.
+% Fix a vertex $i \in Q_0$ and consider the linear map $B_i \oplus B^i$.
 % The relations imply that this a symplecto-morphism.
 % In particular, given a choice of bases the rows of $B_i$ are orthogonal with respect to the symplectic forms in question.
 % They are therefore given by a complete flag.
@@ -724,16 +815,16 @@ Since $G$ is abelian and all irreducible representations are of rank 1, we have 
 The sections $B_i$ are of the form $$B_i \colon V_i \otimes W \longrightarrow V_{i-1} \oplus V_{i+1}.$$
 
 We have that $B_0 = \text{id}$.
-The commutative diagram (\ref{eq:comdiag}) applied to $B_0$ then gives an expression for $B_{0^\vee}$.
+The commutative diagram (\ref{eq:comdiag}) applied to $B_0$ then gives an expression for $B^0$.
 In particular, we have that 
 $$B_1^0 \colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{(0\,\, \alpha_0)} V_0.$$
 We now tackle $B_1$, so far we have 
 \begin{align*}
     B_1 &\colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} - & - \\ 0 & \alpha_0 \end{pmatrix}} V_2 \oplus V_0 \\
-    B_{1^\vee} &\colon (V_1^\vee \otimes V_1^\vee) \oplus (V_1^\vee \otimes V_{n-1}^\vee) \xrightarrow{\begin{pmatrix} 1 & 0 \\ - & - \end{pmatrix}} (V_0^\vee \oplus V_2^\vee) \otimes V_1^\vee \otimes V_{n-1}^\vee.
+    B^1 &\colon (V_1^\vee \otimes V_1^\vee) \oplus (V_1^\vee \otimes V_{n-1}^\vee) \xrightarrow{\begin{pmatrix} 1 & 0 \\ - & - \end{pmatrix}} (V_0^\vee \oplus V_2^\vee) \otimes V_1^\vee \otimes V_{n-1}^\vee.
 \end{align*}
 We also have that
-$$\alpha_1 \circ \Omega \circ B_{1^\vee} \circ \Omega \colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} \alpha_1 & 0 \\ - & - \end{pmatrix}} V_2 \oplus V_0.$$
+$$\alpha_1 \circ \Omega \circ B^1 \circ \Omega \colon (V_1 \otimes V_1) \oplus (V_1 \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} \alpha_1 & 0 \\ - & - \end{pmatrix}} V_2 \oplus V_0.$$
 Equation~(\ref{eq2:cons2}) completes the description of $B_1$.
 A similar technique gives $B_2$; we may continue in this fashion to deduce 
 $$B_i \colon (V_i \otimes V_1) \oplus (V_i \otimes V_{n-1}) \xrightarrow{\begin{pmatrix} \alpha_1\cdots\alpha_i & 0 \\ 0 & \alpha_{i+1}\cdots\alpha_{n-1} \end{pmatrix}} V_{i+1} \oplus V_{i-1}.$$
@@ -753,18 +844,18 @@ The definition of $G$ above gives us the representation $W$. The representation 
 The group $G$ has five irreducible representations $\rho_0, \ldots, \rho_4$ whose ranks are $1,1,2,1,1$, respectively.
 
 As before, starting at vertex $0$.
-It is only connected to vertex $2$, so we have that $B_0=\text{id}_{V_2}$ and $B_{0^\vee} = \text{id}_{V_2} \otimes \alpha_0$.
+It is only connected to vertex $2$, so we have that $B_0=\text{id}_{V_2}$ and $B^0 = \text{id}_{V_2} \otimes \alpha_0$.
 % \begin{align*}
-%     &B_{0^\vee} = \text{id} \otimes \alpha_0 \colon V_2^\vee \longrightarrow V_2^\vee \otimes L_2^\vee.
+%     &B^0 = \text{id} \otimes \alpha_0 \colon V_2^\vee \longrightarrow V_2^\vee \otimes L_2^\vee.
 % \end{align*}
-Reinterpreting $B_{0^\vee}$, we get that 
+Reinterpreting $B^0$, we get that 
 $$B_2^0 \colon V_2 \otimes V_2 \xrightarrow{\det} L_2 \xrightarrow{\alpha_0} V_0.$$
-So far, vertex $0$ has given us a column of $B_2$ and another of $B_{2^\vee}$.
+So far, vertex $0$ has given us a column of $B_2$ and another of $B^2$.
 These columns, the commutative diagram (\ref{eq:comdiag}) and some reflection give that $B_2^i$ for $i=1,3,4$ factors through $S^2(V_2)$.
 
 We now turn to the vertices $i=1,3,4$.
-These are only connected to vertex $2$ and so $B_i=B_i^2$ and $B_{i^\vee}= (B_2^i)^T$.
-Furthermore, since $d_i=1$ for these vertices Equation~(\ref{eq2:cons2}) translates to $$B_i = \alpha_i \circ \Omega \circ B_{i^\vee} \circ \Omega.$$
+These are only connected to vertex $2$ and so $B_i=B_i^2$ and $B^i= (B_2^i)^T$.
+Furthermore, since $d_i=1$ for these vertices Equation~(\ref{eq2:cons2}) translates to $$B_i = \alpha_i \circ \Omega \circ B^i \circ \Omega.$$
 This allows us to eliminate $B_i$ for $i=1,3,4$ from the problem.
 What remains is:
 \begin{align*}
