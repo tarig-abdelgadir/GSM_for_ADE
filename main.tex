@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{mymacros, stmaryrd, tikz}
-\usepackage{ pstricks, pst-node, pst-text, pst-tree}
+%\usepackage{ pstricks, pst-node, pst-text, pst-tree}
 \usepackage{subfigure, epsfig, psfrag}
 
 
@@ -31,6 +31,7 @@
 
 \newcommand\isoto{\stackrel{\sim}{\longrightarrow}}
 
+
 %**** Notation to be fixed  ************
 
 \newcommand\VW{V_W}
@@ -51,6 +52,7 @@ Crepant resolution conjectures.
 Techniques naturally extend to symplectic quotient singularities.
 Blow air into the walls of the octant.
 Monoidal categories result.
+
 
 
 \section{Background}\label{sc:background}
@@ -103,6 +105,7 @@ The monoidal category $\Rep(G)$ is semi-simple therefore $$\rho_i \otimes_G \W \
 with $c_{ij} =\dim \Hom_{\bC G}(\rho_i \otimes_G \W, \rho_j)$.
 The numbers $c_{ij}$ allow us to define the {\em McKay quiver} $Q$: the vertices are indexed by irreducible representations labelled by $I$ with $c_{ij}$  arrows from $i$ to $j$.
 The defining representation $\W$ is self-dual hence $c_{ij} = c_{ji}$.
+%The defining representation $\W$ is self-dual, fixing an isomorphism $\alpha_0 \colon \W \rightarrow \W^\vee$ allows us to define a bijection between arrows with head at a vertex $i$ with those with tail at $i$; in particular $c_{ij} = c_{ji}$.
 It is therefore possible to unambiguously define a graph associated to $Q$ with vertex set $I$ and $c_{ij}$ edges between $i$ and $j$. This is the McKay graph associated to $G$.
 
 \begin{theorem}\cite{MR604577}.
@@ -110,41 +113,44 @@ The McKay graph associated to $G \subset \SL(2,\bC)$ is an affine Dynkin diagram
 Moreover, the subgraph given by removing the vertex $0$ is the corresponding $ADE$ Dynkin diagram.
 \end{theorem}
 
-We identify an arrow $i \rightarrow j$ with a morphism of representations $\beta_i^j \colon \rho_i \otimes_G \W \rightarrow \rho_j$.
+We identify an arrow $i \rightarrow j$ with a morphism of representations $\beta_{i \rightarrow j} \colon \rho_i \otimes_G \W \rightarrow \rho_j$.
 For every irreducible representation this gives us isomorphisms 
 \begin{align}
     \beta_i &\colon \rho_i \otimes_G \W \longrightarrow \bigoplus_{i \rightarrow j} \rho_j \\
-    \beta^i &\colon \rho_i^\vee \otimes_G \W^\vee \longrightarrow \bigoplus_{i \rightarrow j} \rho_j^\vee \otimes \det \W^\vee.
+    \beta^i &\colon \rho_i^\vee \otimes_G \W \longrightarrow \bigoplus_{i \rightarrow j} \rho_j^\vee.
 \end{align}
-We may choose, and do choose, $\beta_i^j$ so that $\beta_i^{-1} = \alpha_0^{-1} \circ (\beta^i)^T$ up to a fixed isomorphism $\alpha_0 \colon \det \W \rightarrow \rho_0$.
+We may choose, and do choose, $\beta_{i \rightarrow j}$ so that $\beta_i^{-1} = \alpha_0^{-1} \circ (\beta^i)^\vee$ up to our fixed isomorphism $\alpha_0 \colon \wedge^2 \W \rightarrow \bC$.
+The isomorphism $\alpha_0$ may also be interpreted as an isomorphism $\alpha_0 \colon W \rightarrow W^\vee$.
+This, in turn, gives an involution $\iota$ on the arrows of $Q$ sending $\beta_{i \rightarrow j}$ to its dual under the symplectic pairing given by 
+$$\rho_i \otimes \W \xrightarrow{\beta_i} \bigoplus_{i \rightarrow j} \rho_j  \xrightarrow {(\beta^i)^\vee} \rho_i \otimes \W^\vee \xrightarrow{\text{id} \otimes \alpha_0} \rho_i \otimes \W.$$
 
-TO DO: I'M CONFUSED BY THE ABOVE, WHAT'S IT FOR? SHOULD WE JUST FIX $\det W\cong \bC$?
+%TO DO: I'M CONFUSED BY THE ABOVE, WHAT'S IT FOR? SHOULD WE JUST FIX $\det W\cong \bC$?
 
-The morphisms $\beta_i^j$ give a natural isomorphism of vector spaces $$\Hom_{\bC G}(\rho_i \otimes_G \W^{\otimes n}, \rho_j) \simeq \langle\, \text{paths of length }n \text{ from }i \text{ to } j\,\rangle.$$
+The morphisms $\beta_{i \rightarrow j}$ give a natural isomorphism of vector spaces $$\Hom_{\bC G}(\rho_i \otimes_G \W^{\otimes n}, \rho_j) \simeq \langle\, \text{paths of length }n \text{ from }i \text{ to } j\,\rangle.$$
 In particular, for a vertex $i$, the one-dimensional space $\Hom_{\bC G} (\rho_i \otimes \det \W, \rho_i)$ gives, up to $\alpha_0$, a relation $r_i$ of length 2 from $i$ to itself.
 The set $R = \{r_i \, |\, i \in I\}$ makes $Q$ into a quiver with relations $(Q, R)$. 
 We take $\cA:= \bk Q/ \langle R\rangle$.
-On the other hand, the action of $G$ on $\W$ induces an action on the symmetric algebra $\Sym W^\vee \cong \bC[x,y]$ which is related to $\cA$ by the following result.
+On the other hand, the action of $G$ on $\W$ induces an action on the symmetric algebra $S(W^\vee)$ which is related to $\cA$ by the following result.
 
 \begin{theorem}\cite{MR2593679}.
-The skew-group algebra $\bC[x,y] \# G$ is Morita equivalent to $\cA$.
+The skew-group algebra $S(W^\vee) \# G$ is Morita equivalent to $\cA$.
 \end{theorem}
 
 \subsubsection{The $G$-Hilbert scheme}
 
-The invariant ring of the $G$-action on $\bC[x,y]$ will be denoted $\bC[x,y]^G \subset \bC[x,y]$, it is the centre of $\bC[x,y] \# G$ and is isomorphic to the subring $\bfe_0 \cA \bfe_0 \subset \cA$.
-The variety $X:= \Spec(\bfe_0 \cA \bfe_0)=\bC^2/G$ parametrises the orbits of the $G$-action on $V$ and has a singularity at the $0$-orbit.
+The invariant ring of the $G$-action on $S(W^\vee)$ will be denoted $S(W^\vee)^G \subset S(W^\vee)$, it is the centre of $S(W^\vee) \# G$ and is isomorphic to the subring $\bfe_0 \cA \bfe_0 \subset \cA$.
+The variety $X:= \Spec(\bfe_0 \cA \bfe_0)=\W/G$ parametrises the orbits of the $G$-action on $\W$ and has a singularity at the $0$-orbit.
 The variety $X$ is Gorenstein, that is it is Cohen-Macaulay and its dualizing sheaf $\omega_X$ is invertible.
-The $G$-Hilbert scheme, $G$-Hilb($\bC^2$), parametrises scheme theoretic orbits of $G$ i.e.\ $G$-equivariant ideals $I$ of $\bC[x,y]$ for which $\bC[x,y]/I \simeq \bC G$ as $\bC G$-modules.
-The Hilbert-Chow morphism $\pi \colon G\text{-Hilb}(\bC^2) \rightarrow X$ takes the zero-locus of $I \subset \bC[x,y]$ to its corresponding $G$-orbit.
-Furthermore, $\pi \colon G\text{-Hilb}(\bC^2) \rightarrow X$ is a crepant resolution of singualrities, in other words it is a resolution with $\pi^*\omega_X \simeq \omega_{G\text{-Hilb}(\bC^2)}$.
+The $G$-Hilbert scheme, $G$-Hilb($\W$), parametrises scheme theoretic orbits of $G$ i.e.\ $G$-equivariant ideals $I$ of $S(W^\vee)$ for which $S(W^\vee)/I \simeq \bC G$ as $\bC G$-modules.
+The Hilbert-Chow morphism $\pi \colon G\text{-Hilb}(\W) \rightarrow X$ takes the zero-locus of $I \subset S(W^\vee)$ to its corresponding $G$-orbit.
+Furthermore, $\pi \colon G\text{-Hilb}(\W) \rightarrow X$ is a crepant resolution of singualrities, in other words it is a resolution with $\pi^*\omega_X \simeq \omega_{G\text{-Hilb}(\W)}$.
 
 \begin{theorem}\cite{MR604577}.
 The inverse image of the singular point $\pi^{-1}(0)$ is a tree of transversely intersecting $\bP^1$s whose intersection graph is dual to the $ADE$ Dynkin diagram corresponding to $G$.
 \end{theorem}
 
 %The $G$-Hilbert scheme on $V$ is may be constructed as a moduli of quiver representations of the McKay quiver with relations $(Q,R)$.
-Take $\cM^\vartheta:=\cM^\vartheta(Q,R,\bfd)$ for $\vartheta = (-|G|,1, \ldots, 1)$ and $\bfd=(\text{rank}(\rho_i))_{i \in I}$, we have an isomorphism $\cM^\vartheta \simeq G\text{- Hilb}(\VW)$.
+Take $\cM^\vartheta:=\cM^\vartheta(Q,R,\bfd)$ for $\vartheta = (-|G|,1, \ldots, 1)$ and $\bfd=(\text{rank}(\rho_i))_{i \in I}$, we have an isomorphism $\cM^\vartheta \simeq G\text{- Hilb}(\W)$.
 
 \begin{theorem}\cite{MR740077}, \cite{MR1752785}.
 There is an equivalence of triangulated categories $$\Phi \colon D^b(\cM^\theta) \longrightarrow D^b(\cA)$$ that takes the universal bundle $\cV_i$ to the projective $\cA$-module $\cA\bfe_i$.
@@ -179,46 +185,9 @@ We fix the following notation for the rest of the text:
     \end{tabular}
 \end{centering}
  
-The final two items may need a little clarification. In type A the representation $W$ splits as $\rho_1\oplus \rho_N$ so $V_W$ is shorthand for $V_1\oplus V_N$. In types D and E the representation $W$ is one of the two-dimensional irreps $\rho_i$ and $V_W$ denotes the corresponding $V_i$.  Note that $\Wedge^2 W$ is a trivial representation of $G$ but $L_W=\Wedge^2\VW$ is not a trivial representation of $\Gamma$. 
-\pgap
+The final two items may need a little clarification. In type $A$ the representation $W$ splits as $\rho_1\oplus \rho_N$ so $V_W$ is shorthand for $V_1\oplus V_N$. In types $D$ and $E$ the representation $W$ is one of the two-dimensional irreps $\rho_i$ and $V_W$ denotes the corresponding $V_i$.  Note that $\Wedge^2 W$ is a trivial representation of $G$ but $L_W=\Wedge^2\VW$ is not a trivial representation of $\Gamma$. 
 
-Finally we fix an isomorphism  $V_0\simeq \bC$, or equivalently an isomorphism $\Gamma\simeq \bigoplus_{i>0} \text{GL}(V_i)$.
-
-
-% \begin{itemize}
-%     \item $G \subset \SL(2,\bC)$ finite subgroup acting with no pseudo-reflections
-%     \item $\rho_0, \ldots, \rho_N$
-% irreducible representations of $G$ 
-%     \item $\rho_0$ the trivial representation
-%     \item $I=\{0,\ldots,N\}$
-%     \item $\VW$ to be the direct sum of $\rho_i$'s that is isomorphic to defining representation
-%     \item $X:=\Spec(S(\VW^\vee)^G) = \VW \GIT G$ singular affine quotient
-%     \item $\bX:=\VW/G$ smooth stack quotient
-%     \item $(Q,R)$ the McKay quiver with relations
-%     \item $\cA:= \bk Q/ \langle R\rangle$ algebra associated to $(Q,R)$
-%     \item $P_i:= \cA\bfe_i$ the projective module corresponding to the vertex $i$
-%     \item $\bfd:=(\text{rank}(\rho_i))_{i \in I}$
-%     \end{itemize}
-% Fix a finite subgroup $G \subset \SL(2,\bC)$ and let $\rho_0, \ldots, \rho_N$ be its
-% irreducible representations with $\rho_0$ being the trivial representation.
-% Set $I=\{0,\ldots,N\}$.
-% We take $\VW$ to be the direct sum of representations $\rho_i$ that is isomorphic to defining representation $\bC^2$.
-% We will write $X:=\Spec(S(\VW^\vee)^G) = \VW \GIT G$ and $\bX:=\VW/G$ for the stack.
-% The McKay quiver with relations will be denoted $(Q,R)$ and $\cA:= \bk Q/ \langle R\rangle$.
-% We will write $P_i:= \cA\bfe_i$ for the projective module corresponding to the vertex $i$.
-
-% Take $\bfd:=(\text{rank}(\rho_i))_{i \in I}$. 
-% Pick $V_i$ be vector spaces so that $\dim(V_i)=d_i$.
-% We abuse notation and write $\VW$ for the direct sum of $V_i$ corresponding to the $G$-representation $\VW$.
-% Take $$\Gamma:= \bigoplus_{i \in I} \text{GL}(V_i) / \bG_m \quad \text{ and }\quad\cS:=\bigoplus_{a \in Q_1} \Hom(V_{t(a)}, V_{h(a)}).$$
-% For $\theta \in \bZ^{Q_0}$, the moduli space $\cM^\theta(Q,\bfd)$ is then $\cS^\theta / \Gamma$.
-% The relations $R$ give a closed set $\cR \subset \cS$.
-% We write $\cM:= \cM(Q,R,\bfd)=\cR/\Gamma$ and $\cM^\theta:=\cM^\theta(Q,R,\bfd)=\cR^\theta/\Gamma$.
-% We will be especially interested in the stability parameter $\vartheta:= (-|G|,1, \ldots, 1) \in \bZ^{Q_0}$.
-% We let $L_i:= \wedge^{d_i} V_i$ and similarly $L_W:= \wedge^2 \VW$.
-% We also pick an isomorphism $\bfk \simeq V_0$.
-%We will use $I^\dagger$ for the natural isomorphism $I^\dagger \colon V^\vee \otimes L_V \rightarrow V$.
-
+Finally we fix an isomorphism  $V_0\simeq \bC$ and, in turn, an isomorphism $\Gamma\simeq \bigoplus_{i>0} \text{GL}(V_i)$.
 
 \section{The construction}
 
@@ -228,51 +197,58 @@ We begin by describing $\Y$ as a closed subset of an affine space $\bA$.
 \subsection{The fields}
 Our affine space $\bA$ is defined as
 \begin{equation*}
-    \VW \oplus \Bigg(\bigoplus_{i>0} \Hom\Big(L_i^{\otimes 2},\, \bigotimes_{i \rightarrow j} L_j\Big) \Bigg) \oplus  \bigoplus_{\substack{a\in Q_1\\t(a)\neq 0}} \Hom\Big(V_{t(a)} \otimes \VW,\,  V_{h(a)}\Big) 
+    \VW \oplus \bigoplus_{i>0} \Hom\Big(L_i^{\otimes 2},\, \bigotimes_{i \rightarrow j} L_j\Big) \oplus  \bigoplus_{\substack{a\in Q_1\\t(a)\neq 0}} \Hom\Big(V_{t(a)} \otimes \VW,\,  V_{h(a)}\Big) 
 \end{equation*}
 Points in $\bA$ are given by a tuple $(\bfx,\balpha, \bfB)$ as described below:
 \begin{align}
-\bfx &\in \VW \label{fd:x} \\
+\bfx \colon &V_0 \longrightarrow \VW \label{fd:x} \\
 \alpha_i \colon &L_i^{\otimes 2}\longrightarrow \bigotimes_{i \rightarrow j} L_j  \label{fd:alpha}\quad\mbox{for }i>0 \\
- B_{(a)} \colon &V_{t(a)} \otimes \VW \longrightarrow  V_{h(a)} \label{fd:B}\quad\mbox{for }a\in Q_1\mbox{ with } t(a)\neq 0
+B_{i \rightarrow j} \colon &V_i \otimes \VW \longrightarrow V_j  \label{fd:B}\quad\mbox{for }(i \rightarrow j) \in Q_1. 
 \end{align}
-Change of basis gives a natural action of $\Gamma$ on $\bA$.
 
-The $\alpha_i$ are scalars. The $B_{(a)}$ are harder, and we will need to reinterpret them in various ways.
+The $\alpha_i$ are scalars. 
+It sometimes helps to group the fields $B_{i \rightarrow j}$ using either the tail or head vertex as below:
 
-\begin{remark}\label{rm:cartan}
-The weights of the $\Gamma$-action on the fields $\alpha_i$ are given by minus the Cartan matrix of the corresponding Dynkin diagram.
-\end{remark}
-
-\begin{notn} For each $i>0$ we sum over arrows with tail at $i$ to form
-$$B_i = \sum_{\substack{a\in Q_1\\ t(a)=i}} B_{(a)}:\; V_i\otimes\VW \longrightarrow\bigoplus_{i\to j} V_j. $$
+\begin{notn}\label{notn:B^i}
+Fix $i>0$. 
+We sum over arrows with tail at $i$ to form
+\begin{align*}
+B_i = \sum_{i \rightarrow j} B_{i \rightarrow j}:\; V_i\otimes\VW \longrightarrow\bigoplus_{i\to j} V_j.
+\end{align*}
+For arrows with head at $i$, we reinterpret each $B_{j \rightarrow i}$ as a map
+$$ V_{i}^\vee\otimes \VW \longrightarrow V_{j}^\vee $$
+and sum
+\begin{align*}
+B^i = \sum_{j \rightarrow i} B_{j \rightarrow i}:\; V_i^\vee \otimes \VW \longrightarrow \bigoplus_{j\to i} V_j^\vee.
+\end{align*}
 \end{notn}
 
+\begin{remark}
+Since every arrow has a tail, the data of $\bfB$ is equivalent to the data in the fields $B_i$ for all $i>0$.
+\end{remark}
+
 From the definition of the McKay quiver the dimensions $d_i$ satisfy
-\begin{equation}\label{eq:drelation} 2d_i = \sum_{i\rightarrow j} d_j = \sum_{j\rightarrow i} d_j \end{equation}
-so each $B_i$ is a `square matrix', \emph{i.e.}~a map between two vector spaces of the same dimension. 
-
-
+\begin{equation*}\label{eq:drelation} 2d_i = \sum_{i\rightarrow j} d_j = \sum_{j\rightarrow i} d_j \end{equation*}
+so both $B_i$ and $B^i$ are `square matrices', \emph{i.e.}~maps between two vector spaces of the same dimension.
 \begin{remark}\label{rm:Tannaka}
-The $\alpha_i$ and $B_i$ can be understood from the Tannakian approach as explained in Section \ref{}.  In the category of $G$-representations we have isomorphisms
+This choice of $\alpha_i$ and $B_i$ can be understood from the Tannakian approach as explained in Section \ref{sc:Tannaka}.  In the category of $G$-representations we have isomorphisms
 $$\rho_i\otimes W \simeq \bigoplus_{i\to j} \rho_j$$
 and (by taking the determinant of the above)
 $$ (\det \rho_i)^{\otimes 2} \simeq \bigotimes_{i\to j} \det \rho_j. $$
 The fields $B_i$ and $\alpha_i$ are the corresponding linear maps.
 \end{remark}
 
+\begin{remark}\label{rm:cartan}
+The weights of the $\Gamma$-action on the fields $\alpha_i$ are given by minus the Cartan matrix of the corresponding Dynkin diagram.
+\end{remark}
 
-%In what follows we manipulate the data $(\bfx, \alpha_i, B_i) \in \bA$ in various ways; the rest of this subsection sets up the notation required.
-%\pgap
-
-We haven't assigned $B$ fields to the arrows that leave the vertex 0, the reason is that there is a canonical choice for these ones. By the definition of the McKay quiver we have
-\begin{equation}\label{eq:from0} \VW = \bigoplus_{0\to j} V_j. \end{equation}
-and recall that we have chosen a trivialization $V_0\simeq \bC$. 
+In what follows we manipulate the data $(\bfx, \balpha, \bfB) \in \bA$ in various ways; the rest of this subsection sets up the notation required.
 
 \begin{notn}
- $B_0$ will denote the identity morphism from $V_0\otimes V_W \longrightarrow\bigoplus_{0\to j} V_j$. For an arrow $a\in Q_1$ with $t(a)=0$ we'll let $B_{(a)}$ denote the corresponding summand of $B_0$.
+By the definition of the McKay quiver we have
+\begin{equation}\label{eq:from0} \VW = \bigoplus_{0\to j} V_j. \end{equation}
+Armed with the fixed isomorphism $V_0 \simeq \bC$, we use $$B_0 \colon V_0\otimes V_W \longrightarrow\bigoplus_{0\to j} V_j$$ to denote the identity morphism. 
 \end{notn}
-
 
 \begin{notn}
 %Grouping the linear maps $\alpha_i$ and respectively $B_i$ into big linear maps we write: 
@@ -281,42 +257,27 @@ and recall that we have chosen a trivialization $V_0\simeq \bC$.
 %\bfB &:= \bigoplus_{i\in Q_0} B_i \colon \bigoplus_{i\in Q_0} V_i \otimes \VW \longrightarrow \bigoplus_{a \in Q_1} V_{h(a)}
 %\end{align*}
 %Again, using adjuctions appropriately, the morphism $\bfB$ naturally induces a linear map:
-We can reinterpret each $B_{(a)}$ as a map
-$$ \VW \longrightarrow \Hom( V_{t(a)},  V_{h(a)}). $$
-Adding these together (including the case $t(a)=0$) we get a linear map
+We can reinterpret each $B_i$ as a map
+$$ \VW \longrightarrow \bigoplus_{i\to j} \Hom( V_i,  V_j). $$
+Adding these together (including $B_0=\id_{\VW}$) we get a linear map
 $$\widetilde{\bfB} :\; \VW \longrightarrow\; \cS \,\,=\bigoplus_{i\to j} \Hom(V_i, V_j).$$
 \end{notn}
 
-Recall that points of $\cS$ define representations of the quiver $Q$.  A point $(\bfx, \balpha, \bfB) \in \bA$ includes the data of a point $\bfx\in \VW$ so we may apply $\widetilde{\bfB}$ to this point to obtain a $Q$-representation $\widetilde{\bfB}(\bfx)$. 
+This is an important second perspective on our $B$ fields, complementary to the one in Remark \ref{rm:Tannaka}.
+They are points in the affine subspace of $\Hom(\VW, \cS)$ where the first component is the identity.
+This is an especially cool reinterpretation of the fields $B_i$ given that points of $\cS$ define representations of the quiver $Q$.
 
-This is an important second perspective on our $B$ fields, complementary to the one in Remark \ref{rm:Tannaka}. They form the affine subspace of $\Hom(\VW, \cS)$ where the first component is the identity.
-
- 
-
-%The following lemma follows from unwinding the definitions.
-%\begin{lemma}\label{lem:Btilde}
-%For $(\bfx, \balpha, \bfB) \in \bA$ and an arrow $i\toj$ in $Q$, the linear map $V_i \rightarrow V_j$ in the representation $\widetilde{\bfB}(\bfx) \in \cS$ is 
-%$$V_i \xrightarrow{\textup{id} \otimes \bfx} V_i \otimes \VW \xrightarrow{B_i \bigoplus_{ \rightarrow j} V_j \rightarrow V_{h(a)}.$$
-%\end{lemma}
-
-Given an arrow $a:i\to j$, the linear map $V_i \rightarrow V_j$ in the representation $\widetilde{\bfB}(\bfx) \in \cS$ is the composite
+This point of view enables us to naturally associate a $Q$-representation $\widetilde{\bfB}(\bfx)$ to a point $(\bfx, \balpha, \bfB) \in \bA$ by applying $\widetilde{\bfB} \in \Hom(\VW, \cS)$ to $\bfx \in \VW$.
+Given an arrow $i\to j$, the linear map $V_i \rightarrow V_j$ in the representation $\widetilde{\bfB}(\bfx) \in \cS$ is the composite
 \begin{equation}\label{eq:Btilde}
- V_i \xrightarrow{\textup{id} \otimes \bfx} V_i \otimes \VW \xrightarrow{B_{(a)}} V_j.
+ V_i \xrightarrow{\textup{id} \otimes \bfx} V_i \otimes \VW \xrightarrow{B_{i\to j}} V_j.
 \end{equation}
-
-\begin{notn}\label{notn:B^i}
-We can instead reinterpret each $B_{(a)}$ as a map
-$$ V_{h(a)}^\vee\otimes \VW \longrightarrow V_{t(a)}^\vee. $$
-Summing over arrows with head at $i$ we form
- $$B^{i} = \sum_{\substack{a\in Q_1 \\ h(a)=i}} B_{(a)} \colon\; V_i^\vee \otimes \VW \longrightarrow \bigoplus_{j\to i} V_j^\vee.$$
-As with $B_i$ this is a `square matrix'. The case $i=0$ is included. 
-\end{notn}
 
 Our final piece of notation introduces a scalar field which will be particularly important.
 
 \begin{notn}
 We let $\alpha_0$ denote the scalar field 
-$$\alpha_0:= \bigotimes_{i>0} \,\alpha_i^{d_i}\;\in  L_W^{-1}.$$
+$$\alpha_0:= \bigotimes_{i>0} \,\alpha_i^{d_i} \colon L_W \longrightarrow \bC.$$
 Since $L_W=\Wedge^2 \VW$ this is a two-form on $\VW$.
 
 NOTE: THIS WOULD NOT BE TRUE IN THE HIGHER DIM SYMPLECTIC CASE
@@ -333,23 +294,21 @@ The first factor is $\bigotimes_{j} L_j^{\otimes 2d_j}$ by \eqref{eq:drelation} 
 
 
 \subsection{The equations}
-Here we describe the equations cutting out $\Y$ in $\bA$. They all involve the interplay between the maps $B_i$, the maps $B^i$, and the scalars $\alpha_i$. 
-\pgap
+Here we describe the equations cutting out $\Y$ in $\bA$. They all involve the interplay between the maps $B_i$ and the maps $B^i$ from Notation \ref{notn:B^i}, and the scalars $\alpha_i$. 
 
 The field $B_i$ is a map from $V_i\otimes \VW$ to $\bigoplus_{i\to j} V_j$, and if we dualize the map $B^i$ we get a map
 $$(B^i)^\vee: \bigoplus_{j \to i} V_j \longrightarrow V_i\otimes \VW^\vee.$$
-The McKay quiver has an involution on its set of arrows, sending an arrow $a:i\to j$ to a dual arrow $a':j\to i$. DISCUSS THIS IN BACKGROUND
+As discussed in Section~\ref{ssc:McKay}, the McKay quiver has an involution on its set of arrows, sending an arrow $a:i\to j$ to a dual arrow $a':j\to i$.
+%The target of $B_i$ and the source of $(B^i)^\vee$ are identical, because the self-duality of the representation $\W$ gives us a bijection between arrows $i \to j$ in $Q$ and arrows to $j \to i$. 
 This induces, for each vertex $i$, an isomorphism
 $$ \Omega_i: \bigoplus_{i\to j} V_j \isoto \bigoplus_{j\to i} V_j. $$
-So we can form the composition 
+So we can form the composite 
 $$(B^i)^\vee\circ\Omega_i\circ B_i :\; V_i \otimes \VW \longrightarrow V_i\otimes \VW^\vee.$$
-The scalar $\alpha_0\in \Wedge^2 \VW^\vee$ defines a map from $\VW$ to $\VW^\vee$. Our first set of equations are
+The scalar $\alpha_0\in \Wedge^2 \VW^\vee$ may be throught of as a map from $\alpha_0 \colon \VW \rightarrow \VW^\vee$. Our first set of equations are
 \begin{equation}\label{eq:rel1}
-(B^i)^\vee\circ\Omega_i\circ B_i  = \id_{V_i} \otimes \alpha_0.
+\boxed{\quad (B^i)^\vee\circ\Omega_i\circ B_i  = \id_{V_i} \otimes \alpha_0. \quad}
 \end{equation}
 
-TARIG HAS WEDGE POWERS OF THIS FOR ALL $0\leq r\leq d_i$, SEE HIS (3.8). BUT $r=0$ IS TRIVIAL AND THE OTHERS FOLLOW FROM $r=1$.
- 
 %We need more notation to do so.
 
 %\begin{notn}
@@ -357,26 +316,32 @@ TARIG HAS WEDGE POWERS OF THIS FOR ALL $0\leq r\leq d_i$, SEE HIS (3.8). BUT $r=
 %$$\Omega_r(V) \colon \wedge^{d+r} V \rightarrow \wedge^{d-r} V^\vee \otimes L_V$$ for $V$ a $2d$-dimensional vector space and $r= -d, \ldots, d$.
 %We will drop the vector space $V$ and the subscript $r$ from $\Omega_r(V)$ when it is clear from the context.
 
-\pgap
-
 For our second set of equations, we recall that for any vector space $U$ we have a natural isomorphism 
-$$\Wedge^{(\dim U -s)} U = \Wedge^s U^\vee \otimes \det U $$
+$$\Wedge^{(\dim U -s)}\, U = \Wedge^s U^\vee \otimes \det U $$
 for all $s$.  The map $B^i$ is a map between two vector spaces each of which have dimension $2d_i$. Consider the wedge power
-$$\Wedge^{d_i-r} B^i: \; \Wedge^{d_i-r}\big( V_i^\vee\otimes \VW \big) \longrightarrow \Wedge^{d_i-r} \left( \bigoplus_{j\to i} V_j^\vee \right) $$
+$$\Wedge^{d_i-r} B^i: \; \Wedge^{d_i-r}\big( V_i^\vee\otimes \VW \big) \longrightarrow \Wedge^{d_i-r} \Bigg( \bigoplus_{j\to i} V_j^\vee \Bigg) $$
 for some $0\leq r \leq d_i$. The source of this map is naturally isomorphic to
 $$ \Wedge^{d_i+r} \big( V_i \otimes \VW^\vee \big) \otimes \det \big( V_i^\vee\otimes \VW \big) \; \cong\; 
   \Wedge^{d_i+r} \big( V_i \otimes \VW \big) \otimes L_i^{-2}\otimes L_W^{-r} $$
 and its target is naturally isomorphic to
-$$\Wedge^{d_i+r} \left( \bigoplus_{j\to i} V_j \right)\otimes \bigotimes_{j\to i} L_j^{-1}. $$
-So up to a line, $\wedge^{d_i+r} B^i$ has the same source and target as the map $\wedge^{d_i+r} B_i$. 
+$$\Wedge^{d_i+r} \Bigg( \bigoplus_{j\to i} V_j \Bigg)\otimes \bigotimes_{j\to i} L_j^{-1}. $$
+So up to a line bundle, $\wedge^{d_i-r} B^i$ has the same source and target as the map $\wedge^{d_i+r} B_i$. 
 
-We can correct for this line using the appropriate combination of our scalar fields. Inspecting the above, the line is 
+We can correct for this line bundle using the appropriate combination of our scalar fields. Inspecting the above, the line bundle is 
 $$ L_i^{-2}\otimes L_W^{-r} \otimes \bigotimes_{j\to i} L_j $$
-and the scalar $\alpha_0^r\alpha_i$ is an element of this line. So the equation
+and the scalar $\alpha_0^r\alpha_i$ is a section of this line bundle. So the equation
 \begin{equation}\label{eq:rel2}
-\Wedge^{d_i+r} B_i  = \alpha_0^r \alpha_i\, \Wedge^{d_i-r} B^i 
+\boxed{\quad \Wedge^{d_i+r} B_i  = \alpha_0^r \alpha_i\, \Wedge^{d_i-r} B^i \quad }
 \end{equation}
 makes sense.
+
+For a chosen $i$, we highlight the two extreme cases are $r=0$ and $r=d_i$ and they say
+\begin{equation}\label{eq:r=0}\Wedge^{d_i} B_i = \alpha_i\Wedge^{d_i} B^i 
+\end{equation}
+and
+\begin{equation}\label{eq:r=di} \det B_i = \alpha_0^{d_i}\alpha_i
+\end{equation}
+respectively. 
 
 % Let us abuse notation by writing 
 %$$\alpha_0^r \alpha_i^{-1} := \alpha_1^{rd_1} \cdots \alpha_i^{rd_i-1} \cdots \alpha_N^{rd_N}$$
@@ -436,22 +401,10 @@ The claim is that the composite
 \end{equation}
 coincides with $(N+1)\alpha_0$. The equation \eqref{eq:rel1} implies that the composite
 \begin{equation}
-    \VW \xrightarrow{B_i} \bigoplus_{\substack{a \in Q_1\\t(a)=i}} \Hom(V_i, V_{h(a)}) \xrightarrow{\Omega_i} \bigoplus_{\substack{b \in Q_1\\h(b)=i}} \Hom(V_{t(b)}, V_{i}) \xrightarrow{(B^i)^\vee} \VW^\vee.
+    \VW \xrightarrow{B_i} \bigoplus_{i \rightarrow j} \Hom(V_i, V_{j}) \xrightarrow{\Omega_i} \bigoplus_{j \rightarrow i} \Hom(V_{j}, V_{i}) \xrightarrow{(B^i)^\vee} \VW^\vee.
 \end{equation}
 equals $\alpha_0$, and summing over $i$ gives the result.
 \end{proof}
-
-Now we look at the implications of our second set of equations \eqref{eq:rel2}. For a chosen $i$ the two extreme cases are $r=0$ and $r=d_i$ and they say
-\begin{equation}\label{eq:r=0}\Wedge^{d_i} B_i = \alpha_i\Wedge^{d_i} B^i 
-\end{equation}
-and
-\begin{equation}\label{eq:r=di} \det B_i = \alpha_0^{d_i}\alpha_i
-\end{equation}
-respectively. 
-
-The equation \eqref{eq:rel1} in the case $i=0$ reduces to 
-$$ (B^0)^\vee = \alpha_0 $$
-(viewing $\alpha_0$ as a map $\VW\to \VW^\vee$) which means that $B^0$ is redundant. IS THIS IMPORTANT? MAYBE DELETE
 
 % for which the following commutative diagrams commutes:
 %\begin{equation}\label{eq:cons1}
@@ -500,21 +453,21 @@ $$ (B^0)^\vee = \alpha_0 $$
 % Follows from the commutative diagram in Equation~\ref{eq:cons2} with $r=1$.
 % \end{proof}
 
-The following lemma relates the Equations~(\ref{eq:cons1}) to Equations~(\ref{eq:cons2}).
+The following lemma relates the relation in \eqref{eq:rel1} to the relations in \eqref{eq:rel2}.
 
 \begin{lemma}
-If $\alpha_0$ is invertible, the diagrams in Equation~(\ref{eq:cons2}) are commutative if and only if
-$$\wedge^{d_i-r} B_i = \alpha_0^{-r} \alpha_i \circ \Omega \circ \wedge^{d_i+r} B^i \circ \Omega^{-1}$$
+If $\alpha_0$ is invertible, relation \eqref{eq:rel1} is equivalent to the equation
+$$\Wedge^{d_i-r} B_i  = \alpha_0^{-r} \alpha_i\, \Wedge^{d_i+r} B^i$$
 for $i\in I$ and $r=0,\ldots,d_i$.
 \end{lemma}
 
 \begin{proof}
-The linear map $\alpha_0$ has a one-dimensional domain and codomain, therefore it is invertible if and only if it is non-zero.
-So if $\alpha_0$ is invertible then by definition $\alpha_i$ is also invertible for all $i$.
-Equation~(\ref{eq:cons1}) with $r=d_i$ translates to $\det B_i= \alpha_0^{d_i} \alpha_i$.
-The inverse of $\wedge^r B_i$ is then given by $(\wedge^{2d_i-r}B_i)^T \otimes (\det B_i)^{-1}$.
-Substituting $d_i-r$ into the $r$ of Equation~(\ref{eq:cons1}) gives $$\wedge^{2d_i-r} B_i = \alpha_0^{d_i-r} \alpha_i \circ \Omega \circ \wedge ^r B^i \circ \Omega^{-1}.$$
-The result follows.
+Assume $\alpha_0$ is invertible.
+The assumption gives that the fields $\alpha_i$ are then also invertible for all $i$ by definition of $\alpha_0$.
+The determinant of $B_i$ as given \eqref{eq:r=di} is a product of fields $\alpha_i$ and so $B_i$ is also invertible in this case.
+Equation \eqref{eq:rel1} then gives an expression for the inverse of $B^i$ which may also be expressed as $\wedge^{2d_i-1} B^i \otimes (\det B^i)^{-1}$.
+Putting these two expressions together gives the result for $r=d_i-1$.
+The wedge products follow from this case.
 \end{proof}
 
 
